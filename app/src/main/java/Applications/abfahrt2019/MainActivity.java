@@ -28,7 +28,15 @@ public class MainActivity extends AppCompatActivity {
         */
         startButton.setOnClickListener(view ->  {
             Log.d("debug", "Button clicked");
+            Abfahren();
             // Hier kommt der Aufruf unserer Anfangsmethode rein
         });
+    }
+
+    private void Abfahren() {
+        // Bereinige zuerst Oberfläcche
+
+
+        // Dann hol alle Slices zusammen in For-Schleifen und fülle HashSets
     }
 }
