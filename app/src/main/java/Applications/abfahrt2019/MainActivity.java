@@ -32,3 +32,12 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 }
+
+
+
+
+
+
+
+
+// Zuerst die Slices initialisieren, danach die HashSets füllen und den FragenCounter anlegen. Fehlt noch komplett die Spieler Auswahl usw
