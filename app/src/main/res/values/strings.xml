@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Abfahrt2019</string>
     <string name="startButtonText">Ab nach Malle!</string>
-    <string name="blab">Abfahrt2019</string>
-    <string name="blfdd">Abfahrt2019</string>
-    <string name="dfsfsdsfd">Abfahrt2019</string>
+    <string name="toBeFilled1">Abfahrt2019</string>
+    <string name="toBeFilled2">Abfahrt2019</string>
+    <string name="toBeFilled3">Abfahrt2019</string>
 </resources>
