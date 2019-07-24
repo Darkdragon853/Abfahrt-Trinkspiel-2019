@@ -27,4 +27,15 @@ public class Slice {
         String s = "Text: " + this.beschreibung + "; Kategorie: " + this.kategorie + ", Interaktiv: " + this.interaktiv + ", Farbe: " + this.farbe + ", Style: " + this.style;
         return s;
     }
+
+    public boolean getInteraktiv() {
+        return this.interaktiv;
+    }
+    public String getBeschreibung() {
+        return this.beschreibung;
+    }
+
+    public void setBeschreibung(String s) {
+        this.beschreibung = s;
+    }
 }
