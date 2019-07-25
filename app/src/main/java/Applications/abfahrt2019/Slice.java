@@ -34,7 +34,12 @@ public class Slice {
     public String getBeschreibung() {
         return this.beschreibung;
     }
-
+    public Color getFarbe() {
+     return this.farbe;   
+    }
+    public Font getStyle() {
+        return this.style;
+    }
     public void setBeschreibung(String s) {
         this.beschreibung = s;
     }
