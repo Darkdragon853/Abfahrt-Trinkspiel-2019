@@ -166,7 +166,8 @@ public class MainActivity extends AppCompatActivity {
 
         // Hier muss noch die Richtige Farbe hin
         //Color farbe = slice.getFarbe(); Speichere Farben als Ints ab? und dann mit R.color drauf zugreifen
-        parentLayout.setBackgroundColor(getResources().getColor(R.color.startButtonBackgroundColor));
+       // parentLayout.setBackgroundColor(getResources().getColor(R.color.startButtonBackgroundColor));
+        parentLayout.setBackgroundResource(R.drawable.gradient1);
         // Jetzt brauchen wir noch den entsprechenden Text, Style
         Font style = slice.getStyle();
         String text = slice.getBeschreibung();
@@ -182,7 +183,6 @@ public class MainActivity extends AppCompatActivity {
     // Soll nun eine neue Frage auswählen
     private void nextSlice() {
         // Was passiert wenn das Set leer ist? Bzw wie geht es dann weiter?
-
         if(!finished) {
             ++sliceCount;
             // getRandomSet
