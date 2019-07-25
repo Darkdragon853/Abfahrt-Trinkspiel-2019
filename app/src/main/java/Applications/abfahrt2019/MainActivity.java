@@ -3,16 +3,12 @@ package Applications.abfahrt2019;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import android.content.pm.ActivityInfo;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewGroup.LayoutParams;
 import android.graphics.fonts.Font;
 
 import java.util.HashSet;
@@ -34,10 +30,14 @@ public class MainActivity extends AppCompatActivity {
 
     private HashSet<String> spieler;
 
+    private ConstraintLayout parentLayout;
+
+    private Random randomGenerator;
+
     private int sliceCount;
     private int anzahlSlices;
 
-    private boolean inGame = false;
+    private boolean finished = false;
 
     private String[] fragenNormalArray =  {
             "Alle, die schon einmal an einem öffentlichen Ort Sex hatten, trinken 3 Schlucke.",
@@ -79,9 +79,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void Abfahren() {
-        //
-
-        inGame = true;
 
         // Bereinige zuerst Oberfläcche
         hideSystemUI();
@@ -90,28 +87,22 @@ public class MainActivity extends AppCompatActivity {
 
         // Initialisiere Sets usw
         Initialize();
-        // DummyFillers
+        // DummyFillers der Spieler
         testFill();
         // Theoretisch müssten jetzt alle Fragen im entsprechenden Set sein. Jetzt setzen wir die Namen in die Fragen ein.
-        Log.d("debug", "Starting Interact");
+        //Log.d("debug", "Starting Interact");
         Interact();
         // Jetzt noch für SpezialFälle
-        Log.d("debug", "Endging Interact");
+        //Log.d("debug", "Endging Interact");
 
 
-        Log.d("debug", "Starting InteractLArge");
+        // Log.d("debug", "Starting InteractLArge");
         InteractLarge();
-        Log.d("debug", "Endging InteractLarge");
+        // Log.d("debug", "Endging InteractLarge");
         // Hier geht das Spiel jetzt los. Zuerst probieren wir was aus.
+        nextSlice();
 
-
-        Slice s = pickRandomSlice(fragenNormal);
-
-        drawSlice(s);
-        sliceCount++;
-
-
-
+        //  Log.d("debug/slice", s.toString());
         //Debug:
         /*
         if(fragenNormal.isEmpty()) Log.d("debug", "Empty");
@@ -127,6 +118,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        parentLayout = findViewById(R.id.parentLayout);
+
 
         // Linke den Button zu unserer Start-Methode
         Button startButton = findViewById(R.id.startButton);
@@ -135,8 +128,6 @@ public class MainActivity extends AppCompatActivity {
             Abfahren();
         });
 
-
-        ConstraintLayout parentLayout = findViewById(R.id.parentLayout);
         parentLayout.setOnTouchListener( (view, motionEvent) -> {
             nextSlice();
             // Log.d("debug/touch", "Touched");
@@ -144,15 +135,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-    
-    /*@Override
-    public void onWindowFocusChanged(boolean hasFocus) {
-     super.onWindowFocusChanged(hasFocus);
-        if(hasFocus && inGame) {
-            hideSystemUI();
-        }
-    }
-    */
+
     // Dreht Screen in den Fullscreen und versteckt Systemleisten
     private void hideSystemUI() {
         View decorView = getWindow().getDecorView();
@@ -179,7 +162,6 @@ public class MainActivity extends AppCompatActivity {
     private void drawSlice(Slice slice) {
         // Zuerst setzen wir den Hintergrund. Dafür brauchen wir noch eine LayoutID mit Namen parentLayout!
 
-        ConstraintLayout parentLayout = findViewById(R.id.parentLayout);
         // Hier muss noch die Richtige Farbe hin
         //Color farbe = slice.getFarbe(); Speichere Farben als Ints ab? und dann mit R.color drauf zugreifen
         parentLayout.setBackgroundColor(getResources().getColor(R.color.startButtonBackgroundColor));
@@ -195,19 +177,107 @@ public class MainActivity extends AppCompatActivity {
     }
   
     // HelperMethods
+
+    // Soll nun eine neue Frage auswählen
     private void nextSlice() {
-        // getRandomSet
+        if(!finished) {
+            ++sliceCount;
+            // getRandomSet
+            float factor = sliceCount / anzahlSlices; float fragenNormalWs; float fragenWarmWs; float fragenHeissWs; float spieleNormalWs; float spieleWarmWs; float spieleHeissWs; float virusNormalWs; float virusWarmWs; float virusHeissWs;
+            //0% - 30% des Games
+            if(factor <= 0.3) {
+                fragenNormalWs = 0.0f;
+                fragenWarmWs = 0.0f;
+                fragenHeissWs = 0.0f;
 
-         Log.d("debug/touch", "nextSlice aufgerufen");
+                spieleNormalWs = 0.0f;
+                spieleWarmWs = 0.0f;
+                spieleHeissWs = 0.0f;
 
-        // pickRandomSlice in that Set
+                virusNormalWs = 0.0f;
+                virusWarmWs = 0.0f;
+                virusHeissWs = 0.0f;
+            }
+            // 31% - 60% des Games
+            else if(factor <= 0.6) {
+                fragenNormalWs = 0.0f;
+                fragenWarmWs = 0.0f;
+                fragenHeissWs = 0.0f;
+
+                spieleNormalWs = 0.0f;
+                spieleWarmWs = 0.0f;
+                spieleHeissWs = 0.0f;
+
+                virusNormalWs = 0.0f;
+                virusWarmWs = 0.0f;
+                virusHeissWs = 0.0f;
+            }
+            // 61% - 100% des Games
+            else {
+                fragenNormalWs = 0.0f;
+                fragenWarmWs = 0.0f;
+                fragenHeissWs = 0.0f;
+
+                spieleNormalWs = 0.0f;
+                spieleWarmWs = 0.0f;
+                spieleHeissWs = 0.0f;
+
+                virusNormalWs = 0.0f;
+                virusWarmWs = 0.0f;
+                virusHeissWs = 0.0f;
+            }
+            float temp = randomGenerator.nextFloat();
 
 
 
-        // draw the Slice
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            Log.d("debug/touch", "nextSlice aufgerufen");
+
+            // pickRandomSlice in that Set
+
+
+            // draw the Slice
+
+
+            // finished?
+            if (sliceCount == anzahlSlices) finished = true;
+        }
+        else {
+            //Finish -> Restart App?
+        }
     }
-
-
 
 
 
@@ -225,10 +295,11 @@ public class MainActivity extends AppCompatActivity {
     private Slice pickRandomSlice(HashSet<Slice> set) {
         int i = 0;
         Slice finalSlice = new Slice("Something failed in PickRandomSlice", Slice.Level.Heiss, false);
-        Random randomGenerator = new Random();
         int item = randomGenerator.nextInt(set.size());
         for(Slice s : set) {
             if(item == i) {
+                // Wirf Slice aus der Menge und gib es zurück
+                set.remove(s);
                 return s;
             }
             else {
@@ -240,7 +311,6 @@ public class MainActivity extends AppCompatActivity {
 
     //ManyInteracts noch
     private void InteractLarge() {
-        Random randomGenerator = new Random();
         for(Slice s : manyInteracts) {
             HashSet<Integer> temp = new HashSet<Integer>();
             // Hol dir zuerst die Beschreibung
@@ -303,7 +373,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void Interact() {
         // Eliminiere alle X, Y, Z usw; Wähle zufällige Zahl zw. 0 und Anzahl Spieler, dieser Spieler kommt an Stelle X. Achtung, Keine DOPPLUNG!
-        Random randomGenerator = new Random();
 
         // Packe alle Slices in ein Set um nur ein mal zu Iterieren
         HashSet<Slice> allSlices = new HashSet<Slice>();
@@ -383,7 +452,9 @@ public class MainActivity extends AppCompatActivity {
         manyInteracts = new HashSet<Slice>();
 
         sliceCount = 0;
+        anzahlSlices = 30;
 
+        randomGenerator = new Random();
 
         // Fragen
         // Normale Fragen
