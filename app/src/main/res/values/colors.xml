@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="startButtonColor">#008577</color>
+    <color name="startButtonColor">#FFFFFF</color>
     <color name="startButtonBackgroundColor">#04574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="stylePrimaryColorDark">#D81B60</color>
     <color name="stylePrimaryColor">#D81B60</color>
+    <color name="backgroundNormal">#70B97E</color>
+    <color name="backgroundWarm">#FE9A2E</color>
+    <color name="backgroundHeiss">#FE2E64</color>
 </resources>
