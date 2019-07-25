@@ -34,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
 
     private Random randomGenerator;
 
+    private Slice endSlice;
+
     private int sliceCount;
     private int anzahlSlices;
 
@@ -177,110 +179,65 @@ public class MainActivity extends AppCompatActivity {
     }
   
     // HelperMethods
-
     // Soll nun eine neue Frage auswählen
     private void nextSlice() {
         if(!finished) {
             ++sliceCount;
             // getRandomSet
             float factor = sliceCount / anzahlSlices; float fragenNormalWs; float fragenWarmWs; float fragenHeissWs; float spieleNormalWs; float spieleWarmWs; float spieleHeissWs; float virusNormalWs; float virusWarmWs; float virusHeissWs;
+            int temp = randomGenerator.nextInt(99) + 1; // Werte zwischen 0 und 100
             //0% - 30% des Games
+            Slice currentSlice = new Slice("Something failed in NextSlice", Slice.Level.Normal, false);
             if(factor <= 0.3) {
-                fragenNormalWs = 0.0f;
-                fragenWarmWs = 0.0f;
-                fragenHeissWs = 0.0f;
+               if(temp <= 20) {
+                   //pick set X, [0,20]
+                   currentSlice = pickRandomSlice(fragenNormal);
+               }
+               else if (temp <= 40) {
+                   //pick set X, [21,40]
+               }
+               else if (temp <= 60) {
+                   //pick set X, [41,60]
+               }
+               else if (temp <= 80) {
+                   //pick set X, [61,80]
+               }
+               else {
+                   //pick set X, [81,100]
+               }
 
-                spieleNormalWs = 0.0f;
-                spieleWarmWs = 0.0f;
-                spieleHeissWs = 0.0f;
-
-                virusNormalWs = 0.0f;
-                virusWarmWs = 0.0f;
-                virusHeissWs = 0.0f;
             }
             // 31% - 60% des Games
             else if(factor <= 0.6) {
-                fragenNormalWs = 0.0f;
-                fragenWarmWs = 0.0f;
-                fragenHeissWs = 0.0f;
 
-                spieleNormalWs = 0.0f;
-                spieleWarmWs = 0.0f;
-                spieleHeissWs = 0.0f;
-
-                virusNormalWs = 0.0f;
-                virusWarmWs = 0.0f;
-                virusHeissWs = 0.0f;
             }
             // 61% - 100% des Games
             else {
-                fragenNormalWs = 0.0f;
-                fragenWarmWs = 0.0f;
-                fragenHeissWs = 0.0f;
 
-                spieleNormalWs = 0.0f;
-                spieleWarmWs = 0.0f;
-                spieleHeissWs = 0.0f;
-
-                virusNormalWs = 0.0f;
-                virusWarmWs = 0.0f;
-                virusHeissWs = 0.0f;
             }
-            float temp = randomGenerator.nextFloat();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             Log.d("debug/touch", "nextSlice aufgerufen");
 
-            // pickRandomSlice in that Set
-
 
             // draw the Slice
-
+            drawSlice(currentSlice); // Vielleicht sogar krasser verschachteln, dass die Farbe besser zuzuordnen ist
 
             // finished?
             if (sliceCount == anzahlSlices) finished = true;
         }
         else {
             //Finish -> Restart App?
+            drawSlice(endSlice);
+            restartApplication();
         }
     }
 
+    // Startet die App neu
+    private void restartApplication() {
 
+    }
 
+    // Füllt erstmal Namen rein
     private void testFill() {
         spieler.add("Lukas");
         spieler.add("Patrick");
@@ -291,7 +248,8 @@ public class MainActivity extends AppCompatActivity {
         spieler.add("Felix");
         spieler.add("Alfred");
     }
-    
+
+    // Sucht eine zufällige Slice aus dem Set aus
     private Slice pickRandomSlice(HashSet<Slice> set) {
         int i = 0;
         Slice finalSlice = new Slice("Something failed in PickRandomSlice", Slice.Level.Heiss, false);
@@ -455,6 +413,8 @@ public class MainActivity extends AppCompatActivity {
         anzahlSlices = 30;
 
         randomGenerator = new Random();
+
+        endSlice = new Slice("Spiel Vorbei ihr Autisten!", Slice.Level.Normal, false);
 
         // Fragen
         // Normale Fragen

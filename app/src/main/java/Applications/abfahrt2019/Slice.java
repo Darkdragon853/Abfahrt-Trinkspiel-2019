@@ -1,6 +1,5 @@
 package Applications.abfahrt2019;
 
-import android.graphics.Color;
 import android.graphics.fonts.Font;
 
 public class Slice {
@@ -12,7 +11,6 @@ public class Slice {
 
     private Level kategorie;
     private String beschreibung;
-    private Color farbe;
     private Font style;
     private boolean interaktiv;
 
@@ -24,7 +22,7 @@ public class Slice {
     }
 
     public String toString() {
-        String s = "Text: " + this.beschreibung + "; Kategorie: " + this.kategorie + ", Interaktiv: " + this.interaktiv + ", Farbe: " + this.farbe + ", Style: " + this.style;
+        String s = "Text: " + this.beschreibung + "; Kategorie: " + this.kategorie + ", Interaktiv: " + this.interaktiv + ", Style: " + this.style;
         return s;
     }
 
@@ -34,11 +32,11 @@ public class Slice {
     public String getBeschreibung() {
         return this.beschreibung;
     }
-    public Color getFarbe() {
-     return this.farbe;   
+    public Level getKategorie() {
+        return this.kategorie;
     }
     public Font getStyle() {
-        return this.style;
+        return  this.style;
     }
     public void setBeschreibung(String s) {
         this.beschreibung = s;
