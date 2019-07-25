@@ -68,6 +68,9 @@ public class MainActivity extends AppCompatActivity {
     private void Abfahren() {
         //
         // Bereinige zuerst Oberfläcche
+        clearButton();
+        
+        
         Log.d("debug", "Starting Abfahren");
 
         // Initialisiere Sets usw
@@ -109,6 +112,50 @@ public class MainActivity extends AppCompatActivity {
             Abfahren();
         });
     }
+    
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+     super.onWindowFocusChanged(hasFocus);
+        if(hasFocus) {
+            hideSystemUI();
+        }
+    }
+    
+    // Dreht Screen in den Fullscreen und versteckt Systemleisten
+    private void hideSystemUI() {
+        View decorView = getWindow().getDecorView();
+        decorView.setSystemUiVisibility(
+            // Immersiv-Mode
+            View.SYSTEM_UI_FLAG_IMMERSIVE 
+            // Verhindere Resize wenn Systemleisten angezeigt werden sollen
+            | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+            // Verstecke Status- und NavigationsLeiste
+            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+            | View.SYSTEM_UI_FLAG_FULLSCREEN );
+    }    
+    
+    private void clearButton() {
+      // Zuerst entfernen wir den Button  
+      Button startButton = findViewById(R.id.startButton);
+      ViewGroup layout = (ViewGroup) startButton.getParent();  
+      if(layout != null) {
+        layout.removeView(startButton);     
+      }
+    }   
+
+    private void drawSlice(Slice slice) {
+        // Zuerst setzen wir den Hintergrund. Dafür brauchen wir noch eine LayoutID mit Namen parentLayout!
+        LinearLayout parentLayout = (LinearLayout) findViewByID(R.id.parentLayout);
+        parentLayout.setBackgroundColor(slice.getColor());
+        
+        // Jetzt brauchen wir noch den entsprechenden Text
+        
+        
+    }
+  
+    // HelperMethods
     private void testFill() {
         spieler.add("Lukas");
         spieler.add("Patrick");
@@ -119,14 +166,7 @@ public class MainActivity extends AppCompatActivity {
         spieler.add("Felix");
         spieler.add("Alfred");
     }
-
-
-    private void drawSlice(Slice slice) {
-
-    }
-
-
-
+    
     private Slice pickRandomSlice(HashSet<Slice> set) {
         int i = 0;
         Slice finalSlice = new Slice("Something failed in PickRandomSlice", Slice.Level.Heiss, false);
