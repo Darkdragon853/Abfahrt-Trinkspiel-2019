@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     private HashSet<Slice> fragenHeiss;
     private HashSet<Slice> spieleHeiss;
     private HashSet<Slice> virusHeiss;
+    private HashSet<Slice> manyInteracts;
 
     private HashSet<String> spieler;
 
@@ -59,26 +60,33 @@ public class MainActivity extends AppCompatActivity {
     private String[] virusHeissArray =  {
 
     };
+    private String[] manyInteractsArray = {
+            "§, % und & treten gegen `, # und - an. Der Rest bildet die Jury. Jeder erfindet eine Sexposition und gibt ihr einen Namen. Das kreativste Team gewinnt. Die Verlierer trinken 3 Schlücke. (Vlt ne Version mit 2vs2 bei weniger Spielern. 3vs3 erst ab 8 Spielern)"
+    };
 
 
     private void Abfahren() {
         //
         // Bereinige zuerst Oberfläcche
-
+        Log.d("debug", "Starting Abfahren");
 
         // Initialisiere Sets usw
         Initialize();
         // DummyFillers
         testFill();
         // Theoretisch müssten jetzt alle Fragen im entsprechenden Set sein. Jetzt setzen wir die Namen in die Fragen ein.
+        Log.d("debug", "Starting Interact");
         Interact();
         // Jetzt noch für SpezialFälle
+        Log.d("debug", "Endging Interact");
+
+
+        Log.d("debug", "Starting InteractLArge");
         InteractLarge();
+        Log.d("debug", "Endging InteractLarge");
+        // Hier geht das Spiel jetzt los.
 
-
-
-
-        // Debug:
+        //Debug:
         /*
         if(fragenNormal.isEmpty()) Log.d("debug", "Empty");
         // DebugTime, grab a Slice and represent it
@@ -86,8 +94,6 @@ public class MainActivity extends AppCompatActivity {
             Log.d("debug", s1.toString());
         }
         */
-
-        // Dann hol alle Slices zusammen in For-Schleifen und fülle HashSets, beim UPsetten müssen die Fragenb mit dem X bearbeitet werden. (Interaktiv -> Boolean + Random Wahl)
     }
 
     // UI
@@ -108,11 +114,96 @@ public class MainActivity extends AppCompatActivity {
         spieler.add("Patrick");
         spieler.add("Luisa");
         spieler.add("Robin");
+        spieler.add("Daddl");
+        spieler.add("Leonie");
+        spieler.add("Felix");
+        spieler.add("Alfred");
     }
 
+
+    private void drawSlice(Slice slice) {
+
+    }
+
+
+
+    private Slice pickRandomSlice(HashSet<Slice> set) {
+        int i = 0;
+        Slice finalSlice = new Slice("Something failed in PickRandomSlice", Slice.Level.Heiss, false);
+        Random randomGenerator = new Random();
+        int item = randomGenerator.nextInt(set.size());
+        for(Slice s : set) {
+            if(item == i) {
+                return s;
+            }
+            else {
+                i++;
+            }
+        }
+        return finalSlice;
+    }
+
+    //ManyInteracts noch
     private void InteractLarge() {
+        Random randomGenerator = new Random();
+        for(Slice s : manyInteracts) {
+            HashSet<Integer> temp = new HashSet<Integer>();
+            // Hol dir zuerst die Beschreibung
+            String current = s.getBeschreibung();
 
+            // Erzeuge 3 einzigartige Zahlen
+            int item1, item2, item3, item4, item5, item6;
+            do {
+                temp.clear();
+                item1 = randomGenerator.nextInt(spieler.size());
+                item2 = randomGenerator.nextInt(spieler.size());
+                item3 = randomGenerator.nextInt(spieler.size());
+                item4 = randomGenerator.nextInt(spieler.size());
+                item5 = randomGenerator.nextInt(spieler.size());
+                item6 = randomGenerator.nextInt(spieler.size());
+                temp.add(item1);
+                temp.add(item2);
+                temp.add(item3);
+                temp.add(item4);
+                temp.add(item5);
+                temp.add(item6);
+            }
+            while (temp.size() < 6);
 
+            // Weise den Zahlen Spieler zu
+
+            int i = 0;
+            String Spieler1 = "";
+            String Spieler2 = "";
+            String Spieler3 = "";
+            String Spieler4 = "";
+            String Spieler5 = "";
+            String Spieler6 = "";
+            for (String string : spieler) {
+                if (item1 == i) {
+                    Spieler1 = string;
+                } else if (item2 == i) {
+                    Spieler2 = string;
+                } else if (item3 == i) {
+                    Spieler3 = string;
+                } else if (item4 == i) {
+                    Spieler4 = string;
+                } else if (item5 == i) {
+                    Spieler5 = string;
+                } else if (item6 == i) {
+                    Spieler6 = string;
+                }
+                i++;
+            }
+
+            // Jetzt replace#
+            Log.d("debug/spieler", Spieler1 + " " +Spieler2 + " " +Spieler3 + " " +Spieler4 + " " +Spieler5 + " " +Spieler6);
+            Log.d("debug/current", current);
+            String replaced = current.replaceAll("§", Spieler1).replaceAll("&", Spieler2).replaceAll("%", Spieler3).replaceAll("`", Spieler4).replaceAll("#", Spieler5).replaceAll("-", Spieler6);
+            Log.d("debug/replaced", replaced);
+            s.setBeschreibung(replaced);
+
+        }
     }
 
     private void Interact() {
@@ -194,6 +285,7 @@ public class MainActivity extends AppCompatActivity {
         spieleHeiss = new HashSet<Slice>();
         virusHeiss = new HashSet<Slice>();
         spieler = new HashSet<String>();
+        manyInteracts = new HashSet<Slice>();
 
         sliceCount = 0;
 
@@ -333,6 +425,15 @@ public class MainActivity extends AppCompatActivity {
             Slice slice = new Slice(current, Slice.Level.Heiss, temp);
             // Rein in den FragenPool
             virusHeiss.add(slice);
+        }
+
+        // ManyInteracts
+        for(int i = 0; i < manyInteractsArray.length ; i++) {
+            String current = manyInteractsArray[i];
+
+            Slice slice = new Slice(current, Slice.Level.Warm, true);
+            // Rein in den FragenPool
+            manyInteracts.add(slice);
         }
     }
 }
