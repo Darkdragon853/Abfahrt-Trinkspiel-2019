@@ -148,11 +148,20 @@ public class MainActivity extends AppCompatActivity {
     private void drawSlice(Slice slice) {
         // Zuerst setzen wir den Hintergrund. Dafür brauchen wir noch eine LayoutID mit Namen parentLayout!
         LinearLayout parentLayout = (LinearLayout) findViewByID(R.id.parentLayout);
-        parentLayout.setBackgroundColor(slice.getColor());
+        parentLayout.setBackgroundColor(slice.getFarbe());
         
         // Jetzt brauchen wir noch den entsprechenden Text
+        Font style = slice.getStyle();
         
+        // Parameter usw erzeugen
+        LayoutParams layoutParams = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+        TextView textview = new TextView(this);
         
+        // Übergeben und an Layout Binden
+        textview.setLayoutParams(layoutParams);
+        textView.setText("test");
+        parentLayout.addView(textView);
+
     }
   
     // HelperMethods
