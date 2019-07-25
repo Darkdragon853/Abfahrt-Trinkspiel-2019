@@ -1,9 +1,20 @@
 package Applications.abfahrt2019;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+
+import android.content.pm.ActivityInfo;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
+import android.graphics.fonts.Font;
+
 import java.util.HashSet;
 import java.util.Random;
 
@@ -25,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
 
     private int sliceCount;
     private int anzahlSlices;
+
+    private boolean inGame = false;
 
     private String[] fragenNormalArray =  {
             "Alle, die schon einmal an einem öffentlichen Ort Sex hatten, trinken 3 Schlucke.",
@@ -67,10 +80,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void Abfahren() {
         //
+
+        inGame = true;
+
         // Bereinige zuerst Oberfläcche
+        hideSystemUI();
         clearButton();
-        
-        
         Log.d("debug", "Starting Abfahren");
 
         // Initialisiere Sets usw
@@ -87,7 +102,15 @@ public class MainActivity extends AppCompatActivity {
         Log.d("debug", "Starting InteractLArge");
         InteractLarge();
         Log.d("debug", "Endging InteractLarge");
-        // Hier geht das Spiel jetzt los.
+        // Hier geht das Spiel jetzt los. Zuerst probieren wir was aus.
+
+
+        Slice s = pickRandomSlice(fragenNormal);
+
+        drawSlice(s);
+        sliceCount++;
+
+
 
         //Debug:
         /*
@@ -111,22 +134,31 @@ public class MainActivity extends AppCompatActivity {
             // Hier kommt der Aufruf unserer Anfangsmethode rein
             Abfahren();
         });
+
+
+        ConstraintLayout parentLayout = findViewById(R.id.parentLayout);
+        parentLayout.setOnTouchListener( (view, motionEvent) -> {
+            nextSlice();
+            // Log.d("debug/touch", "Touched");
+            return false;
+        });
+
     }
     
-    @Override
+    /*@Override
     public void onWindowFocusChanged(boolean hasFocus) {
      super.onWindowFocusChanged(hasFocus);
-        if(hasFocus) {
+        if(hasFocus && inGame) {
             hideSystemUI();
         }
     }
-    
+    */
     // Dreht Screen in den Fullscreen und versteckt Systemleisten
     private void hideSystemUI() {
         View decorView = getWindow().getDecorView();
         decorView.setSystemUiVisibility(
             // Immersiv-Mode
-            View.SYSTEM_UI_FLAG_IMMERSIVE 
+            View.SYSTEM_UI_FLAG_IMMERSIVE
             // Verhindere Resize wenn Systemleisten angezeigt werden sollen
             | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
             | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
@@ -137,7 +169,6 @@ public class MainActivity extends AppCompatActivity {
     }    
     
     private void clearButton() {
-      // Zuerst entfernen wir den Button  
       Button startButton = findViewById(R.id.startButton);
       ViewGroup layout = (ViewGroup) startButton.getParent();  
       if(layout != null) {
@@ -147,24 +178,39 @@ public class MainActivity extends AppCompatActivity {
 
     private void drawSlice(Slice slice) {
         // Zuerst setzen wir den Hintergrund. Dafür brauchen wir noch eine LayoutID mit Namen parentLayout!
-        LinearLayout parentLayout = (LinearLayout) findViewByID(R.id.parentLayout);
-        parentLayout.setBackgroundColor(slice.getFarbe());
-        
-        // Jetzt brauchen wir noch den entsprechenden Text
-        Font style = slice.getStyle();
-        
-        // Parameter usw erzeugen
-        LayoutParams layoutParams = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-        TextView textview = new TextView(this);
-        
-        // Übergeben und an Layout Binden
-        textview.setLayoutParams(layoutParams);
-        textView.setText("test");
-        parentLayout.addView(textView);
 
+        ConstraintLayout parentLayout = findViewById(R.id.parentLayout);
+        // Hier muss noch die Richtige Farbe hin
+        //Color farbe = slice.getFarbe(); Speichere Farben als Ints ab? und dann mit R.color drauf zugreifen
+        parentLayout.setBackgroundColor(getResources().getColor(R.color.startButtonBackgroundColor));
+        // Jetzt brauchen wir noch den entsprechenden Text, Style
+        Font style = slice.getStyle();
+        String text = slice.getBeschreibung();
+
+
+        TextView textView = findViewById(R.id.textView);
+
+        //TextView nun bearbeiten falls nötig
+        textView.setText(text);
     }
   
     // HelperMethods
+    private void nextSlice() {
+        // getRandomSet
+
+         Log.d("debug/touch", "nextSlice aufgerufen");
+
+        // pickRandomSlice in that Set
+
+
+
+        // draw the Slice
+    }
+
+
+
+
+
     private void testFill() {
         spieler.add("Lukas");
         spieler.add("Patrick");
