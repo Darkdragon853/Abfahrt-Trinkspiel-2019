@@ -9,16 +9,24 @@ public class Slice {
         Heiss
     }
 
+    public enum Type{
+        Frage,
+        Spiel,
+        Virus
+    }
+
     private Level kategorie;
+    private Type typ;
     private String beschreibung;
     private Font style;
     private boolean interaktiv;
 
 
-    public Slice(String beschreibung, Level Kategorie, boolean interaktiv) {
+    public Slice(String beschreibung, Level Kategorie, boolean interaktiv, Type typ) {
         this.beschreibung = beschreibung;
         this.interaktiv = interaktiv;
         this.kategorie = Kategorie;
+        this.typ = typ;
     }
 
     public String toString() {

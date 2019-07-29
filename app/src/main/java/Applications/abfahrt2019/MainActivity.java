@@ -166,7 +166,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Hier muss noch die Richtige Farbe hin
         //Color farbe = slice.getFarbe(); Speichere Farben als Ints ab? und dann mit R.color drauf zugreifen
-       // parentLayout.setBackgroundColor(getResources().getColor(R.color.startButtonBackgroundColor));
+        // parentLayout.setBackgroundColor(getResources().getColor(R.color.startButtonBackgroundColor));
         parentLayout.setBackgroundResource(R.drawable.gradient1);
         // Jetzt brauchen wir noch den entsprechenden Text, Style
         Font style = slice.getStyle();
@@ -189,7 +189,7 @@ public class MainActivity extends AppCompatActivity {
             float factor = sliceCount / anzahlSlices; float fragenNormalWs; float fragenWarmWs; float fragenHeissWs; float spieleNormalWs; float spieleWarmWs; float spieleHeissWs; float virusNormalWs; float virusWarmWs; float virusHeissWs;
             int temp = randomGenerator.nextInt(99) + 1; // Werte zwischen 0 und 100
             //0% - 30% des Games
-            Slice currentSlice = new Slice("Something failed in NextSlice", Slice.Level.Normal, false);
+            Slice currentSlice = new Slice("Something failed in NextSlice", Slice.Level.Normal, false, Slice.Type.Frage);
 
             // 0%-30% des Games
             if(factor <= 0.3) {
@@ -520,7 +520,7 @@ public class MainActivity extends AppCompatActivity {
     // Sucht eine zufällige Slice aus dem Set aus
     private Slice pickRandomSlice(HashSet<Slice> set) {
         int i = 0;
-        Slice finalSlice = new Slice("Something failed in PickRandomSlice", Slice.Level.Heiss, false);
+        Slice finalSlice = new Slice("Something failed in PickRandomSlice", Slice.Level.Heiss, false, Slice.Type.Frage);
         int item = randomGenerator.nextInt(set.size());
         for(Slice s : set) {
             if(item == i) {
@@ -682,7 +682,7 @@ public class MainActivity extends AppCompatActivity {
 
         randomGenerator = new Random();
 
-        endSlice = new Slice("Spiel Vorbei ihr Autisten!", Slice.Level.Normal, false);
+        endSlice = new Slice("Spiel Vorbei ihr Autisten!", Slice.Level.Normal, false, Slice.Type.Frage);
 
         // Fragen
         // Normale Fragen
@@ -695,7 +695,7 @@ public class MainActivity extends AppCompatActivity {
                 temp = true;
             }
 
-            Slice slice = new Slice(current, Slice.Level.Normal, temp);
+            Slice slice = new Slice(current, Slice.Level.Normal, temp, Slice.Type.Frage);
             // Rein in den FragenPool
             fragenNormal.add(slice);
         }
@@ -710,7 +710,7 @@ public class MainActivity extends AppCompatActivity {
                 temp = true;
             }
 
-            Slice slice = new Slice(current, Slice.Level.Warm, temp);
+            Slice slice = new Slice(current, Slice.Level.Warm, temp, Slice.Type.Frage);
             // Rein in den FragenPool
             fragenWarm.add(slice);
         }
@@ -725,7 +725,7 @@ public class MainActivity extends AppCompatActivity {
                 temp = true;
             }
 
-            Slice slice = new Slice(current, Slice.Level.Heiss, temp);
+            Slice slice = new Slice(current, Slice.Level.Heiss, temp, Slice.Type.Frage);
             // Rein in den FragenPool
             fragenHeiss.add(slice);
         }
@@ -742,7 +742,7 @@ public class MainActivity extends AppCompatActivity {
                 temp = true;
             }
 
-            Slice slice = new Slice(current, Slice.Level.Normal, temp);
+            Slice slice = new Slice(current, Slice.Level.Normal, temp, Slice.Type.Spiel);
             // Rein in den FragenPool
             spieleNormal.add(slice);
         }
@@ -756,7 +756,7 @@ public class MainActivity extends AppCompatActivity {
                 temp = true;
             }
 
-            Slice slice = new Slice(current, Slice.Level.Warm, temp);
+            Slice slice = new Slice(current, Slice.Level.Warm, temp, Slice.Type.Spiel);
             // Rein in den FragenPool
             spieleWarm.add(slice);
         }
@@ -771,7 +771,7 @@ public class MainActivity extends AppCompatActivity {
                 temp = true;
             }
 
-            Slice slice = new Slice(current, Slice.Level.Heiss, temp);
+            Slice slice = new Slice(current, Slice.Level.Heiss, temp, Slice.Type.Spiel);
             // Rein in den FragenPool
             spieleHeiss.add(slice);
         }
@@ -787,7 +787,7 @@ public class MainActivity extends AppCompatActivity {
                 temp = true;
             }
 
-            Slice slice = new Slice(current, Slice.Level.Normal, temp);
+            Slice slice = new Slice(current, Slice.Level.Normal, temp, Slice.Type.Virus);
             // Rein in den FragenPool
             virusNormal.add(slice);
         }
@@ -801,7 +801,7 @@ public class MainActivity extends AppCompatActivity {
                 temp = true;
             }
 
-            Slice slice = new Slice(current, Slice.Level.Warm, temp);
+            Slice slice = new Slice(current, Slice.Level.Warm, temp, Slice.Type.Virus);
             // Rein in den FragenPool
             virusWarm.add(slice);
         }
@@ -816,7 +816,7 @@ public class MainActivity extends AppCompatActivity {
                 temp = true;
             }
 
-            Slice slice = new Slice(current, Slice.Level.Heiss, temp);
+            Slice slice = new Slice(current, Slice.Level.Heiss, temp, Slice.Type.Virus);
             // Rein in den FragenPool
             virusHeiss.add(slice);
         }
@@ -825,7 +825,7 @@ public class MainActivity extends AppCompatActivity {
         for(int i = 0; i < manyInteractsArray.length ; i++) {
             String current = manyInteractsArray[i];
 
-            Slice slice = new Slice(current, Slice.Level.Warm, true);
+            Slice slice = new Slice(current, Slice.Level.Warm, true, Slice.Type.Frage);
             // Rein in den FragenPool
             manyInteracts.add(slice);
         }
