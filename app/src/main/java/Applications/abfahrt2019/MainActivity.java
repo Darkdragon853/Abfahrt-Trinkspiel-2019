@@ -1,18 +1,16 @@
-// Textview Global machen und Gravity ändern
-
+//restart testen, Spielerwahl, Fonts
 
 package Applications.abfahrt2019;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 import android.view.View;
-import android.view.ViewGroup;
-import android.graphics.fonts.Font;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -34,11 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private HashSet<Slice> manyInteracts;
     private HashSet<String> spieler;
 
-
-
-    private List<Slice> momentaneViren;
-
-    private List<Integer> counters;
+    private List<Virus> momentaneViren;
 
     private ConstraintLayout parentLayout;
 
@@ -46,12 +40,16 @@ public class MainActivity extends AppCompatActivity {
 
     private Slice endSlice;
 
+    private TextView textView;
+
     private int sliceCount;
     private int anzahlSlices;
     private int virusDauerIntervall = 1;
-    private int virusDauerOffset = 1;
+    private int virusDauerOffset = 2;
 
+    private int debugCounter = 0;
     private boolean finished = false;
+    private boolean started = false;
 
     private String[] fragenNormalArray =  {
             "Alle, die schon einmal an einem öffentlichen Ort Sex hatten, trinken 3 Schlucke.",
@@ -115,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
         // Log.d("debug", "Endging InteractLarge");
         // Hier geht das Spiel jetzt los. Wir beginnen mit einem manuellen Aufruf, der Rest kommt über die Touches
         nextSlice();
-
+        started = true;
         //  Log.d("debug/slice", s.toString());
         //Debug:
         /*
@@ -143,7 +141,9 @@ public class MainActivity extends AppCompatActivity {
         });
 
         parentLayout.setOnTouchListener( (view, motionEvent) -> {
-            nextSlice();
+            if(started) {
+                nextSlice();
+            }
             // Log.d("debug/touch", "Touched");
             return false;
         });
@@ -167,10 +167,11 @@ public class MainActivity extends AppCompatActivity {
     
     private void clearButton() {
       Button startButton = findViewById(R.id.startButton);
-      ViewGroup layout = (ViewGroup) startButton.getParent();  
-      if(layout != null) {
-        layout.removeView(startButton);     
-      }
+      //ViewGroup layout = (ViewGroup) startButton.getParent();
+      //if(layout != null) {
+      //  layout.removeView(startButton);
+      //}
+        startButton.setVisibility(View.GONE);
     }   
 
     private void handleSlice(Slice slice) {
@@ -191,7 +192,6 @@ public class MainActivity extends AppCompatActivity {
 
             // Zufällige Rundenzahl, in Counters gestored
             int randomInt = randomGenerator.nextInt(virusDauerIntervall) + virusDauerOffset;
-            counters.add(randomInt);
 
             // Virus per Trennsymbol splitten
             String[] strings = slice.getBeschreibung().split(">");
@@ -204,7 +204,7 @@ public class MainActivity extends AppCompatActivity {
             // Übernehme verhalten der ursprünglichen Slice
             Slice newSlice = new Slice(strings[1], slice.getKategorie(), slice.getInteraktiv(), slice.getTyp());
             // Add to momentaneViren
-            momentaneViren.add(newSlice);
+            momentaneViren.add(new Virus(newSlice, randomInt));
             Log.d("debug/SecondVirs", "Virus added");
         }
         else if(slice.getKategorie().equals(Slice.Level.Warm) && slice.getTyp().equals(Slice.Type.Frage)) {
@@ -221,7 +221,6 @@ public class MainActivity extends AppCompatActivity {
 
             // Zufällige Rundenzahl, in Counters gestored
             int randomInt = randomGenerator.nextInt(virusDauerIntervall) + virusDauerOffset;
-            counters.add(randomInt);
 
             // Virus per Trennsymbol splitten
             String[] strings = slice.getBeschreibung().split(">");
@@ -234,7 +233,7 @@ public class MainActivity extends AppCompatActivity {
             // Übernehme verhalten der ursprünglichen Slice
             Slice newSlice = new Slice(strings[1], slice.getKategorie(), slice.getInteraktiv(), slice.getTyp());
             // Add to momentaneViren
-            momentaneViren.add(newSlice);
+            momentaneViren.add(new Virus(newSlice, randomInt));
             Log.d("debug/SecondVirs", "Virus added");
         }
         else if(slice.getKategorie().equals(Slice.Level.Heiss) && slice.getTyp().equals(Slice.Type.Frage)) {
@@ -251,7 +250,6 @@ public class MainActivity extends AppCompatActivity {
 
             // Zufällige Rundenzahl, in Counters gestored
             int randomInt = randomGenerator.nextInt(virusDauerIntervall) + virusDauerOffset;
-            counters.add(randomInt);
 
             // Virus per Trennsymbol splitten
             String[] strings = slice.getBeschreibung().split(">");
@@ -264,20 +262,31 @@ public class MainActivity extends AppCompatActivity {
             // Übernehme verhalten der ursprünglichen Slice
             Slice newSlice = new Slice(strings[1], slice.getKategorie(), slice.getInteraktiv(), slice.getTyp());
             // Add to momentaneViren
-            momentaneViren.add(newSlice);
+            momentaneViren.add(new Virus(newSlice, randomInt));
             Log.d("debug/SecondVirs", "Virus added");
         }
 
         // Jetzt brauchen wir noch den entsprechenden Text, Style
-        Font style = slice.getStyle();
+        if(slice.getKategorie().equals(Slice.Type.Frage)) {
+            // Frage
+            Typeface typeface = getResources().getFont(R.font.frage);
+            textView.setTypeface(typeface);
 
-
+        }
+        else if(slice.getKategorie().equals(Slice.Type.Spiel)) {
+            // Spiel
+            Typeface typeface = getResources().getFont(R.font.spiel);
+            textView.setTypeface(typeface);
+        }
+        else {
+            // virus
+            Typeface typeface = getResources().getFont(R.font.virus);
+            textView.setTypeface(typeface);
+        }
 
         // Text setzen
         String text = slice.getBeschreibung();
 
-
-        TextView textView = findViewById(R.id.textView);
 
         //TextView nun bearbeiten falls nötig
         textView.setText(text);
@@ -286,24 +295,26 @@ public class MainActivity extends AppCompatActivity {
     // HelperMethods
     // Soll nun eine neue Frage auswählen
     private void nextSlice() {
+        ++debugCounter; Log.d("debug/counterNextSlice", "FebugCOunter:= " + debugCounter);
         boolean virusFirst = false;
         // Behandle zuerst Viren
-        if(!momentaneViren.isEmpty()) {
-            Log.d("debug/Viren", "Inhalt momentane Viren bei 0: " + momentaneViren.get(0));
-            for(Integer i : counters) {
-                Log.d("debug/Viren", "inhalt von Counters: " + i);
-                if(i == 0) {
-                    Log.d("debug/Viren", "Momentanes i war 0 ");
+        if(!momentaneViren.isEmpty() && !finished) {
+            Virus destroyVirus = null;
+            for(Virus virus : momentaneViren) {
+                if(virus.getTimer() == 0) {
                     virusFirst = true;
-                    handleSecondVirusPart();
-                    counters.remove(i);
+                    Log.d("debug/Virus", virus.toString());
+                    handleSecondVirusPart(virus.getSlice());
+                    destroyVirus = virus;
                 }
                 else {
-                    Log.d("debug/Viren", "Momentanes i wird jetzt um eins verringert ");
-                    int j = i-1;
-                    counters.remove(i);
-                    counters.add(j);
+                    Log.d("debug/Viren", "Momentaner Virus wird jetzt um eins verringert: " + virus);
+                    virus.setTimer(virus.getTimer() - 1);
                 }
+            }
+            if(destroyVirus != null) {
+                momentaneViren.remove(destroyVirus);
+                destroyVirus = null;
             }
         }
         // Normaler Spiel-Flow
@@ -609,46 +620,60 @@ public class MainActivity extends AppCompatActivity {
             }
 
            // Log.d("debug/touch", "nextSlice aufgerufen");
-            
-            // draw the Slice
-            handleSlice(currentSlice); // Vielleicht sogar krasser verschachteln, dass die Farbe besser zuzuordnen ist
 
+            // draw the Slice
+            handleSlice(currentSlice);
             // finished?
             if (sliceCount == anzahlSlices) finished = true;
         }
         else if(!virusFirst) {
             //Finish -> Restart App?
             handleSlice(endSlice);
-            restartApplication();
+            Log.d("debug/all", "game ended");
+            // Short Stop
+            try {
+               // Thread.sleep(3000);
+            }
+            catch(Throwable t){
+                t.printStackTrace();
+            }
+            // restart App
+           // restartApplication();
         }
     }
 
 
     // Zeigt die Aufhebung eines Virus an
-    private void handleSecondVirusPart() {
-        if(momentaneViren.isEmpty()) Log.d("Debug/viren", "IRgendwas ist mit HandleSecondVIren kaputt, wurde ohne Counterpart gecallt");
-        Slice currentSlice = momentaneViren.get(0);
-            if ( currentSlice.getKategorie().equals(Slice.Level.Normal)) {
+    private void handleSecondVirusPart(Slice slice) {
+       // if(momentaneViren.isEmpty()) Log.d("Debug/viren", "IRgendwas ist mit HandleSecondVIren kaputt, wurde ohne Counterpart gecallt");
+            if ( slice.getKategorie().equals(Slice.Level.Normal)) {
                 // Normal
                 parentLayout.setBackgroundResource(R.drawable.gradientnormalvirus);
-            } else if( currentSlice.getKategorie().equals(Slice.Level.Warm)) {
+            } else if( slice.getKategorie().equals(Slice.Level.Warm)) {
                 // Warm
                 parentLayout.setBackgroundResource(R.drawable.gradientwarmvirus);
             } else {
                 // Heiss
                 parentLayout.setBackgroundResource(R.drawable.gradientheissvirus);
             }
-        TextView tv = findViewById(R.id.textView);
-        tv.setText(currentSlice.getBeschreibung());
-        Log.d("debug/SecondVirs", "aufgerufen:  " + currentSlice.getBeschreibung());
+        textView.setText(slice.getBeschreibung());
+        Log.d("debug/SecondVirs", "aufgerufen:  " + slice.getBeschreibung());
+        // Sollten mehrere Viren auf einmal gestoppt werden
+        try {
+          //  Thread.sleep(5000);
+        }
+        catch (Throwable t) {
+            t.printStackTrace();
+        }
     }
-
 
 
 
     // Startet die App neu
     private void restartApplication() {
 
+
+      //  Abfahren();
     }
 
     // Füllt erstmal Namen rein
@@ -823,13 +848,14 @@ public class MainActivity extends AppCompatActivity {
         spieler = new HashSet<String>();
         manyInteracts = new HashSet<Slice>();
 
-        momentaneViren = new ArrayList<Slice>();
-        counters = new ArrayList<Integer>();
+        momentaneViren = new ArrayList<Virus>(5);
 
         sliceCount = 0;
-        anzahlSlices = 50;
+        anzahlSlices = 15;
 
         randomGenerator = new Random();
+
+        textView = findViewById(R.id.textView);
 
         endSlice = new Slice("Spiel Vorbei ihr Autisten!", Slice.Level.Normal, false, Slice.Type.Frage);
 
