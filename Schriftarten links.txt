@@ -1,0 +1,5 @@
+normal:	https://www.dafont.com/de/gravity.font?fpp=100&psize=s
+
+spiele:	https://www.dafont.com/de/kg-what-the-teacher-wants.font?fpp=100&psize=s
+
+virus:	https://www.dafont.com/de/blood-crow.font?fpp=100&psize=s
