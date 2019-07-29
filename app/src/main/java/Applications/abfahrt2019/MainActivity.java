@@ -1,3 +1,6 @@
+// Textview Global machen und Gravity ändern
+
+
 package Applications.abfahrt2019;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,8 +14,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.graphics.fonts.Font;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Random;
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -27,8 +32,13 @@ public class MainActivity extends AppCompatActivity {
     private HashSet<Slice> spieleHeiss;
     private HashSet<Slice> virusHeiss;
     private HashSet<Slice> manyInteracts;
-
     private HashSet<String> spieler;
+
+
+
+    private List<Slice> momentaneViren;
+
+    private List<Integer> counters;
 
     private ConstraintLayout parentLayout;
 
@@ -38,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
 
     private int sliceCount;
     private int anzahlSlices;
+    private int virusDauerIntervall = 1;
+    private int virusDauerOffset = 1;
 
     private boolean finished = false;
 
@@ -161,15 +173,107 @@ public class MainActivity extends AppCompatActivity {
       }
     }   
 
-    private void drawSlice(Slice slice) {
+    private void handleSlice(Slice slice) {
         // Zuerst setzen wir den Hintergrund. Dafür brauchen wir noch eine LayoutID mit Namen parentLayout!
+        // Fallunterscheidung
 
-        // Hier muss noch die Richtige Farbe hin
-        //Color farbe = slice.getFarbe(); Speichere Farben als Ints ab? und dann mit R.color drauf zugreifen
-        // parentLayout.setBackgroundColor(getResources().getColor(R.color.startButtonBackgroundColor));
-        parentLayout.setBackgroundResource(R.drawable.gradient1);
+        if(slice.getKategorie().equals(Slice.Level.Normal) && slice.getTyp().equals(Slice.Type.Frage)) {
+            // Normale Frage
+            parentLayout.setBackgroundResource(R.drawable.gradientnormalfrage);
+        }
+        else if(slice.getKategorie().equals(Slice.Level.Normal) && slice.getTyp().equals(Slice.Type.Spiel)) {
+            // Normales Spiel
+            parentLayout.setBackgroundResource(R.drawable.gradientnormalspiel);
+        }
+        else if(slice.getKategorie().equals(Slice.Level.Normal) && slice.getTyp().equals(Slice.Type.Virus)) {
+            // Normaler Virus .. mach autistischer Kick draus
+            parentLayout.setBackgroundResource(R.drawable.gradientnormalvirus);
+
+            // Zufällige Rundenzahl, in Counters gestored
+            int randomInt = randomGenerator.nextInt(virusDauerIntervall) + virusDauerOffset;
+            counters.add(randomInt);
+
+            // Virus per Trennsymbol splitten
+            String[] strings = slice.getBeschreibung().split(">");
+
+            // Ersten String bauen
+            String autistischerKick = new String("Autistischer Kick! \n" + strings[0]+ "\nGilt " + randomInt + " Runden!");
+            // Veränderten Text setzen
+            slice.setBeschreibung(autistischerKick);
+
+            // Übernehme verhalten der ursprünglichen Slice
+            Slice newSlice = new Slice(strings[1], slice.getKategorie(), slice.getInteraktiv(), slice.getTyp());
+            // Add to momentaneViren
+            momentaneViren.add(newSlice);
+            Log.d("debug/SecondVirs", "Virus added");
+        }
+        else if(slice.getKategorie().equals(Slice.Level.Warm) && slice.getTyp().equals(Slice.Type.Frage)) {
+            // Warme Frage
+            parentLayout.setBackgroundResource(R.drawable.gradientwarmfrage);
+        }
+        else if(slice.getKategorie().equals(Slice.Level.Warm) && slice.getTyp().equals(Slice.Type.Spiel)) {
+            // Warmes Spiel
+            parentLayout.setBackgroundResource(R.drawable.gradientwarmspiel);
+        }
+        else if(slice.getKategorie().equals(Slice.Level.Warm) && slice.getTyp().equals(Slice.Type.Virus)) {
+            // Warmer Virus
+            parentLayout.setBackgroundResource(R.drawable.gradientwarmvirus);
+
+            // Zufällige Rundenzahl, in Counters gestored
+            int randomInt = randomGenerator.nextInt(virusDauerIntervall) + virusDauerOffset;
+            counters.add(randomInt);
+
+            // Virus per Trennsymbol splitten
+            String[] strings = slice.getBeschreibung().split(">");
+
+            // Ersten String bauen
+            String autistischerKick = new String("Autistischer Kick! \n" + strings[0]+ "\nGilt " + randomInt + " Runden!");
+            // Veränderten Text setzen
+            slice.setBeschreibung(autistischerKick);
+
+            // Übernehme verhalten der ursprünglichen Slice
+            Slice newSlice = new Slice(strings[1], slice.getKategorie(), slice.getInteraktiv(), slice.getTyp());
+            // Add to momentaneViren
+            momentaneViren.add(newSlice);
+            Log.d("debug/SecondVirs", "Virus added");
+        }
+        else if(slice.getKategorie().equals(Slice.Level.Heiss) && slice.getTyp().equals(Slice.Type.Frage)) {
+            // Heisse Frage
+            parentLayout.setBackgroundResource(R.drawable.gradientheissfrage);
+        }
+        else if(slice.getKategorie().equals(Slice.Level.Heiss) && slice.getTyp().equals(Slice.Type.Spiel)) {
+            // Heisses Spiel
+            parentLayout.setBackgroundResource(R.drawable.gradientheissspiel);
+        }
+        else {
+            // Heisser Virus
+            parentLayout.setBackgroundResource(R.drawable.gradientheissvirus);
+
+            // Zufällige Rundenzahl, in Counters gestored
+            int randomInt = randomGenerator.nextInt(virusDauerIntervall) + virusDauerOffset;
+            counters.add(randomInt);
+
+            // Virus per Trennsymbol splitten
+            String[] strings = slice.getBeschreibung().split(">");
+
+            // Ersten String bauen
+            String autistischerKick = new String("Autistischer Kick! \n" + strings[0]+ "\nGilt " + randomInt + " Runden!");
+            // Veränderten Text setzen
+            slice.setBeschreibung(autistischerKick);
+
+            // Übernehme verhalten der ursprünglichen Slice
+            Slice newSlice = new Slice(strings[1], slice.getKategorie(), slice.getInteraktiv(), slice.getTyp());
+            // Add to momentaneViren
+            momentaneViren.add(newSlice);
+            Log.d("debug/SecondVirs", "Virus added");
+        }
+
         // Jetzt brauchen wir noch den entsprechenden Text, Style
         Font style = slice.getStyle();
+
+
+
+        // Text setzen
         String text = slice.getBeschreibung();
 
 
@@ -182,8 +286,28 @@ public class MainActivity extends AppCompatActivity {
     // HelperMethods
     // Soll nun eine neue Frage auswählen
     private void nextSlice() {
-        // Was passiert wenn das Set leer ist? Bzw wie geht es dann weiter?
-        if(!finished) {
+        boolean virusFirst = false;
+        // Behandle zuerst Viren
+        if(!momentaneViren.isEmpty()) {
+            Log.d("debug/Viren", "Inhalt momentane Viren bei 0: " + momentaneViren.get(0));
+            for(Integer i : counters) {
+                Log.d("debug/Viren", "inhalt von Counters: " + i);
+                if(i == 0) {
+                    Log.d("debug/Viren", "Momentanes i war 0 ");
+                    virusFirst = true;
+                    handleSecondVirusPart();
+                    counters.remove(i);
+                }
+                else {
+                    Log.d("debug/Viren", "Momentanes i wird jetzt um eins verringert ");
+                    int j = i-1;
+                    counters.remove(i);
+                    counters.add(j);
+                }
+            }
+        }
+        // Normaler Spiel-Flow
+        if(!finished && !virusFirst) {
             ++sliceCount;
             // getRandomSet
             float factor = sliceCount / anzahlSlices; float fragenNormalWs; float fragenWarmWs; float fragenHeissWs; float spieleNormalWs; float spieleWarmWs; float spieleHeissWs; float virusNormalWs; float virusWarmWs; float virusHeissWs;
@@ -484,21 +608,43 @@ public class MainActivity extends AppCompatActivity {
 
             }
 
-            Log.d("debug/touch", "nextSlice aufgerufen");
-
-
+           // Log.d("debug/touch", "nextSlice aufgerufen");
+            
             // draw the Slice
-            drawSlice(currentSlice); // Vielleicht sogar krasser verschachteln, dass die Farbe besser zuzuordnen ist
+            handleSlice(currentSlice); // Vielleicht sogar krasser verschachteln, dass die Farbe besser zuzuordnen ist
 
             // finished?
             if (sliceCount == anzahlSlices) finished = true;
         }
-        else {
+        else if(!virusFirst) {
             //Finish -> Restart App?
-            drawSlice(endSlice);
+            handleSlice(endSlice);
             restartApplication();
         }
     }
+
+
+    // Zeigt die Aufhebung eines Virus an
+    private void handleSecondVirusPart() {
+        if(momentaneViren.isEmpty()) Log.d("Debug/viren", "IRgendwas ist mit HandleSecondVIren kaputt, wurde ohne Counterpart gecallt");
+        Slice currentSlice = momentaneViren.get(0);
+            if ( currentSlice.getKategorie().equals(Slice.Level.Normal)) {
+                // Normal
+                parentLayout.setBackgroundResource(R.drawable.gradientnormalvirus);
+            } else if( currentSlice.getKategorie().equals(Slice.Level.Warm)) {
+                // Warm
+                parentLayout.setBackgroundResource(R.drawable.gradientwarmvirus);
+            } else {
+                // Heiss
+                parentLayout.setBackgroundResource(R.drawable.gradientheissvirus);
+            }
+        TextView tv = findViewById(R.id.textView);
+        tv.setText(currentSlice.getBeschreibung());
+        Log.d("debug/SecondVirs", "aufgerufen:  " + currentSlice.getBeschreibung());
+    }
+
+
+
 
     // Startet die App neu
     private void restartApplication() {
@@ -588,10 +734,10 @@ public class MainActivity extends AppCompatActivity {
             }
 
             // Jetzt replace#
-            Log.d("debug/spieler", Spieler1 + " " +Spieler2 + " " +Spieler3 + " " +Spieler4 + " " +Spieler5 + " " +Spieler6);
-            Log.d("debug/current", current);
+          //  Log.d("debug/spieler", Spieler1 + " " +Spieler2 + " " +Spieler3 + " " +Spieler4 + " " +Spieler5 + " " +Spieler6);
+         //   Log.d("debug/current", current);
             String replaced = current.replaceAll("§", Spieler1).replaceAll("&", Spieler2).replaceAll("%", Spieler3).replaceAll("`", Spieler4).replaceAll("#", Spieler5).replaceAll("-", Spieler6);
-            Log.d("debug/replaced", replaced);
+           // Log.d("debug/replaced", replaced);
             s.setBeschreibung(replaced);
 
         }
@@ -677,8 +823,11 @@ public class MainActivity extends AppCompatActivity {
         spieler = new HashSet<String>();
         manyInteracts = new HashSet<Slice>();
 
+        momentaneViren = new ArrayList<Slice>();
+        counters = new ArrayList<Integer>();
+
         sliceCount = 0;
-        anzahlSlices = 5;
+        anzahlSlices = 50;
 
         randomGenerator = new Random();
 

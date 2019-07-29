@@ -49,4 +49,5 @@ public class Slice {
     public void setBeschreibung(String s) {
         this.beschreibung = s;
     }
+    public Type getTyp() { return this.typ; }
 }
