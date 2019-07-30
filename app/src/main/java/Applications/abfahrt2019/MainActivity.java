@@ -1,4 +1,4 @@
-//restart testen, Spielerwahl, Fonts
+//restart testen, Spielerwahl, mehrere Viren stoppen auf einmal
 
 package Applications.abfahrt2019;
 
@@ -267,13 +267,13 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // Jetzt brauchen wir noch den entsprechenden Text, Style
-        if(slice.getKategorie().equals(Slice.Type.Frage)) {
+        if(slice.getTyp().equals(Slice.Type.Frage)) {
             // Frage
             Typeface typeface = getResources().getFont(R.font.frage);
             textView.setTypeface(typeface);
 
         }
-        else if(slice.getKategorie().equals(Slice.Type.Spiel)) {
+        else if(slice.getTyp().equals(Slice.Type.Spiel)) {
             // Spiel
             Typeface typeface = getResources().getFont(R.font.spiel);
             textView.setTypeface(typeface);
@@ -598,25 +598,23 @@ public class MainActivity extends AppCompatActivity {
     // Zeigt die Aufhebung eines Virus an
     private void handleSecondVirusPart(Slice slice) {
        // if(momentaneViren.isEmpty()) Log.d("Debug/viren", "IRgendwas ist mit HandleSecondVIren kaputt, wurde ohne Counterpart gecallt");
-            if ( slice.getKategorie().equals(Slice.Level.Normal)) {
-                // Normal
-                parentLayout.setBackgroundResource(R.drawable.gradientnormalvirus);
-            } else if( slice.getKategorie().equals(Slice.Level.Warm)) {
-                // Warm
-                parentLayout.setBackgroundResource(R.drawable.gradientwarmvirus);
-            } else {
-                // Heiss
-                parentLayout.setBackgroundResource(R.drawable.gradientheissvirus);
-            }
+        if ( slice.getKategorie().equals(Slice.Level.Normal)) {
+            // Normal
+            parentLayout.setBackgroundResource(R.drawable.gradientnormalvirus);
+        } else if( slice.getKategorie().equals(Slice.Level.Warm)) {
+            // Warm
+            parentLayout.setBackgroundResource(R.drawable.gradientwarmvirus);
+        } else {
+            // Heiss
+            parentLayout.setBackgroundResource(R.drawable.gradientheissvirus);
+        }
+
+        // Virus-Font und Text
+        Typeface typeface = getResources().getFont(R.font.virus);
+        textView.setTypeface(typeface);
         textView.setText(slice.getBeschreibung());
         Log.d("debug/SecondVirs", "aufgerufen:  " + slice.getBeschreibung());
         // Sollten mehrere Viren auf einmal gestoppt werden
-        try {
-          //  Thread.sleep(5000);
-        }
-        catch (Throwable t) {
-            t.printStackTrace();
-        }
     }
 
 
