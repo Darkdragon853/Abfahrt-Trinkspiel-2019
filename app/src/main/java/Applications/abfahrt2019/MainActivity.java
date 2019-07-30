@@ -322,303 +322,255 @@ public class MainActivity extends AppCompatActivity {
             ++sliceCount;
             // getRandomSet
             float factor = sliceCount / anzahlSlices; float fragenNormalWs; float fragenWarmWs; float fragenHeissWs; float spieleNormalWs; float spieleWarmWs; float spieleHeissWs; float virusNormalWs; float virusWarmWs; float virusHeissWs;
-            int temp = randomGenerator.nextInt(99) + 1; // Werte zwischen 0 und 100
+
             //0% - 30% des Games
-            Slice currentSlice = new Slice("Something failed in NextSlice", Slice.Level.Normal, false, Slice.Type.Frage);
+            Slice currentSlice = null;
 
-            // 0%-30% des Games
-            if(factor <= 0.3) {
 
-                // Schaut zuerst ob das jeweilige Set leer ist. Wenn ja, starte neue Iteration von NextSlice. Sonst wähle zufällig Slice aus Set.
-                if(temp <= 15) {
-                   //pick set X, [1,15]
+            while(currentSlice == null) {
+                int temp = randomGenerator.nextInt(99) + 1; // Werte zwischen 0 und 100
+                // 0%-30% des Games
+                if (factor <= 0.3) {
 
-                    if(fragenNormal.isEmpty()) {
-                        --sliceCount; nextSlice(); return;
+                    // Schaut zuerst ob das jeweilige Set leer ist. Wenn ja, starte neue Iteration von NextSlice. Sonst wähle zufällig Slice aus Set.
+                    if (temp <= 15) {
+                        //pick set X, [1,15]
+
+                        if (fragenNormal.isEmpty()) {
+                            continue;
+                        } else {
+                            currentSlice = pickRandomSlice(fragenNormal);
+                        }
+                    } else if (temp <= 30) {
+                        //pick set X, [16,30]
+
+                        if (fragenWarm.isEmpty()) {
+                            continue;
+                        } else {
+                            currentSlice = pickRandomSlice(fragenWarm);
+                        }
+                    } else if (temp <= 45) {
+                        //pick set X, [31,45]
+
+                        if (fragenHeiss.isEmpty()) {
+                            continue;
+                        } else {
+                            currentSlice = pickRandomSlice(fragenHeiss);
+                        }
+                    } else if (temp <= 60) {
+                        //pick set X, [46,60]
+
+                        if (spieleNormal.isEmpty()) {
+                            continue;
+                        } else {
+                            currentSlice = pickRandomSlice(spieleNormal);
+                        }
+                    } else if (temp <= 75) {
+                        //pick set X, [61,75]
+
+                        if (spieleWarm.isEmpty()) {
+                            continue;
+                        } else {
+                            currentSlice = pickRandomSlice(spieleWarm);
+                        }
+                    } else if (temp <= 85) {
+                        //pick set X, [61,80]
+
+                        if (spieleHeiss.isEmpty()) {
+                            continue;
+                        } else {
+                            currentSlice = pickRandomSlice(spieleHeiss);
+                        }
+                    } else if (temp <= 90) {
+                        //pick set X, [61,80]
+
+                        if (virusNormal.isEmpty()) {
+                            continue;
+                        } else {
+                            currentSlice = pickRandomSlice(virusNormal);
+                        }
+                    } else if (temp <= 95) {
+                        //pick set X, [61,80]
+
+                        if (virusWarm.isEmpty()) {
+                            continue;
+                        } else {
+                            currentSlice = pickRandomSlice(virusWarm);
+                        }
+                    } else {
+                        //pick set X, [81,100]
+
+                        if (virusHeiss.isEmpty()) {
+                            continue;
+                        } else {
+                            currentSlice = pickRandomSlice(virusHeiss);
+                        }
                     }
-                    else {
-                        currentSlice = pickRandomSlice(fragenNormal);
-                    }
-               }
-               else if (temp <= 30) {
-                   //pick set X, [16,30]
 
-                   if(fragenWarm.isEmpty()) {
-                       --sliceCount; nextSlice(); return;
-                   }
-                   else {
-                       currentSlice = pickRandomSlice(fragenWarm);
-                   }
-               }
-               else if (temp <= 45) {
-                   //pick set X, [31,45]
-
-                   if(fragenHeiss.isEmpty()) {
-                       --sliceCount; nextSlice(); return;
-                   }
-                   else {
-                       currentSlice = pickRandomSlice(fragenHeiss);
-                   }
-               }
-               else if (temp <= 60) {
-                   //pick set X, [46,60]
-
-                   if(spieleNormal.isEmpty()) {
-                       --sliceCount; nextSlice(); return;
-                   }
-                   else {
-                       currentSlice = pickRandomSlice(spieleNormal);
-                   }
-               }
-               else if (temp <= 75) {
-                   //pick set X, [61,75]
-
-                   if(spieleWarm.isEmpty()) {
-                       --sliceCount; nextSlice(); return;
-                   }
-                   else {
-                       currentSlice = pickRandomSlice(spieleWarm);
-                   }
-               }
-               else if (temp <= 85) {
-                   //pick set X, [61,80]
-
-                   if(spieleHeiss.isEmpty()) {
-                       --sliceCount; nextSlice(); return;
-                   }
-                   else {
-                       currentSlice = pickRandomSlice(spieleHeiss);
-                   }
-               }
-               else if (temp <= 90) {
-                   //pick set X, [61,80]
-
-                   if(virusNormal.isEmpty()) {
-                       --sliceCount; nextSlice(); return;
-                   }
-                   else {
-                       currentSlice = pickRandomSlice(virusNormal);
-                   }
-               }
-               else if (temp <=95) {
-                   //pick set X, [61,80]
-
-                   if(virusWarm.isEmpty()) {
-                       --sliceCount; nextSlice(); return;
-                   }
-                   else {
-                       currentSlice = pickRandomSlice(virusWarm);
-                   }
-               }
-               else {
-               //pick set X, [81,100]
-
-                   if(virusHeiss.isEmpty()) {
-                       --sliceCount; nextSlice(); return;
-                   }
-                   else {
-                       currentSlice = pickRandomSlice(virusHeiss);
-                   }
-               }
-
-            }
-            //
-            // 31% - 60% des Games
-            //
-            else if(factor <= 0.6) {
-
-                // Schaut zuerst ob das jeweilige Set leer ist. Wenn ja, starte neue Iteration von NextSlice. Sonst wähle zufällig Slice aus Set.
-                if(temp <= 15) {
-                    //pick set X, [1,15]
-
-                    if(fragenNormal.isEmpty()) {
-                        --sliceCount; nextSlice(); return;
-                    }
-                    else {
-                        currentSlice = pickRandomSlice(fragenNormal);
-                    }
                 }
-                else if (temp <= 30) {
-                    //pick set X, [16,30]
+                //
+                // 31% - 60% des Games
+                //
+                else if (factor <= 0.6) {
 
-                    if(fragenWarm.isEmpty()) {
-                        --sliceCount; nextSlice(); return;
-                    }
-                    else {
-                        currentSlice = pickRandomSlice(fragenWarm);
-                    }
-                }
-                else if (temp <= 45) {
-                    //pick set X, [31,45]
+                    // Schaut zuerst ob das jeweilige Set leer ist. Wenn ja, starte neue Iteration von NextSlice. Sonst wähle zufällig Slice aus Set.
+                    if (temp <= 15) {
+                        //pick set X, [1,15]
 
-                    if(fragenHeiss.isEmpty()) {
-                        --sliceCount; nextSlice(); return;
-                    }
-                    else {
-                        currentSlice = pickRandomSlice(fragenHeiss);
-                    }
-                }
-                else if (temp <= 60) {
-                    //pick set X, [46,60]
+                        if (fragenNormal.isEmpty()) {
+                            continue;
+                        } else {
+                            currentSlice = pickRandomSlice(fragenNormal);
+                        }
+                    } else if (temp <= 30) {
+                        //pick set X, [16,30]
 
-                    if(spieleNormal.isEmpty()) {
-                        --sliceCount; nextSlice(); return;
-                    }
-                    else {
-                        currentSlice = pickRandomSlice(spieleNormal);
-                    }
-                }
-                else if (temp <= 75) {
-                    //pick set X, [61,75]
+                        if (fragenWarm.isEmpty()) {
+                            continue;
+                        } else {
+                            currentSlice = pickRandomSlice(fragenWarm);
+                        }
+                    } else if (temp <= 45) {
+                        //pick set X, [31,45]
 
-                    if(spieleWarm.isEmpty()) {
-                        --sliceCount; nextSlice(); return;
-                    }
-                    else {
-                        currentSlice = pickRandomSlice(spieleWarm);
-                    }
-                }
-                else if (temp <= 85) {
-                    //pick set X, [61,80]
+                        if (fragenHeiss.isEmpty()) {
+                            continue;
+                        } else {
+                            currentSlice = pickRandomSlice(fragenHeiss);
+                        }
+                    } else if (temp <= 60) {
+                        //pick set X, [46,60]
 
-                    if(spieleHeiss.isEmpty()) {
-                        --sliceCount; nextSlice(); return;
-                    }
-                    else {
-                        currentSlice = pickRandomSlice(spieleHeiss);
-                    }
-                }
-                else if (temp <= 90) {
-                    //pick set X, [61,80]
+                        if (spieleNormal.isEmpty()) {
+                            continue;
+                        } else {
+                            currentSlice = pickRandomSlice(spieleNormal);
+                        }
+                    } else if (temp <= 75) {
+                        //pick set X, [61,75]
 
-                    if(virusNormal.isEmpty()) {
-                        --sliceCount; nextSlice(); return;
-                    }
-                    else {
-                        currentSlice = pickRandomSlice(virusNormal);
-                    }
-                }
-                else if (temp <=95) {
-                    //pick set X, [61,80]
+                        if (spieleWarm.isEmpty()) {
+                            continue;
+                        } else {
+                            currentSlice = pickRandomSlice(spieleWarm);
+                        }
+                    } else if (temp <= 85) {
+                        //pick set X, [61,80]
 
-                    if(virusWarm.isEmpty()) {
-                        --sliceCount; nextSlice(); return;
+                        if (spieleHeiss.isEmpty()) {
+                            continue;
+                        } else {
+                            currentSlice = pickRandomSlice(spieleHeiss);
+                        }
+                    } else if (temp <= 90) {
+                        //pick set X, [61,80]
+
+                        if (virusNormal.isEmpty()) {
+                            continue;
+                        } else {
+                            currentSlice = pickRandomSlice(virusNormal);
+                        }
+                    } else if (temp <= 95) {
+                        //pick set X, [61,80]
+
+                        if (virusWarm.isEmpty()) {
+                            continue;
+                        } else {
+                            currentSlice = pickRandomSlice(virusWarm);
+                        }
+                    } else {
+                        //pick set X, [81,100]
+
+                        if (virusHeiss.isEmpty()) {
+                            continue;
+                        } else {
+                            currentSlice = pickRandomSlice(virusHeiss);
+                        }
                     }
-                    else {
-                        currentSlice = pickRandomSlice(virusWarm);
-                    }
+
                 }
+                //
+                // 61% - 100% des Games
+                //
                 else {
-                    //pick set X, [81,100]
 
-                    if(virusHeiss.isEmpty()) {
-                        --sliceCount; nextSlice(); return;
+                    // Schaut zuerst ob das jeweilige Set leer ist. Wenn ja, starte neue Iteration von NextSlice. Sonst wähle zufällig Slice aus Set.
+                    if (temp <= 15) {
+                        //pick set X, [1,15]
+
+                        if (fragenNormal.isEmpty()) {
+                            continue;
+                        } else {
+                            currentSlice = pickRandomSlice(fragenNormal);
+                        }
+                    } else if (temp <= 30) {
+                        //pick set X, [16,30]
+
+                        if (fragenWarm.isEmpty()) {
+                            continue;
+                        } else {
+                            currentSlice = pickRandomSlice(fragenWarm);
+                        }
+                    } else if (temp <= 45) {
+                        //pick set X, [31,45]
+
+                        if (fragenHeiss.isEmpty()) {
+                            continue;
+                        } else {
+                            currentSlice = pickRandomSlice(fragenHeiss);
+                        }
+                    } else if (temp <= 60) {
+                        //pick set X, [46,60]
+
+                        if (spieleNormal.isEmpty()) {
+                            continue;
+                        } else {
+                            currentSlice = pickRandomSlice(spieleNormal);
+                        }
+                    } else if (temp <= 75) {
+                        //pick set X, [61,75]
+
+                        if (spieleWarm.isEmpty()) {
+                            continue;
+                        } else {
+                            currentSlice = pickRandomSlice(spieleWarm);
+                        }
+                    } else if (temp <= 85) {
+                        //pick set X, [61,80]
+
+                        if (spieleHeiss.isEmpty()) {
+                            continue;
+                        } else {
+                            currentSlice = pickRandomSlice(spieleHeiss);
+                        }
+                    } else if (temp <= 90) {
+                        //pick set X, [61,80]
+
+                        if (virusNormal.isEmpty()) {
+                            continue;
+                        } else {
+                            currentSlice = pickRandomSlice(virusNormal);
+                        }
+                    } else if (temp <= 95) {
+                        //pick set X, [61,80]
+
+                        if (virusWarm.isEmpty()) {
+                            continue;
+                        } else {
+                            currentSlice = pickRandomSlice(virusWarm);
+                        }
+                    } else {
+                        //pick set X, [81,100]
+
+                        if (virusHeiss.isEmpty()) {
+                            continue;
+                        } else {
+                            currentSlice = pickRandomSlice(virusHeiss);
+                        }
                     }
-                    else {
-                        currentSlice = pickRandomSlice(virusHeiss);
-                    }
+
                 }
-
             }
-            //
-            // 61% - 100% des Games
-            //
-            else {
-
-                // Schaut zuerst ob das jeweilige Set leer ist. Wenn ja, starte neue Iteration von NextSlice. Sonst wähle zufällig Slice aus Set.
-                if(temp <= 15) {
-                    //pick set X, [1,15]
-
-                    if(fragenNormal.isEmpty()) {
-                        --sliceCount; nextSlice(); return;
-                    }
-                    else {
-                        currentSlice = pickRandomSlice(fragenNormal);
-                    }
-                }
-                else if (temp <= 30) {
-                    //pick set X, [16,30]
-
-                    if(fragenWarm.isEmpty()) {
-                        --sliceCount; nextSlice(); return;
-                    }
-                    else {
-                        currentSlice = pickRandomSlice(fragenWarm);
-                    }
-                }
-                else if (temp <= 45) {
-                    //pick set X, [31,45]
-
-                    if(fragenHeiss.isEmpty()) {
-                        --sliceCount; nextSlice(); return;
-                    }
-                    else {
-                        currentSlice = pickRandomSlice(fragenHeiss);
-                    }
-                }
-                else if (temp <= 60) {
-                    //pick set X, [46,60]
-
-                    if(spieleNormal.isEmpty()) {
-                        --sliceCount; nextSlice(); return;
-                    }
-                    else {
-                        currentSlice = pickRandomSlice(spieleNormal);
-                    }
-                }
-                else if (temp <= 75) {
-                    //pick set X, [61,75]
-
-                    if(spieleWarm.isEmpty()) {
-                        --sliceCount; nextSlice(); return;
-                    }
-                    else {
-                        currentSlice = pickRandomSlice(spieleWarm);
-                    }
-                }
-                else if (temp <= 85) {
-                    //pick set X, [61,80]
-
-                    if(spieleHeiss.isEmpty()) {
-                        --sliceCount; nextSlice(); return;
-                    }
-                    else {
-                        currentSlice = pickRandomSlice(spieleHeiss);
-                    }
-                }
-                else if (temp <= 90) {
-                    //pick set X, [61,80]
-
-                    if(virusNormal.isEmpty()) {
-                        --sliceCount; nextSlice(); return;
-                    }
-                    else {
-                        currentSlice = pickRandomSlice(virusNormal);
-                    }
-                }
-                else if (temp <=95) {
-                    //pick set X, [61,80]
-
-                    if(virusWarm.isEmpty()) {
-                        --sliceCount; nextSlice(); return;
-                    }
-                    else {
-                        currentSlice = pickRandomSlice(virusWarm);
-                    }
-                }
-                else {
-                    //pick set X, [81,100]
-
-                    if(virusHeiss.isEmpty()) {
-                        --sliceCount; nextSlice(); return;
-                    }
-                    else {
-                        currentSlice = pickRandomSlice(virusHeiss);
-                    }
-                }
-
-            }
-
            // Log.d("debug/touch", "nextSlice aufgerufen");
 
             // draw the Slice
