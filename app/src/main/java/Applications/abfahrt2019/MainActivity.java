@@ -11,6 +11,12 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 import android.view.View;
+import android.content.Intent;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.app.PendingIntent;
+import android.app.AlarmManager;
+
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -50,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
     private int debugCounter = 0;
     private boolean finished = false;
     private boolean started = false;
+    private boolean restart = false;
 
     private String[] fragenNormalArray =  {
             "Alle, die schon einmal an einem öffentlichen Ort Sex hatten, trinken 3 Schlucke.",
@@ -295,6 +302,14 @@ public class MainActivity extends AppCompatActivity {
     // HelperMethods
     // Soll nun eine neue Frage auswählen
     private void nextSlice() {
+        // Restart?
+        if(restart) {
+            restartApplication(this);
+        }
+
+        // Normal
+
+
         ++debugCounter; Log.d("debug/counterNextSlice", "FebugCOunter:= " + debugCounter);
         boolean virusFirst = false;
         // Behandle zuerst Viren
@@ -583,14 +598,7 @@ public class MainActivity extends AppCompatActivity {
             handleSlice(endSlice);
             Log.d("debug/all", "game ended");
             // Short Stop
-            try {
-               // Thread.sleep(3000);
-            }
-            catch(Throwable t){
-                t.printStackTrace();
-            }
-            // restart App
-           // restartApplication();
+            restart = true;
         }
     }
 
@@ -620,10 +628,43 @@ public class MainActivity extends AppCompatActivity {
 
 
     // Startet die App neu
-    private void restartApplication() {
-
-
-      //  Abfahren();
+    private void restartApplication(Context c) {
+        try {
+            //check if the context is given
+            if (c != null) {
+                //fetch the packagemanager so we can get the default launch activity
+                // (you can replace this intent with any other activity if you want
+                PackageManager pm = c.getPackageManager();
+                //check if we got the PackageManager
+                if (pm != null) {
+                    //create the intent with the default start activity for your application
+                    Intent mStartActivity = pm.getLaunchIntentForPackage(
+                            c.getPackageName()
+                    );
+                    if (mStartActivity != null) {
+                        mStartActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        //create a pending intent so the application is restarted after System.exit(0) was called.
+                        // We use an AlarmManager to call this intent in 100ms
+                        int mPendingIntentId = 223344;
+                        PendingIntent mPendingIntent = PendingIntent
+                                .getActivity(c, mPendingIntentId, mStartActivity,
+                                        PendingIntent.FLAG_CANCEL_CURRENT);
+                        AlarmManager mgr = (AlarmManager) c.getSystemService(Context.ALARM_SERVICE);
+                        mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 100, mPendingIntent);
+                        //kill the application
+                        System.exit(0);
+                    } else {
+                        Log.d("debug/restart", "Was not able to restart application, mStartActivity null");
+                    }
+                } else {
+                    Log.d("debug/restart", "Was not able to restart application, PM null");
+                }
+            } else {
+                Log.d("debug/restart", "Was not able to restart application, Context null");
+            }
+        } catch (Exception ex) {
+            Log.d("debug/restart", "Was not able to restart application");
+        }
     }
 
     // Füllt erstmal Namen rein
