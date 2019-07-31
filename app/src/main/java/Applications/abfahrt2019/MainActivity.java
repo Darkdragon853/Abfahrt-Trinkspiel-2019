@@ -9,6 +9,8 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.view.View;
 import android.content.Intent;
@@ -22,6 +24,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.List;
+import java.util.regex.Pattern;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -54,9 +57,20 @@ public class MainActivity extends AppCompatActivity {
     private int virusDauerOffset = 2;
 
     private int debugCounter = 0;
+
     private boolean finished = false;
     private boolean started = false;
     private boolean restart = false;
+
+    private boolean player1checked = true;
+    private boolean player2checked = true;
+    private boolean player3checked = true;
+    private boolean player4checked = true;
+    private boolean player5checked = true;
+    private boolean player6checked = true;
+    private boolean player7checked = true;
+    private boolean player8checked = true;
+
 
     private String[] fragenNormalArray =  {
             "Alle, die schon einmal an einem öffentlichen Ort Sex hatten, trinken 3 Schlucke.",
@@ -104,8 +118,11 @@ public class MainActivity extends AppCompatActivity {
         clearButton();
         Log.d("debug", "Starting Abfahren");
 
+
         // Initialisiere Sets usw
         Initialize();
+        // Loading Players
+        loadPlayerBase();
         // DummyFillers der Spieler
         testFill();
         // Theoretisch müssten jetzt alle Fragen im entsprechenden Set sein. Jetzt setzen wir die Namen in die Fragen ein.
@@ -139,8 +156,63 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         parentLayout = findViewById(R.id.parentLayout);
 
+        ImageButton spieler1 = findViewById(R.id.spieler1Button);
+        spieler1.setOnClickListener(v -> {
 
-        // Linke den Button zu unserer Start-Methode
+            if(player1checked) {
+                // Lade Bild mit Häkchen
+                spieler1.setImageResource(R.drawable.littleavatar);
+            }
+            else {
+                // Lade Bild ohne Häkchen
+                spieler1.setImageResource(R.drawable.littleavatar);
+            }
+
+            //Swap states
+            player1checked = !player1checked;
+            Log.d("Debug/players", "Player1 check: " + player1checked);
+        }); // ÜBernehme noch für die andere Buttons
+
+
+        ImageButton spieler2 = findViewById(R.id.spieler2Button);
+        spieler2.setOnClickListener(v -> {
+            spieler2.setImageResource(R.drawable.littleavatar);
+        });
+
+        ImageButton spieler3 = findViewById(R.id.spieler3Button);
+        spieler3.setOnClickListener(v -> {
+            spieler3.setImageResource(R.drawable.littleavatar);
+        });
+
+        ImageButton spieler4 = findViewById(R.id.spieler4Button);
+        spieler4.setOnClickListener(v -> {
+            spieler4.setImageResource(R.drawable.littleavatar);
+        });
+
+        ImageButton spieler5 = findViewById(R.id.spieler5Button);
+        spieler5.setOnClickListener(v -> {
+            spieler5.setImageResource(R.drawable.littleavatar);
+        });
+
+
+        ImageButton spieler6 = findViewById(R.id.spieler6Button);
+        spieler6.setOnClickListener(v -> {
+            spieler6.setImageResource(R.drawable.littleavatar);
+        });
+
+        ImageButton spieler7 = findViewById(R.id.spieler7Button);
+        spieler7.setOnClickListener(v -> {
+            spieler7.setImageResource(R.drawable.littleavatar);
+        });
+
+        ImageButton spieler8 = findViewById(R.id.spieler8Button);
+        spieler8.setOnClickListener(v -> {
+            spieler8.setImageResource(R.drawable.littleavatar);
+        });
+
+
+
+        // Linke den startButton zu unserer Start-Methode
         Button startButton = findViewById(R.id.startButton);
         startButton.setOnClickListener(view ->  {
             // Hier kommt der Aufruf unserer Anfangsmethode rein
@@ -170,16 +242,48 @@ public class MainActivity extends AppCompatActivity {
             // Verstecke Status- und NavigationsLeiste
             | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
             | View.SYSTEM_UI_FLAG_FULLSCREEN );
+
     }    
     
     private void clearButton() {
-      Button startButton = findViewById(R.id.startButton);
-      //ViewGroup layout = (ViewGroup) startButton.getParent();
-      //if(layout != null) {
-      //  layout.removeView(startButton);
-      //}
+        // StartButton
+        Button startButton = findViewById(R.id.startButton);
         startButton.setVisibility(View.GONE);
-    }   
+
+        ImageButton currentButton;
+        // Spieler1
+        currentButton = findViewById(R.id.spieler1Button);
+        currentButton.setVisibility(View.GONE);
+        // Spieler2
+        currentButton = findViewById(R.id.spieler2Button);
+        currentButton.setVisibility(View.GONE);
+        // Spieler3
+        currentButton = findViewById(R.id.spieler3Button);
+        currentButton.setVisibility(View.GONE);
+        // Spieler4
+        currentButton = findViewById(R.id.spieler4Button);
+        currentButton.setVisibility(View.GONE);
+        // Spieler5
+        currentButton = findViewById(R.id.spieler5Button);
+        currentButton.setVisibility(View.GONE);
+        // Spieler6
+        currentButton = findViewById(R.id.spieler6Button);
+        currentButton.setVisibility(View.GONE);
+        // Spieler7
+        currentButton = findViewById(R.id.spieler7Button);
+        currentButton.setVisibility(View.GONE);
+        // Spieler8
+        currentButton = findViewById(R.id.spieler8Button);
+        currentButton.setVisibility(View.GONE);
+
+        //Edit Text
+        EditText editText = findViewById(R.id.editText);
+        editText.setVisibility(View.GONE);
+
+        // Zweite TextView
+        TextView textView2 = findViewById(R.id.textView2);
+        textView2.setVisibility(View.GONE);
+    }
 
     private void handleSlice(Slice slice) {
         // Zuerst setzen wir den Hintergrund. Dafür brauchen wir noch eine LayoutID mit Namen parentLayout!
@@ -623,6 +727,63 @@ public class MainActivity extends AppCompatActivity {
         textView.setText(slice.getBeschreibung());
         Log.d("debug/SecondVirs", "aufgerufen:  " + slice.getBeschreibung());
         // Sollten mehrere Viren auf einmal gestoppt werden
+    }
+
+    private void loadPlayerBase() {
+        if(player1checked) {
+            spieler.add("Lukas");
+        }
+        if(player2checked) {
+            spieler.add("Patrick");
+        }
+        if(player3checked) {
+            spieler.add("Robin");
+        }
+        if(player4checked) {
+            spieler.add("Alfred");
+        }
+        if(player5checked) {
+            spieler.add("Felix");
+        }
+        if(player6checked) {
+            spieler.add("Daddl");
+        }
+        if(player7checked) {
+            spieler.add("Leonie");
+        }
+        if(player8checked) {
+            spieler.add("Luisa");
+        }
+
+        // Fehlen noch die zusätzlichen Spieler!
+        EditText editText = findViewById(R.id.editText);
+
+        if(editText.getText().toString().equals(R.string.editTexttext)) {
+            // Nichts wurde hinzugefügt
+             Log.d("debug/players", "Wurde kein weiter hinzugefügt");
+            return;
+
+        }
+        else {
+
+            String[] additionalPlayers = editText.getText().toString().trim().split(",");
+            Pattern pattern = Pattern.compile("[A-Z][a-z]*");
+
+            for(int i = 0; i<additionalPlayers.length; i++) {
+                String currentPlayer = additionalPlayers[i].trim();
+
+                // Wenn das Ergebnis der Regex mached, dann füge zu den Spielern hinzu. Sonst gehe weiter im Array
+                if(pattern.matcher(currentPlayer).matches()) {
+
+                    Log.d("debug/Player", "Spieler hinzugefügt: " + currentPlayer);
+                    spieler.add(currentPlayer);
+                }
+                else {
+                    Log.d("debug/Player", "Spieler nicht hinzugefügt: " + currentPlayer);
+                    continue;
+                }
+            }
+        }
     }
 
 
