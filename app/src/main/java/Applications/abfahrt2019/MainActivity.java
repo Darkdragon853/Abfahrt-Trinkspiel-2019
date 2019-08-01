@@ -1,5 +1,3 @@
-//restart testen, Spielerwahl, mehrere Viren stoppen auf einmal
-
 package Applications.abfahrt2019;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -116,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
         // Bereinige zuerst Oberfläcche
         hideSystemUI();
         clearButton();
-        Log.d("debug", "Starting Abfahren");
+        //Log.d("debug", "Starting Abfahren");
 
 
         // Initialisiere Sets usw
@@ -138,15 +136,6 @@ public class MainActivity extends AppCompatActivity {
         // Hier geht das Spiel jetzt los. Wir beginnen mit einem manuellen Aufruf, der Rest kommt über die Touches
         nextSlice();
         started = true;
-        //  Log.d("debug/slice", s.toString());
-        //Debug:
-        /*
-        if(fragenNormal.isEmpty()) Log.d("debug", "Empty");
-        // DebugTime, grab a Slice and represent it
-        for(Slice s1 : spieleHeiss) {
-            Log.d("debug", s1.toString());
-        }
-        */
     }
 
     // UI
@@ -765,7 +754,6 @@ public class MainActivity extends AppCompatActivity {
 
         }
         else {
-
             String[] additionalPlayers = editText.getText().toString().trim().split(",");
             Pattern pattern = Pattern.compile("[A-Z][a-z]*");
 
