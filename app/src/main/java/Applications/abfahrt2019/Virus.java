@@ -1,7 +1,6 @@
 package Applications.abfahrt2019;
 
 public class Virus {
-
     private Slice slice;
     private int timer;
 

@@ -1,3 +1,4 @@
+// Kluge WS Wählen, Finished, Spieler: Keine Namen-Dopplung, wir gehen davon aus, das der Stammtisch spielt, also lade HäkchenBilder zuerst
 package Applications.abfahrt2019;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,16 +18,17 @@ import android.content.pm.PackageManager;
 import android.app.PendingIntent;
 import android.app.AlarmManager;
 
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.List;
 import java.util.regex.Pattern;
 
-
 public class MainActivity extends AppCompatActivity {
-    // Attributes
+
+    // // Attributes
+    // Mengen für die Fragen / Spiele / Viren
+
     private HashSet<Slice> fragenNormal;
     private HashSet<Slice> spieleNormal;
     private HashSet<Slice> virusNormal;
@@ -39,37 +41,36 @@ public class MainActivity extends AppCompatActivity {
     private HashSet<Slice> manyInteracts;
     private HashSet<String> spieler;
 
+    // Speziell für andauernde Viren
     private List<Virus> momentaneViren;
 
+    // Extra-Tools
     private ConstraintLayout parentLayout;
-
     private Random randomGenerator;
-
     private Slice endSlice;
-
     private TextView textView;
 
+    // Parameter zur Spielbalance
     private int sliceCount;
     private int anzahlSlices;
-    private int virusDauerIntervall = 1;
-    private int virusDauerOffset = 2;
+    private int virusDauerIntervall;
+    private int virusDauerOffset;
 
-    private int debugCounter = 0;
-
-    private boolean finished = false;
-    private boolean started = false;
-    private boolean restart = false;
-
-    private boolean player1checked = true;
-    private boolean player2checked = true;
-    private boolean player3checked = true;
-    private boolean player4checked = true;
-    private boolean player5checked = true;
-    private boolean player6checked = true;
-    private boolean player7checked = true;
-    private boolean player8checked = true;
+    // Conditionals
+    private boolean finished;
+    private boolean started;
+    private boolean restart;
+    private boolean player1checked;
+    private boolean player2checked;
+    private boolean player3checked;
+    private boolean player4checked;
+    private boolean player5checked;
+    private boolean player6checked;
+    private boolean player7checked;
+    private boolean player8checked;
 
 
+    // Text-Halter
     private String[] fragenNormalArray =  {
             "Alle, die schon einmal an einem öffentlichen Ort Sex hatten, trinken 3 Schlucke.",
             "Die letzte Person, die ihre Füße vom Bodem hebt trinkt 2 Schlucke.",
@@ -109,31 +110,29 @@ public class MainActivity extends AppCompatActivity {
     };
 
 
+    // Steuert den Verlauf des Spiels, wird durch den StartButton ausgelöst
     private void Abfahren() {
 
-        // Bereinige zuerst Oberfläcche
+        // Bereinige zuerst Oberfläche
         hideSystemUI();
         clearButton();
-        //Log.d("debug", "Starting Abfahren");
-
 
         // Initialisiere Sets usw
         Initialize();
-        // Loading Players
         loadPlayerBase();
-        // DummyFillers der Spieler
+
+        // Ersatz bis Spielerwahl hinhaut
         testFill();
-        // Theoretisch müssten jetzt alle Fragen im entsprechenden Set sein. Jetzt setzen wir die Namen in die Fragen ein.
-        //Log.d("debug", "Starting Interact");
+
+        // Passe alle Fragen auf die momentanen Spieler an
         Interact();
-        // Jetzt noch für SpezialFälle
-        //Log.d("debug", "Endging Interact");
 
+        // Benutze SpezialMethode, falls genug Spieler da sind.
+        if(spieler.size() >= 6) {
+            InteractLarge();
+        }
 
-        // Log.d("debug", "Starting InteractLArge");
-        InteractLarge();
-        // Log.d("debug", "Endging InteractLarge");
-        // Hier geht das Spiel jetzt los. Wir beginnen mit einem manuellen Aufruf, der Rest kommt über die Touches
+        // Starte das Spiel mit der ersten Folie. Dadurch umgehen wir ein zwingendes Touch-Event auf dem Weißen Untergrund.
         nextSlice();
         started = true;
     }
@@ -143,8 +142,29 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Müssen wir hier initialiseren, da wir sonst Null-Object Probleme bekommen
         parentLayout = findViewById(R.id.parentLayout);
 
+        // Der StartButton beginnt unser Spiel mit den momentanen Spielern.
+        Button startButton = findViewById(R.id.startButton);
+        startButton.setOnClickListener(view ->  {
+            // Hier kommt der Aufruf unserer Anfangsmethode rein
+            Abfahren();
+        });
+
+        // Wenn das Spiel gestartet wurde, löst ein TouchEvent die nächste Folie aus
+        parentLayout.setOnTouchListener( (view, motionEvent) -> {
+            if(started) {
+                nextSlice();
+            }
+            // Log.d("debug/touch", "Touched");
+            return false;
+        });
+
+
+        // ImageButtons
+        // MusterBeispiel für spieler1. Durch das Anklicken des Bildes ersetzen wir es mit einer Häkchen-Version usw.
         ImageButton spieler1 = findViewById(R.id.spieler1Button);
         spieler1.setOnClickListener(v -> {
 
@@ -157,10 +177,10 @@ public class MainActivity extends AppCompatActivity {
                 spieler1.setImageResource(R.drawable.littleavatar);
             }
 
-            //Swap states
+            // Vertausche Check-Zustand
             player1checked = !player1checked;
-            Log.d("Debug/players", "Player1 check: " + player1checked);
-        }); // ÜBernehme noch für die andere Buttons
+            //Log.d("Debug/players", "Player1 check: " + player1checked);
+        });
 
 
         ImageButton spieler2 = findViewById(R.id.spieler2Button);
@@ -198,27 +218,9 @@ public class MainActivity extends AppCompatActivity {
         spieler8.setOnClickListener(v -> {
             spieler8.setImageResource(R.drawable.littleavatar);
         });
-
-
-
-        // Linke den startButton zu unserer Start-Methode
-        Button startButton = findViewById(R.id.startButton);
-        startButton.setOnClickListener(view ->  {
-            // Hier kommt der Aufruf unserer Anfangsmethode rein
-            Abfahren();
-        });
-
-        parentLayout.setOnTouchListener( (view, motionEvent) -> {
-            if(started) {
-                nextSlice();
-            }
-            // Log.d("debug/touch", "Touched");
-            return false;
-        });
-
     }
 
-    // Dreht Screen in den Fullscreen und versteckt Systemleisten
+    // Versteckt Systemleisten
     private void hideSystemUI() {
         View decorView = getWindow().getDecorView();
         decorView.setSystemUiVisibility(
@@ -233,7 +235,8 @@ public class MainActivity extends AppCompatActivity {
             | View.SYSTEM_UI_FLAG_FULLSCREEN );
 
     }    
-    
+
+    // Entfernt alle Buttons vom Anfang für einen sauberen Spielverlauf
     private void clearButton() {
         // StartButton
         Button startButton = findViewById(R.id.startButton);
@@ -274,9 +277,10 @@ public class MainActivity extends AppCompatActivity {
         textView2.setVisibility(View.GONE);
     }
 
+
     private void handleSlice(Slice slice) {
-        // Zuerst setzen wir den Hintergrund. Dafür brauchen wir noch eine LayoutID mit Namen parentLayout!
-        // Fallunterscheidung
+        // Fallunterscheidung anhand Normal/Warm/Heiss und Frage/Spiel/Virus. Je nachdem wir ein anderer Farbübergang verwendet.
+        // Beim Virus ist es etwas spezieller: Wir brauchen eine zufällige Laufzeit des Virus, benennen ihn Autistischer Kick und legen den Hinteren Teil in die momentaneViren - Liste
 
         if(slice.getKategorie().equals(Slice.Level.Normal) && slice.getTyp().equals(Slice.Type.Frage)) {
             // Normale Frage
@@ -290,7 +294,7 @@ public class MainActivity extends AppCompatActivity {
             // Normaler Virus .. mach autistischer Kick draus
             parentLayout.setBackgroundResource(R.drawable.gradientnormalvirus);
 
-            // Zufällige Rundenzahl, in Counters gestored
+            // Zufällige Rundenzahl
             int randomInt = randomGenerator.nextInt(virusDauerIntervall) + virusDauerOffset;
 
             // Virus per Trennsymbol splitten
@@ -305,7 +309,7 @@ public class MainActivity extends AppCompatActivity {
             Slice newSlice = new Slice(strings[1], slice.getKategorie(), slice.getInteraktiv(), slice.getTyp());
             // Add to momentaneViren
             momentaneViren.add(new Virus(newSlice, randomInt));
-            Log.d("debug/SecondVirs", "Virus added");
+            // Log.d("debug/SecondVirs", "Virus added");
         }
         else if(slice.getKategorie().equals(Slice.Level.Warm) && slice.getTyp().equals(Slice.Type.Frage)) {
             // Warme Frage
@@ -319,7 +323,7 @@ public class MainActivity extends AppCompatActivity {
             // Warmer Virus
             parentLayout.setBackgroundResource(R.drawable.gradientwarmvirus);
 
-            // Zufällige Rundenzahl, in Counters gestored
+            // Zufällige Rundenzahl
             int randomInt = randomGenerator.nextInt(virusDauerIntervall) + virusDauerOffset;
 
             // Virus per Trennsymbol splitten
@@ -334,7 +338,7 @@ public class MainActivity extends AppCompatActivity {
             Slice newSlice = new Slice(strings[1], slice.getKategorie(), slice.getInteraktiv(), slice.getTyp());
             // Add to momentaneViren
             momentaneViren.add(new Virus(newSlice, randomInt));
-            Log.d("debug/SecondVirs", "Virus added");
+            // Log.d("debug/SecondVirs", "Virus added");
         }
         else if(slice.getKategorie().equals(Slice.Level.Heiss) && slice.getTyp().equals(Slice.Type.Frage)) {
             // Heisse Frage
@@ -348,7 +352,7 @@ public class MainActivity extends AppCompatActivity {
             // Heisser Virus
             parentLayout.setBackgroundResource(R.drawable.gradientheissvirus);
 
-            // Zufällige Rundenzahl, in Counters gestored
+            // Zufällige Rundenzahl
             int randomInt = randomGenerator.nextInt(virusDauerIntervall) + virusDauerOffset;
 
             // Virus per Trennsymbol splitten
@@ -363,10 +367,11 @@ public class MainActivity extends AppCompatActivity {
             Slice newSlice = new Slice(strings[1], slice.getKategorie(), slice.getInteraktiv(), slice.getTyp());
             // Add to momentaneViren
             momentaneViren.add(new Virus(newSlice, randomInt));
-            Log.d("debug/SecondVirs", "Virus added");
+            // Log.d("debug/SecondVirs", "Virus added");
         }
 
-        // Jetzt brauchen wir noch den entsprechenden Text, Style
+        // Fonts
+        // Je nach Typ verwenden wir eine andere Schriftart
         if(slice.getTyp().equals(Slice.Type.Frage)) {
             // Frage
             Typeface typeface = getResources().getFont(R.font.frage);
@@ -384,63 +389,61 @@ public class MainActivity extends AppCompatActivity {
             textView.setTypeface(typeface);
         }
 
-        // Text setzen
+        // TextView auf momentane Slice setzen
         String text = slice.getBeschreibung();
-
-
-        //TextView nun bearbeiten falls nötig
         textView.setText(text);
     }
   
     // HelperMethods
-    // Soll nun eine neue Frage auswählen
+    // Soll nun eine neue Slice wählen, schaut zuerst ob neu gestartet werden sollte.
     private void nextSlice() {
+
         // Restart?
         if(restart) {
             restartApplication(this);
         }
 
-        // Normal
 
-
-        ++debugCounter; Log.d("debug/counterNextSlice", "FebugCOunter:= " + debugCounter);
-        boolean virusFirst = false;
         // Behandle zuerst Viren
+        boolean virusFirst = false;
         if(!momentaneViren.isEmpty() && !finished) {
             Virus destroyVirus = null;
             for(Virus virus : momentaneViren) {
-                if(virus.getTimer() == 0) {
+                if(virus.getTimer() <= 0) {
                     virusFirst = true;
-                    Log.d("debug/Virus", virus.toString());
+                    // Log.d("debug/Virus", virus.toString());
                     handleSecondVirusPart(virus.getSlice());
                     destroyVirus = virus;
                 }
                 else {
-                    Log.d("debug/Viren", "Momentaner Virus wird jetzt um eins verringert: " + virus);
+                    // Log.d("debug/Viren", "Momentaner Virus wird jetzt um eins verringert: " + virus);
                     virus.setTimer(virus.getTimer() - 1);
                 }
             }
+
+            // Bereinigt nach und nach die momentaneViren-Liste, immer nur einen um die ConcurrentModifikationException zu umgehen
             if(destroyVirus != null) {
                 momentaneViren.remove(destroyVirus);
                 destroyVirus = null;
             }
         }
-        // Normaler Spiel-Flow
+
+
+        // Normaler Spiel-Flow, kein Virus wurde aufgehoben
         if(!finished && !virusFirst) {
             ++sliceCount;
-            // getRandomSet
-            float factor = sliceCount / anzahlSlices; float fragenNormalWs; float fragenWarmWs; float fragenHeissWs; float spieleNormalWs; float spieleWarmWs; float spieleHeissWs; float virusNormalWs; float virusWarmWs; float virusHeissWs;
 
-            //0% - 30% des Games
+            // Momentaner SpielFortschritt
+            float factor = sliceCount / anzahlSlices;
+
+            // Versuche currentSlice zufällig zu wählen. Wähle erneut, falls diesmal getroffene Menge schon leer ist.
             Slice currentSlice = null;
-
-
             while(currentSlice == null) {
-                int temp = randomGenerator.nextInt(99) + 1; // Werte zwischen 0 und 100
+                int temp = randomGenerator.nextInt(99) + 1; // Werte zwischen 1 und 100
+
                 // 0%-30% des Games
                 if (factor <= 0.3) {
 
-                    // Schaut zuerst ob das jeweilige Set leer ist. Wenn ja, starte neue Iteration von NextSlice. Sonst wähle zufällig Slice aus Set.
                     if (temp <= 15) {
                         //pick set X, [1,15]
 
@@ -521,7 +524,6 @@ public class MainActivity extends AppCompatActivity {
                 //
                 else if (factor <= 0.6) {
 
-                    // Schaut zuerst ob das jeweilige Set leer ist. Wenn ja, starte neue Iteration von NextSlice. Sonst wähle zufällig Slice aus Set.
                     if (temp <= 15) {
                         //pick set X, [1,15]
 
@@ -602,7 +604,6 @@ public class MainActivity extends AppCompatActivity {
                 //
                 else {
 
-                    // Schaut zuerst ob das jeweilige Set leer ist. Wenn ja, starte neue Iteration von NextSlice. Sonst wähle zufällig Slice aus Set.
                     if (temp <= 15) {
                         //pick set X, [1,15]
 
@@ -681,9 +682,10 @@ public class MainActivity extends AppCompatActivity {
             }
            // Log.d("debug/touch", "nextSlice aufgerufen");
 
-            // draw the Slice
+            // Gewählte Slice wartet nun in currentSlice
             handleSlice(currentSlice);
-            // finished?
+
+            // Sind wir jetzt fertig?
             if (sliceCount == anzahlSlices) finished = true;
         }
         else if(!virusFirst) {
@@ -698,7 +700,8 @@ public class MainActivity extends AppCompatActivity {
 
     // Zeigt die Aufhebung eines Virus an
     private void handleSecondVirusPart(Slice slice) {
-       // if(momentaneViren.isEmpty()) Log.d("Debug/viren", "IRgendwas ist mit HandleSecondVIren kaputt, wurde ohne Counterpart gecallt");
+
+        // Setze zuerst dem Level entsprechenden Hintergrund
         if ( slice.getKategorie().equals(Slice.Level.Normal)) {
             // Normal
             parentLayout.setBackgroundResource(R.drawable.gradientnormalvirus);
@@ -714,11 +717,11 @@ public class MainActivity extends AppCompatActivity {
         Typeface typeface = getResources().getFont(R.font.virus);
         textView.setTypeface(typeface);
         textView.setText(slice.getBeschreibung());
-        Log.d("debug/SecondVirs", "aufgerufen:  " + slice.getBeschreibung());
-        // Sollten mehrere Viren auf einmal gestoppt werden
     }
 
     private void loadPlayerBase() {
+
+        // Füge StammSpieler anhand des momentanen Bildes hinzu.
         if(player1checked) {
             spieler.add("Lukas");
         }
@@ -744,39 +747,30 @@ public class MainActivity extends AppCompatActivity {
             spieler.add("Luisa");
         }
 
-        // Fehlen noch die zusätzlichen Spieler!
+        // Lade zusätzliche Spieler aus dem Edit-Text, trenne per Komma
         EditText editText = findViewById(R.id.editText);
+        String[] additionalPlayers = editText.getText().toString().trim().split(",");
+        Pattern pattern = Pattern.compile("[A-Z][a-z]*");
 
-        if(editText.getText().toString().equals(R.string.editTexttext)) {
-            // Nichts wurde hinzugefügt
-             Log.d("debug/players", "Wurde kein weiter hinzugefügt");
-            return;
+        for(int i = 0; i<additionalPlayers.length; i++) {
+            String currentPlayer = additionalPlayers[i].trim();
 
-        }
-        else {
-            String[] additionalPlayers = editText.getText().toString().trim().split(",");
-            Pattern pattern = Pattern.compile("[A-Z][a-z]*");
+            // Wenn das Ergebnis der Regex matched, dann füge zu den Spielern hinzu. Sonst gehe weiter im Array
+            if (pattern.matcher(currentPlayer).matches()) {
 
-            for(int i = 0; i<additionalPlayers.length; i++) {
-                String currentPlayer = additionalPlayers[i].trim();
-
-                // Wenn das Ergebnis der Regex mached, dann füge zu den Spielern hinzu. Sonst gehe weiter im Array
-                if(pattern.matcher(currentPlayer).matches()) {
-
-                    Log.d("debug/Player", "Spieler hinzugefügt: " + currentPlayer);
-                    spieler.add(currentPlayer);
-                }
-                else {
-                    Log.d("debug/Player", "Spieler nicht hinzugefügt: " + currentPlayer);
+                // Log.d("debug/Player", "Spieler hinzugefügt: " + currentPlayer);
+                spieler.add(currentPlayer);
+            }
+            else {
+                    // Log.d("debug/Player", "Spieler nicht hinzugefügt: " + currentPlayer);
                     continue;
-                }
             }
         }
     }
 
 
 
-    // Startet die App neu
+    // Startet die App neu, nur copypasted
     private void restartApplication(Context c) {
         try {
             //check if the context is given
@@ -816,7 +810,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    // Füllt erstmal Namen rein
+    // Füllt erstmal Namen rein, solange Spielerauswahl noch nicht vollständig ist
     private void testFill() {
         spieler.add("Lukas");
         spieler.add("Patrick");
@@ -828,14 +822,14 @@ public class MainActivity extends AppCompatActivity {
         spieler.add("Alfred");
     }
 
-    // Sucht eine zufällige Slice aus dem Set aus
+    // Sucht eine zufällige Slice aus dem übergebenen Set aus
     private Slice pickRandomSlice(HashSet<Slice> set) {
         int i = 0;
         Slice finalSlice = new Slice("Something failed in PickRandomSlice", Slice.Level.Heiss, false, Slice.Type.Frage);
         int item = randomGenerator.nextInt(set.size());
         for(Slice s : set) {
             if(item == i) {
-                // Wirf Slice aus der Menge und gib es zurück
+                // Wirf Slice aus der Menge und gib sie zurück
                 set.remove(s);
                 return s;
             }
@@ -846,14 +840,14 @@ public class MainActivity extends AppCompatActivity {
         return finalSlice;
     }
 
-    //ManyInteracts noch
+    // Spezielle Methode für Fragen, die eine Anzahl von <= 6 Spielern fordern
     private void InteractLarge() {
         for(Slice s : manyInteracts) {
             HashSet<Integer> temp = new HashSet<Integer>();
             // Hol dir zuerst die Beschreibung
             String current = s.getBeschreibung();
 
-            // Erzeuge 3 einzigartige Zahlen
+            // Erzeuge 6 einzigartige Zahlen, indem du so lange Zahlen wählst, bis 6 Stück in temp stehen
             int item1, item2, item3, item4, item5, item6;
             do {
                 temp.clear();
@@ -873,7 +867,6 @@ public class MainActivity extends AppCompatActivity {
             while (temp.size() < 6);
 
             // Weise den Zahlen Spieler zu
-
             int i = 0;
             String Spieler1 = "";
             String Spieler2 = "";
@@ -881,6 +874,7 @@ public class MainActivity extends AppCompatActivity {
             String Spieler4 = "";
             String Spieler5 = "";
             String Spieler6 = "";
+
             for (String string : spieler) {
                 if (item1 == i) {
                     Spieler1 = string;
@@ -898,18 +892,14 @@ public class MainActivity extends AppCompatActivity {
                 i++;
             }
 
-            // Jetzt replace#
-          //  Log.d("debug/spieler", Spieler1 + " " +Spieler2 + " " +Spieler3 + " " +Spieler4 + " " +Spieler5 + " " +Spieler6);
-         //   Log.d("debug/current", current);
+            // Ersetze nun Sonderzeichen in den Fragen mit den ermittelten SpielerNamen
             String replaced = current.replaceAll("§", Spieler1).replaceAll("&", Spieler2).replaceAll("%", Spieler3).replaceAll("`", Spieler4).replaceAll("#", Spieler5).replaceAll("-", Spieler6);
-           // Log.d("debug/replaced", replaced);
             s.setBeschreibung(replaced);
-
         }
     }
 
+    //  Ersetzt Sonderzeichen in den Texten der Slices mit zufälligen Spieler-Namen, Ausgelegt für 3 Spieler pro Frage
     private void Interact() {
-        // Eliminiere alle X, Y, Z usw; Wähle zufällige Zahl zw. 0 und Anzahl Spieler, dieser Spieler kommt an Stelle X. Achtung, Keine DOPPLUNG!
 
         // Packe alle Slices in ein Set um nur ein mal zu Iterieren
         HashSet<Slice> allSlices = new HashSet<Slice>();
@@ -923,13 +913,11 @@ public class MainActivity extends AppCompatActivity {
         allSlices.addAll(virusWarm);
         allSlices.addAll(virusHeiss);
 
-
-        // Methode mit HashSet als Übergabe?
         for(Slice s : allSlices) {
-           // Log.d("debug/Interact Start", "Starting");
+
+            // Wähle nur die Slices, bei denen auch was ersetzt werden muss
             if(s.getInteraktiv()) {
 
-                        // Hol dir zuerst die Beschreibung, wir rechnen mit max. 3 Spielern
                 String current = s.getBeschreibung();
 
                 // Erzeuge 3 einzigartige Zahlen
@@ -956,26 +944,26 @@ public class MainActivity extends AppCompatActivity {
                     i++;
                 }
 
-               // Log.d("debug/players", Spieler1 + " " + Spieler2 + " " + Spieler3 + " zahlen: " + item1 + " " + item2 + " " + item3);
-               // Log.d("debug/current", current);
-
-
-                // Replace die Zeichen mit den jeweiligen Spielern
+                // Replace die Zeichen mit den ermittelten Spielern
                 String replaced = current.replaceAll("§", Spieler1).replaceAll("&", Spieler2).replaceAll("%", Spieler3);
-                //Log.d("debug/replaced", replaced);
                 s.setBeschreibung(replaced);
-
             }
             else {
                 continue;
             }
         }
-       // Log.d("debug/Interact End", "Ending");
     }
 
 
-
     private void Initialize() {
+
+        // SpielParameter festlegen
+        sliceCount = 0;
+        anzahlSlices = 15;
+        virusDauerIntervall = 1;
+        virusDauerOffset = 2;
+
+        // Sets und Listen initialiseren
         fragenNormal = new HashSet<Slice>();
         spieleNormal = new HashSet<Slice>();
         virusNormal = new HashSet<Slice>();
@@ -987,19 +975,27 @@ public class MainActivity extends AppCompatActivity {
         virusHeiss = new HashSet<Slice>();
         spieler = new HashSet<String>();
         manyInteracts = new HashSet<Slice>();
-
         momentaneViren = new ArrayList<Virus>(5);
 
-        sliceCount = 0;
-        anzahlSlices = 15;
+        // Conditionals Initialisieren, wir gehen davon aus, dass die StammTruppe mitspielt
+        finished = false;
+        started = false;
+        restart = false;
+        player1checked = true;
+        player2checked = true;
+        player3checked = true;
+        player4checked = true;
+        player5checked = true;
+        player6checked = true;
+        player7checked = true;
+        player8checked = true;
 
+        // Extra-Tools
         randomGenerator = new Random();
-
         textView = findViewById(R.id.textView);
+        endSlice = new Slice(getResources().getString(R.string.endText), Slice.Level.Normal, false, Slice.Type.Frage);
 
-        endSlice = new Slice("Spiel Vorbei ihr Autisten!", Slice.Level.Normal, false, Slice.Type.Frage);
-
-        // Fragen
+        // Jetzt füllen wir die Sets mit den jeweiligen Elementen. Enthält das momentane ein Sonderzeichen §, dann wird es als Interaktiv gekennzeichnet
         // Normale Fragen
         for(int i = 0; i < fragenNormalArray.length ; i++) {
             String current = fragenNormalArray[i];
@@ -1011,7 +1007,6 @@ public class MainActivity extends AppCompatActivity {
             }
 
             Slice slice = new Slice(current, Slice.Level.Normal, temp, Slice.Type.Frage);
-            // Rein in den FragenPool
             fragenNormal.add(slice);
         }
 
@@ -1026,7 +1021,6 @@ public class MainActivity extends AppCompatActivity {
             }
 
             Slice slice = new Slice(current, Slice.Level.Warm, temp, Slice.Type.Frage);
-            // Rein in den FragenPool
             fragenWarm.add(slice);
         }
 
@@ -1041,7 +1035,6 @@ public class MainActivity extends AppCompatActivity {
             }
 
             Slice slice = new Slice(current, Slice.Level.Heiss, temp, Slice.Type.Frage);
-            // Rein in den FragenPool
             fragenHeiss.add(slice);
         }
 
@@ -1058,9 +1051,9 @@ public class MainActivity extends AppCompatActivity {
             }
 
             Slice slice = new Slice(current, Slice.Level.Normal, temp, Slice.Type.Spiel);
-            // Rein in den FragenPool
             spieleNormal.add(slice);
         }
+
         // Warme Spiele
         for(int i = 0; i < spieleWarmArray.length ; i++) {
             String current = spieleWarmArray[i];
@@ -1072,7 +1065,6 @@ public class MainActivity extends AppCompatActivity {
             }
 
             Slice slice = new Slice(current, Slice.Level.Warm, temp, Slice.Type.Spiel);
-            // Rein in den FragenPool
             spieleWarm.add(slice);
         }
 
@@ -1087,7 +1079,6 @@ public class MainActivity extends AppCompatActivity {
             }
 
             Slice slice = new Slice(current, Slice.Level.Heiss, temp, Slice.Type.Spiel);
-            // Rein in den FragenPool
             spieleHeiss.add(slice);
         }
 
@@ -1103,9 +1094,9 @@ public class MainActivity extends AppCompatActivity {
             }
 
             Slice slice = new Slice(current, Slice.Level.Normal, temp, Slice.Type.Virus);
-            // Rein in den FragenPool
             virusNormal.add(slice);
         }
+
         // Warme Viren
         for(int i = 0; i < virusWarmArray.length ; i++) {
             String current = virusWarmArray[i];
@@ -1117,7 +1108,6 @@ public class MainActivity extends AppCompatActivity {
             }
 
             Slice slice = new Slice(current, Slice.Level.Warm, temp, Slice.Type.Virus);
-            // Rein in den FragenPool
             virusWarm.add(slice);
         }
 
@@ -1132,18 +1122,15 @@ public class MainActivity extends AppCompatActivity {
             }
 
             Slice slice = new Slice(current, Slice.Level.Heiss, temp, Slice.Type.Virus);
-            // Rein in den FragenPool
             virusHeiss.add(slice);
         }
 
-        // ManyInteracts
+        // SpezialSet manyInteracts für Fragen mit besonders hoher SpielerBeteiligung
         for(int i = 0; i < manyInteractsArray.length ; i++) {
             String current = manyInteractsArray[i];
 
             Slice slice = new Slice(current, Slice.Level.Warm, true, Slice.Type.Frage);
-            // Rein in den FragenPool
             manyInteracts.add(slice);
         }
     }
 }
-// Spieler Auswahl. Momentan werden Dummys gefillt
