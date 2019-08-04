@@ -136,3 +136,9 @@ Sämtliche Vornamen rutschen um 2 Plätze nach rechts.
 			- Wettbewerb des schönsten Hinterns: Die Kerle machen die Show, die Mädels bilden die Jury. Der Gewinner verteilt 5 Schlucke.
 			- Wettbewerb des schönsten Hinterns: Die Mädels machen die Show, die Kerle bilden die Jury. Die Gewinnerin verteilt 5 Schlucke.
 			
+			
+Wahrscheinlichkeiten: 1%-30%: NF: 25% NS:25%  NV:10%  	HF:10%  HS:10%  HV:10% 	  SF:4%  SS:3%  SV: 3%
+		     31%-60%: NF: 8% NS:8%  NV:4%  	HF:25%  HS:25%  HV:10% 	  SF:8%  SS:8%  SV: 4%
+		     61%-100%: NF: 6% NS:8%  NV:6%  	HF:10%  HS:10%  HV:10% 	  SF:20%  SS:20%  SV: 10%
+		   
+Legende: NF - Normale Frage... HF.. heiße Frage.. SF: sehr Heiße Frage
