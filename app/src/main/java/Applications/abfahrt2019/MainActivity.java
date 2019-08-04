@@ -1,4 +1,4 @@
-// Kluge WS Wählen, Finished, Spieler: Keine Namen-Dopplung, wir gehen davon aus, das der Stammtisch spielt, also lade HäkchenBilder zuerst
+// Kluge WS Wählen, Spieler: Keine Namen-Dopplung, wir gehen davon aus, das der Stammtisch spielt, also lade HäkchenBilder zuerst
 package Applications.abfahrt2019;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
 
     // // Attributes
     // Mengen für die Fragen / Spiele / Viren
-
     private HashSet<Slice> fragenNormal;
     private HashSet<Slice> spieleNormal;
     private HashSet<Slice> virusNormal;
@@ -73,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
     // Text-Halter
     private String[] fragenNormalArray =  {
             "Alle, die schon einmal an einem öffentlichen Ort Sex hatten, trinken 3 Schlucke.",
-            "Die letzte Person, die ihre Füße vom Bodem hebt trinkt 2 Schlucke.",
+            "Die letzte Person, die ihre Füße vom Boden hebt trinkt 2 Schlucke.",
             "§ leckt die Nase von & oder trinkt 2 Schlucke!"
     };
     private String[] spieleNormalArray =  {
@@ -397,12 +396,12 @@ public class MainActivity extends AppCompatActivity {
     // HelperMethods
     // Soll nun eine neue Slice wählen, schaut zuerst ob neu gestartet werden sollte.
     private void nextSlice() {
+        Log.d("debug/Finsih", "SliceCount: " + sliceCount + ", finished: " + finished);
 
         // Restart?
         if(restart) {
             restartApplication(this);
         }
-
 
         // Behandle zuerst Viren
         boolean virusFirst = false;
@@ -432,7 +431,6 @@ public class MainActivity extends AppCompatActivity {
         // Normaler Spiel-Flow, kein Virus wurde aufgehoben
         if(!finished && !virusFirst) {
             ++sliceCount;
-
             // Momentaner SpielFortschritt
             float factor = sliceCount / anzahlSlices;
 
@@ -444,64 +442,56 @@ public class MainActivity extends AppCompatActivity {
                 // 0%-30% des Games
                 if (factor <= 0.3) {
 
-                    if (temp <= 15) {
-                        //pick set X, [1,15]
+                    if (temp <= 25) {
 
                         if (fragenNormal.isEmpty()) {
                             continue;
                         } else {
                             currentSlice = pickRandomSlice(fragenNormal);
                         }
-                    } else if (temp <= 30) {
-                        //pick set X, [16,30]
+                    } else if (temp <= 35) {
 
                         if (fragenWarm.isEmpty()) {
                             continue;
                         } else {
                             currentSlice = pickRandomSlice(fragenWarm);
                         }
-                    } else if (temp <= 45) {
-                        //pick set X, [31,45]
+                    } else if (temp <= 39) {
 
                         if (fragenHeiss.isEmpty()) {
                             continue;
                         } else {
                             currentSlice = pickRandomSlice(fragenHeiss);
                         }
-                    } else if (temp <= 60) {
-                        //pick set X, [46,60]
+                    } else if (temp <= 64) {
 
                         if (spieleNormal.isEmpty()) {
                             continue;
                         } else {
                             currentSlice = pickRandomSlice(spieleNormal);
                         }
-                    } else if (temp <= 75) {
-                        //pick set X, [61,75]
+                    } else if (temp <= 74) {
 
                         if (spieleWarm.isEmpty()) {
                             continue;
                         } else {
                             currentSlice = pickRandomSlice(spieleWarm);
                         }
-                    } else if (temp <= 85) {
-                        //pick set X, [61,80]
+                    } else if (temp <= 77) {
 
                         if (spieleHeiss.isEmpty()) {
                             continue;
                         } else {
                             currentSlice = pickRandomSlice(spieleHeiss);
                         }
-                    } else if (temp <= 90) {
-                        //pick set X, [61,80]
+                    } else if (temp <= 87) {
 
                         if (virusNormal.isEmpty()) {
                             continue;
                         } else {
                             currentSlice = pickRandomSlice(virusNormal);
                         }
-                    } else if (temp <= 95) {
-                        //pick set X, [61,80]
+                    } else if (temp <= 97) {
 
                         if (virusWarm.isEmpty()) {
                             continue;
@@ -509,7 +499,6 @@ public class MainActivity extends AppCompatActivity {
                             currentSlice = pickRandomSlice(virusWarm);
                         }
                     } else {
-                        //pick set X, [81,100]
 
                         if (virusHeiss.isEmpty()) {
                             continue;
@@ -524,64 +513,56 @@ public class MainActivity extends AppCompatActivity {
                 //
                 else if (factor <= 0.6) {
 
-                    if (temp <= 15) {
-                        //pick set X, [1,15]
+                    if (temp <= 8) {
 
                         if (fragenNormal.isEmpty()) {
                             continue;
                         } else {
                             currentSlice = pickRandomSlice(fragenNormal);
                         }
-                    } else if (temp <= 30) {
-                        //pick set X, [16,30]
+                    } else if (temp <= 33) {
 
                         if (fragenWarm.isEmpty()) {
                             continue;
                         } else {
                             currentSlice = pickRandomSlice(fragenWarm);
                         }
-                    } else if (temp <= 45) {
-                        //pick set X, [31,45]
+                    } else if (temp <= 41) {
 
                         if (fragenHeiss.isEmpty()) {
                             continue;
                         } else {
                             currentSlice = pickRandomSlice(fragenHeiss);
                         }
-                    } else if (temp <= 60) {
-                        //pick set X, [46,60]
+                    } else if (temp <= 49) {
 
                         if (spieleNormal.isEmpty()) {
                             continue;
                         } else {
                             currentSlice = pickRandomSlice(spieleNormal);
                         }
-                    } else if (temp <= 75) {
-                        //pick set X, [61,75]
+                    } else if (temp <= 74) {
 
                         if (spieleWarm.isEmpty()) {
                             continue;
                         } else {
                             currentSlice = pickRandomSlice(spieleWarm);
                         }
-                    } else if (temp <= 85) {
-                        //pick set X, [61,80]
+                    } else if (temp <= 82) {
 
                         if (spieleHeiss.isEmpty()) {
                             continue;
                         } else {
                             currentSlice = pickRandomSlice(spieleHeiss);
                         }
-                    } else if (temp <= 90) {
-                        //pick set X, [61,80]
+                    } else if (temp <= 86) {
 
                         if (virusNormal.isEmpty()) {
                             continue;
                         } else {
                             currentSlice = pickRandomSlice(virusNormal);
                         }
-                    } else if (temp <= 95) {
-                        //pick set X, [61,80]
+                    } else if (temp <= 96) {
 
                         if (virusWarm.isEmpty()) {
                             continue;
@@ -589,7 +570,6 @@ public class MainActivity extends AppCompatActivity {
                             currentSlice = pickRandomSlice(virusWarm);
                         }
                     } else {
-                        //pick set X, [81,100]
 
                         if (virusHeiss.isEmpty()) {
                             continue;
@@ -603,65 +583,56 @@ public class MainActivity extends AppCompatActivity {
                 // 61% - 100% des Games
                 //
                 else {
-
-                    if (temp <= 15) {
-                        //pick set X, [1,15]
+                    if (temp <= 6) {
 
                         if (fragenNormal.isEmpty()) {
                             continue;
                         } else {
                             currentSlice = pickRandomSlice(fragenNormal);
                         }
-                    } else if (temp <= 30) {
-                        //pick set X, [16,30]
+                    } else if (temp <= 16) {
 
                         if (fragenWarm.isEmpty()) {
                             continue;
                         } else {
                             currentSlice = pickRandomSlice(fragenWarm);
                         }
-                    } else if (temp <= 45) {
-                        //pick set X, [31,45]
+                    } else if (temp <= 36) {
 
                         if (fragenHeiss.isEmpty()) {
                             continue;
                         } else {
                             currentSlice = pickRandomSlice(fragenHeiss);
                         }
-                    } else if (temp <= 60) {
-                        //pick set X, [46,60]
+                    } else if (temp <= 44) {
 
                         if (spieleNormal.isEmpty()) {
                             continue;
                         } else {
                             currentSlice = pickRandomSlice(spieleNormal);
                         }
-                    } else if (temp <= 75) {
-                        //pick set X, [61,75]
+                    } else if (temp <= 54) {
 
                         if (spieleWarm.isEmpty()) {
                             continue;
                         } else {
                             currentSlice = pickRandomSlice(spieleWarm);
                         }
-                    } else if (temp <= 85) {
-                        //pick set X, [61,80]
+                    } else if (temp <= 74) {
 
                         if (spieleHeiss.isEmpty()) {
                             continue;
                         } else {
                             currentSlice = pickRandomSlice(spieleHeiss);
                         }
-                    } else if (temp <= 90) {
-                        //pick set X, [61,80]
+                    } else if (temp <= 80) {
 
                         if (virusNormal.isEmpty()) {
                             continue;
                         } else {
                             currentSlice = pickRandomSlice(virusNormal);
                         }
-                    } else if (temp <= 95) {
-                        //pick set X, [61,80]
+                    } else if (temp <= 90) {
 
                         if (virusWarm.isEmpty()) {
                             continue;
@@ -669,7 +640,6 @@ public class MainActivity extends AppCompatActivity {
                             currentSlice = pickRandomSlice(virusWarm);
                         }
                     } else {
-                        //pick set X, [81,100]
 
                         if (virusHeiss.isEmpty()) {
                             continue;
@@ -677,10 +647,8 @@ public class MainActivity extends AppCompatActivity {
                             currentSlice = pickRandomSlice(virusHeiss);
                         }
                     }
-
                 }
             }
-           // Log.d("debug/touch", "nextSlice aufgerufen");
 
             // Gewählte Slice wartet nun in currentSlice
             handleSlice(currentSlice);
@@ -958,8 +926,8 @@ public class MainActivity extends AppCompatActivity {
     private void Initialize() {
 
         // SpielParameter festlegen
-        sliceCount = 0;
-        anzahlSlices = 15;
+        sliceCount = 1;
+        anzahlSlices = 16; // TotalSlices
         virusDauerIntervall = 1;
         virusDauerOffset = 2;
 

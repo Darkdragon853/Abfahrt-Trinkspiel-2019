@@ -1,4 +1,4 @@
-﻿
+﻿		
 Sachen aus Picolo:
 	Normal: Höhe Anfangswahrscheinlichkeit, leicht sinkend mit vortlaufendem Spiel (Background: #70B97E)
 		"Normal":
@@ -36,7 +36,7 @@ Sachen aus Picolo:
 			- X vs Y: Was war dein deprimierendstes Erlebnis im Bett? Person Z entscheidet welches schlimmer war. Der arme Gewinner darf 4 Schlucke verteilen.
 			- X vs Y: Erzählt von eurem ersten Mal. Z entscheidet welches erotischer klingt, der Verlierer darf zum Trost 4 Schlucke verteilen.
 			- Themenspiel: Dinge, die beim Grillen nicht fehlen dürfen.
-			- Themenspiel: Make-up-Marken 
+			- Themenspiel: Make-up-Marken 	
 			
 - Jeder nennt seine Lieblingsfarbe. Alle, die dieselbe haben, trinken!
 
@@ -139,3 +139,5 @@ Sämtliche Vornamen rutschen um 2 Plätze nach rechts.
 			- 
 
 Alle Mitspieler, die keine Brille tragen, ziehen ihre Oberteile aus.
+
+	Speziel: Alle Redheads dürfen einem Spieler ihrer Wahl ein Arschgeweih verpassen. ~ Cause Karma always catches up to you.
