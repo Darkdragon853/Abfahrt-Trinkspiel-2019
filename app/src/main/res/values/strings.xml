@@ -4,4 +4,6 @@
     <string name="textView2text"><b>Zusätzliche Spieler:</b></string>
     <string name="editTexttext">Name1, Name2</string>
     <string name="endText">Spiel Vorbei ihr Autisten!</string>
+    <string name="avatarWidth">100dp</string>
+    <string name="avatarHeight">100dp</string>
 </resources>

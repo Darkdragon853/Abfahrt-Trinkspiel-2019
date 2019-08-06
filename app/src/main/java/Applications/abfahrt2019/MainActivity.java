@@ -1,4 +1,4 @@
-// Spieler: Keine Namen-Dopplung, wir gehen davon aus, das der Stammtisch spielt, also lade HäkchenBilder zuerst
+// Spieler: Keine Namen-Dopplung, wir gehen davon aus, das der Stammtisch spielt, also lade HäkchenBilder zuerst ! <- Fehlt noch, Anfangsbilder noch setzen
 package Applications.abfahrt2019;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -178,44 +178,134 @@ public class MainActivity extends AppCompatActivity {
 
             // Vertausche Check-Zustand
             player1checked = !player1checked;
-            //Log.d("Debug/players", "Player1 check: " + player1checked);
+            Log.d("Debug/players", "Player1 check: " + player1checked);
         });
 
-
+        // Spieler2
         ImageButton spieler2 = findViewById(R.id.spieler2Button);
         spieler2.setOnClickListener(v -> {
-            spieler2.setImageResource(R.drawable.littleavatar);
+
+
+            if(player2checked) {
+                // Lade Bild mit Häkchen
+                spieler2.setImageResource(R.drawable.littleavatar);
+            }
+            else {
+                // Lade Bild ohne Häkchen
+                spieler2.setImageResource(R.drawable.littleavatar);
+            }
+
+            // Vertausche Check-Zustand
+            player2checked = !player2checked;
+            Log.d("Debug/players", "Player2 check: " + player2checked);
         });
 
+        // Spieler3
         ImageButton spieler3 = findViewById(R.id.spieler3Button);
         spieler3.setOnClickListener(v -> {
-            spieler3.setImageResource(R.drawable.littleavatar);
+
+            if(player3checked) {
+                // Lade Bild mit Häkchen
+                spieler3.setImageResource(R.drawable.littleavatar);
+            }
+            else {
+                // Lade Bild ohne Häkchen
+                spieler3.setImageResource(R.drawable.littleavatar);
+            }
+
+            // Vertausche Check-Zustand
+            player3checked = !player3checked;
+            Log.d("Debug/players", "Player3 check: " + player3checked);
         });
 
+        // Spieler4
         ImageButton spieler4 = findViewById(R.id.spieler4Button);
         spieler4.setOnClickListener(v -> {
-            spieler4.setImageResource(R.drawable.littleavatar);
+
+            if(player4checked) {
+                // Lade Bild mit Häkchen
+                spieler4.setImageResource(R.drawable.littleavatar);
+            }
+            else {
+                // Lade Bild ohne Häkchen
+                spieler4.setImageResource(R.drawable.littleavatar);
+            }
+
+            // Vertausche Check-Zustand
+            player4checked = !player4checked;
+            Log.d("Debug/players", "Player4 check: " + player4checked);
         });
 
+        // Spieler5
         ImageButton spieler5 = findViewById(R.id.spieler5Button);
         spieler5.setOnClickListener(v -> {
-            spieler5.setImageResource(R.drawable.littleavatar);
+
+            if(player5checked) {
+                // Lade Bild mit Häkchen
+                spieler5.setImageResource(R.drawable.littleavatar);
+            }
+            else {
+                // Lade Bild ohne Häkchen
+                spieler5.setImageResource(R.drawable.littleavatar);
+            }
+
+            // Vertausche Check-Zustand
+            player5checked = !player5checked;
+            Log.d("Debug/players", "Player5 check: " + player5checked);
         });
 
-
+        // Spieler6
         ImageButton spieler6 = findViewById(R.id.spieler6Button);
         spieler6.setOnClickListener(v -> {
-            spieler6.setImageResource(R.drawable.littleavatar);
+
+            if(player6checked) {
+                // Lade Bild ohne Häkchen
+                spieler6.setImageResource(R.drawable.gradient1);
+            }
+            else {
+                // Lade Bild mit Häkchen
+                spieler6.setImageResource(R.drawable.littleavatar);
+            }
+
+            // Vertausche Check-Zustand
+            player6checked = !player6checked;
+            Log.d("Debug/players", "Player6 check: " + player6checked);
         });
 
+        // Spieler7
         ImageButton spieler7 = findViewById(R.id.spieler7Button);
         spieler7.setOnClickListener(v -> {
-            spieler7.setImageResource(R.drawable.littleavatar);
+
+            if(player7checked) {
+                // Lade Bild mit Häkchen
+                spieler7.setImageResource(R.drawable.littleavatar);
+            }
+            else {
+                // Lade Bild ohne Häkchen
+                spieler7.setImageResource(R.drawable.littleavatar);
+            }
+
+            // Vertausche Check-Zustand
+            player7checked = !player7checked;
+            Log.d("Debug/players", "Player7 check: " + player7checked);
         });
 
+        // Spieler8
         ImageButton spieler8 = findViewById(R.id.spieler8Button);
         spieler8.setOnClickListener(v -> {
-            spieler8.setImageResource(R.drawable.littleavatar);
+
+            if(player8checked) {
+                // Lade Bild mit Häkchen
+                spieler8.setImageResource(R.drawable.littleavatar);
+            }
+            else {
+                // Lade Bild ohne Häkchen
+                spieler8.setImageResource(R.drawable.littleavatar);
+            }
+
+            // Vertausche Check-Zustand
+            player8checked = !player8checked;
+            Log.d("Debug/players", "Player8 check: " + player8checked);
         });
     }
 
