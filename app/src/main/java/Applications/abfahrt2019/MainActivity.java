@@ -928,8 +928,8 @@ public class MainActivity extends AppCompatActivity {
         // SpielParameter festlegen
         sliceCount = 1;
         anzahlSlices = 16; // TotalSlices
-        virusDauerIntervall = 1;
-        virusDauerOffset = 2;
+        virusDauerIntervall = 7;
+        virusDauerOffset = 3;
 
         // Sets und Listen initialiseren
         fragenNormal = new HashSet<Slice>();
