@@ -6,4 +6,8 @@
     <string name="endText">Spiel Vorbei ihr Autisten!</string>
     <string name="avatarWidth">100dp</string>
     <string name="avatarHeight">100dp</string>
+    <string name="FragenModus">Normal</string>
+    <string name="SpielModus">Spiel</string>
+    <string name="VirusModus">Autistischer Kick</string>
+
 </resources>

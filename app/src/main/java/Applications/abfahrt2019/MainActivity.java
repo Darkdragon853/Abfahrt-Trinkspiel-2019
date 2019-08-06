@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.graphics.Typeface;
+import android.opengl.Visibility;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -151,6 +152,11 @@ public class MainActivity extends AppCompatActivity {
             // Hier kommt der Aufruf unserer Anfangsmethode rein
             Abfahren();
         });
+
+        // Erst noch Ausblenden
+        TextView textViewMode = findViewById(R.id.textViewMode);
+        textViewMode.setVisibility(View.GONE);
+
 
         // Wenn das Spiel gestartet wurde, löst ein TouchEvent die nächste Folie aus
         parentLayout.setOnTouchListener( (view, motionEvent) -> {
@@ -390,7 +396,7 @@ public class MainActivity extends AppCompatActivity {
             String[] strings = slice.getBeschreibung().split(">");
 
             // Ersten String bauen
-            String autistischerKick = new String("Autistischer Kick! \n" + strings[0]+ "\nGilt " + randomInt + " Runden!");
+            String autistischerKick = new String(strings[0]+ "\nGilt " + randomInt + " Runden!");
             // Veränderten Text setzen
             slice.setBeschreibung(autistischerKick);
 
@@ -419,7 +425,7 @@ public class MainActivity extends AppCompatActivity {
             String[] strings = slice.getBeschreibung().split(">");
 
             // Ersten String bauen
-            String autistischerKick = new String("Autistischer Kick! \n" + strings[0]+ "\nGilt " + randomInt + " Runden!");
+            String autistischerKick = new String(strings[0]+ "\nGilt " + randomInt + " Runden!");
             // Veränderten Text setzen
             slice.setBeschreibung(autistischerKick);
 
@@ -448,7 +454,7 @@ public class MainActivity extends AppCompatActivity {
             String[] strings = slice.getBeschreibung().split(">");
 
             // Ersten String bauen
-            String autistischerKick = new String("Autistischer Kick! \n" + strings[0]+ "\nGilt " + randomInt + " Runden!");
+            String autistischerKick = new String(strings[0]+ "\nGilt " + randomInt + " Runden!");
             // Veränderten Text setzen
             slice.setBeschreibung(autistischerKick);
 
@@ -459,23 +465,31 @@ public class MainActivity extends AppCompatActivity {
             // Log.d("debug/SecondVirs", "Virus added");
         }
 
+        // Lul ModusAnsage
+        TextView textViewMode = findViewById(R.id.textViewMode);
+
         // Fonts
         // Je nach Typ verwenden wir eine andere Schriftart
         if(slice.getTyp().equals(Slice.Type.Frage)) {
             // Frage
             Typeface typeface = getResources().getFont(R.font.frage);
             textView.setTypeface(typeface);
-
+            textViewMode.setText(R.string.FragenModus);
+            textViewMode.setTypeface(typeface);
         }
         else if(slice.getTyp().equals(Slice.Type.Spiel)) {
             // Spiel
             Typeface typeface = getResources().getFont(R.font.spiel);
             textView.setTypeface(typeface);
+            textViewMode.setText(R.string.SpielModus);
+            textViewMode.setTypeface(typeface);
         }
         else {
             // virus
             Typeface typeface = getResources().getFont(R.font.virus);
             textView.setTypeface(typeface);
+            textViewMode.setText(R.string.VirusModus);
+            textViewMode.setTypeface(typeface);
         }
 
         // TextView auf momentane Slice setzen
@@ -1051,7 +1065,10 @@ public class MainActivity extends AppCompatActivity {
         // Extra-Tools
         randomGenerator = new Random();
         textView = findViewById(R.id.textView);
+        TextView textViewMode = findViewById(R.id.textViewMode);
+        textViewMode.setVisibility(View.VISIBLE);
         endSlice = new Slice(getResources().getString(R.string.endText), Slice.Level.Normal, false, Slice.Type.Frage);
+
 
         // Jetzt füllen wir die Sets mit den jeweiligen Elementen. Enthält das momentane ein Sonderzeichen §, dann wird es als Interaktiv gekennzeichnet
         // Normale Fragen
