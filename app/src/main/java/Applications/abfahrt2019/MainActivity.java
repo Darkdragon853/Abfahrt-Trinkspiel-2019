@@ -1,4 +1,4 @@
-// Kluge WS Wählen, Spieler: Keine Namen-Dopplung, wir gehen davon aus, das der Stammtisch spielt, also lade HäkchenBilder zuerst
+// Spieler: Keine Namen-Dopplung, wir gehen davon aus, das der Stammtisch spielt, also lade HäkchenBilder zuerst
 package Applications.abfahrt2019;
 
 import androidx.appcompat.app.AppCompatActivity;
