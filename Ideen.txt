@@ -1,45 +1,52 @@
-﻿		
-Sachen aus Picolo:
+﻿Alles Wurde übernommen, Ergänzungen bitte unten extra aufführen!
+	
+Wahrscheinlichkeiten: 1%-30%: NF: 25% NS:25%  NV:10%  	HF:10%  HS:10%  HV:10% 	  SF:4%  SS:3%  SV: 3%
+		     31%-60%: NF: 8% NS:8%  NV:4%  	HF:25%  HS:25%  HV:10% 	  SF:8%  SS:8%  SV: 4%
+		     61%-100%: NF: 6% NS:8%  NV:6%  	HF:10%  HS:10%  HV:10% 	  SF:20%  SS:20%  SV: 10%
+		   
+Legende: NF - Normale Frage... HF.. heiße Frage.. SF: sehr Heiße Frage
+
 	Normal: Höhe Anfangswahrscheinlichkeit, leicht sinkend mit vortlaufendem Spiel (Background: #70B97E)
 		"Normal":
 			- Alle, die schon einmal an einem öffentlichen Ort Sex hatten, trinken 3 Schlucke.
 			- X leckt die Nase von Y oder trinkt 2 Schlucke!
 			- Alle geben nacheinander neuen Alkohol ins Glas. X beginnt.
 			- X, du musst entscheiden: Wer von Y und Z glaubt deiner Meinung nach am ehesten heute Abend jemanden abzuschleppen? Diese Person trinkt 2 Schlucke.
-			- X, trinkt so viele Schlucke, wie du verlassen wurdest und auf depressiver Basis noch einen.
-			- Verteil 4 Schlucke, wenn du schon einmal mit X Unterricht hattest.
+			- X, Trink so viele Schlucke, wie du verlassen wurdest und auf depressiver Basis noch einen.
+			- X, Verteil 4 Schlucke, wenn du schon einmal mit Y Unterricht hattest.
 			- Die letzte Person, die ihre Füße vom Bodem hebt trinkt 2 Schlucke.
-			- X, wenn du beweisen kannst, dass Rothaarige (ja Robin) eine Seele haben, verteile 3 Schlucke. Ansonsten trink sie.
-			- X, mach so viele Liegestütze, wie du Schlucke verteilen möchtest. Bei den Jungs entspricht jeder 10te einem Schluck, bei den Mädchen jeder 3te. Es sind maximal 8 Schlucke möglich.
-			- X, erfülle die Aufgabe, die dir Y gibt. Wenn du dich weigerst, trink 5 Schlucke.
+			- X, Wenn du beweisen kannst, dass Rothaarige (ja Robin) eine Seele haben, verteile 3 Schlucke. Ansonsten trink sie.
+			- X, Mach so viele Liegestütze, wie du Schlucke verteilen möchtest. Bei den Jungs entspricht jeder 10te einem Schluck, bei den Mädchen jeder 3te. Es sind maximal 8 Schlucke möglich.
+			- X, Erfülle die Aufgabe, die dir Y gibt. Wenn du dich weigerst, trink 5 Schlucke.
 			- Alle Hände in die Höhe! Die letze Person trinkt 2 Schlucke.
 			- X verteilt so viele Schlücke wie viele schwarze Kleidungsstücke er/sie an hat.
 			- X tut uns den Gefallen und trinkt sein/ihr Glas aus.
-			- X, wann hattest du das letzte mal Sex? War es noch in den letzen 7 Tagen/2 Wochen trinke 3 bzw. War es doch länger, ist das schon genug Bestrafung.
-			- X, trink für jeden Sexpartner den du hattest einen Schluck.
-			- X, trink einen Schluck, wenn du noch nie in einem anderen Haus Sex hattest.
-			- X, trink einen Schluck, wenn du schon mal deien Sexpartner angelogen hast, um den Sex zu entfliehen.
-     			- X, trink einen Schluck, wenn du schon einmal Sex im Zimmer deiner Eltern hattest.
-     			- X, trink einen Schluck, wenn du dich noch nie geprügelt hast.
-     			- X, trink einen Schluck, wenn du noch nie in eine Person in deiner Schule verliebt warst.
-     			- X, trink einen Schluck, wenn du schon einmal beim Sex an eine andere Person gedacht hast.
-     			- X, trink einen Schluck, wenn du noch nie mit einer Person des anderen Geschlechts in der Dusche warst.
-			- X, erzähl uns eine Wahre und eine gelogene Geschichte. Jeder der auf dich reinfällt, trinkt 2 Schlücke!
-			- X, erzähl uns von deinem Schlechtesten Date! Wer es toppen kann, darf 3 Schlücke verteilen, sonst verteilst du zwei Stück!
-			- X, imitiere ein selbstgewähltes Tier! Kommt es authentisch, verteile 2 Schlucke, sonst trinke sie selbst; deine Mitspieler entscheiden!
-			- X, finde heraus, wessen Haare aus der Runde am Besten Duften! Lasse diese Person 2 Schlucke verteilen.
-			- X, wer wäre beim Eintreten plötzlicher Blindheit der Blindenhund deines Vertrauens aus dieser Runde? Sowohl X als auch der Blindenhund verteilen jeweils auf Ehre 2 Schlücke!
+			- X, Wann hattest du das letzte mal Sex? War es noch in den letzen 7 Tagen/2 Wochen trinke 2 bzw. 3 Schlucke. War es doch länger, ist das schon genug Bestrafung.
+			- X, Trink für jeden Sexpartner den du hattest einen Schluck.
+			- X, Trink einen Schluck, wenn du noch nie in einem anderen Haus, als deinem, Sex hattest.
+			- X, Trink einen Schluck, wenn du schon mal deien Sexpartner angelogen hast, um den Sex zu entfliehen.
+     			- X, Trink einen Schluck, wenn du schon einmal Sex im Zimmer deiner Eltern hattest.
+     			- X, Trink einen Schluck, wenn du dich noch nie geprügelt hast.
+     			- X, Trink einen Schluck, wenn du noch nie in eine Person in deiner Schule verliebt warst.
+     			- X, Trink einen Schluck, wenn du schon einmal beim Sex an eine andere Person gedacht hast.
+     			- X, Trink einen Schluck, wenn du noch nie mit einer Person des anderen Geschlechts in der Dusche warst.
+			- X, Erzähl uns eine Wahre und eine gelogene Geschichte. Jeder der auf dich reinfällt, trinkt 2 Schlücke!
+			- X, Erzähl uns von deinem Schlechtesten Date! Wer es toppen kann, darf 3 Schlücke verteilen, sonst verteilst du zwei Stück!
+			- X, Imitiere ein selbstgewähltes Tier! Kommt es authentisch, verteile 2 Schlucke, sonst trinke sie selbst; deine Mitspieler entscheiden!
+			- X, Finde heraus, wessen Haare aus der Runde am Besten Duften! Lasse diese Person 2 Schlucke verteilen.
+			- X, Wer wäre beim Eintreten plötzlicher Blindheit der Blindenhund deines Vertrauens aus dieser Runde? Sowohl X als auch der Blindenhund verteilen jeweils auf Ehre 2 Schlücke!
 			- X, Spiele uns eine Geburt vor! Wenn Y überzeugt ist, darfst du 3 Schlücke verteilen! 
 			- X, Trage die Person links von dir einmal durch den Raum!
 
+		
 		Spiel:
-			- X und Y spielen Piss-Pott(gegenüberstehend abwechselnd ein Fuß vor dem anderen stellen, bis ihr euch in der Mitte trefft). Der/Die Verlierer/in trinkt 4 Schlucke.
+			- X und Y spielen Piss-Pott: Gegenüberstehend abwechselnd ein Fuß vor dem anderen stellen, bis ihr euch in der Mitte trefft! Der, dessen Fuß nicht mehr reinpasst, trinkt 4 Schlucke.",
 			- Jeder nennt nacheinander den Film, den er zuletzt gesehen hat. Wer ihn auch schon gesehen hat, trinkt. X beginnt.
 			- Jeder nennt nacheinander etwas, das er schon immer mal ausprobieren wollte. Wer es schon mal gemacht hat, trinkt. X beginnt.
 			- X muss sich Lippenstift auftragen und jedem einen Kuss auf die Wange geben.
 			- X und Y geben in WhatsApp den Suchbegriff Blasen/ Sex(y)/ nackt/ Orgie / ... ein und lesen die erste Nachricht vor. Wer sich weigert, trinkt 4 Schlücke.
-			- Gruppe: Mit wem würdet ihr gerne mal schlafen (nur Freundes und Bekanntenkreis)? Die den gleichen Namen aufschreiben trinken Brüderlich 3 Schlucke.
-			- Gruppe: Mit welchem Star würdet ihr gerne einmal schlafen? Die den gleichen Namen aufschreiben trinken 3 Schlucke zusammen.
+			- An alle: Mit wem würdet ihr gerne mal schlafen (nur Freundes und Bekanntenkreis)? Die den gleichen Namen aufschreiben trinken Brüderlich 3 Schlucke.
+			- An alle: Mit welchem Star würdet ihr gerne einmal schlafen? Die den gleichen Namen aufschreiben trinken 3 Schlucke zusammen.
 			- X vs Y: Für einen Tag das andere geschlecht sein. Was würdet ihr jeweils machen? Z entscheidet was die beste Idee wäre, der Gewinner darf 4 Schlucke verteilen
 			- X vs Y: Was war dein deprimierendstes Erlebnis im Bett? Person Z entscheidet welches schlimmer war. Der arme Gewinner darf 4 Schlucke verteilen.
 			- X vs Y: Erzählt von eurem ersten Mal. Z entscheidet welches erotischer klingt, der Verlierer darf zum Trost 4 Schlucke verteilen.
@@ -51,7 +58,6 @@ Sachen aus Picolo:
 			- X und Y stellen sich nah gegenüber und füllen ihren Mund komplett mit Wasser. Z wird nun Flachwitze vorlesen, bis einer Lacht, wodurch dieser verliert. Der Gewinner erhält 3 Schlücke zum Verteilen und wird vom Verliere getrocknet.
 			- X, bestimme den Slot-König unter euch und lege / stelle ihm 4 Schlücke zu Füßen, die er dann Verteilen darf!
 
-
 		Fragerunde:
 			- Lieber Ausschweifungen mit einer Sexnummer haben oder FKK mit Freunden/Freundinnen machen? Stimmt alle gleichzeitig ab, die Verlierer trinken 2 Schlucke.
 			- Lieber eine Nacht mit dem Promi deiner Wahl verbringen oder eine Woche Urlaub auf Mallorca? Stimmt alle gleichzeitig ab, die Verlierer trinken 2 Schlucke.
@@ -59,9 +65,6 @@ Sachen aus Picolo:
 			- Letzte Worte vor dem Tod. X fängt an. Wird nichts neues genannt oder etwas wiederholt, trinkt die Person 2 Schlucke.
 			- Dinge, die man unter deinem/einem Bett finden kann. X fängt an. Wird nichts neues genannt oder etwas wiederholt, trinkt die Person 2 Schlucke.
 			- Welche Sexspielzeuge kennt ihr? X fängt an. Wird nichts neues genannt oder etwas wiederholt, trinkt die Person 2 Schlucke.
-
-
-
 
 		Virus:
 			- X und Y sind das neue Dreamteam, wenn X trinkt, trinkt Y mit.
@@ -96,6 +99,8 @@ Sachen aus Picolo:
 				> X darf nun die Alibi-Ehe auflösen und auch wieder "Nein" benutzen ^^
 			- X darf ab sofort nicht mehr die Hände zum Trinken benutzen! Sei kreativ :P
 				> X darf wieder normal trinken. 
+
+
 
 Heiß:	Wahrscheinlichkeit einer Aufgabe erst später (Background: #FE9A2E)
 		"Normal":
@@ -165,20 +170,16 @@ Sehr heiß:	Wahrscheinlichkeit einer Aufgabe deutlich später (Background: #FE2E
 			- X, Setze dich einer Person deiner Wahl auf den Schoß – oder setze sie auf deinen Schoß und spiele einen Orgasmus vor. Fürs bessere Aushalten erhält die gewählte Person einen Schluck.
 			- X, Schnapp dir einen Spieler deiner Wahl und preise deine Lieblingssexstellung an, indem du sie kommentierst und darstellst!
 			- Teamwork: X zieht nun ein Kleidungsstück aus. Y hat jetzt die Wahl: Wird das Gleiche Ausgezogen, ziehen auch alle anderen das aus! Ansonsten ziehen X und Y noch das jeweils andere aus.
+
+
 		Spiel:
 			- Pimmel/Muschi-Alarm! Einmal im Kreis berührt jeder die Genitalien seines rechten/linken(random zugewiesen) Nachbarn, wer sich weigert trinkt 3 Schlucke, X beginnt.
 			- Pimmel/Muschi-Alarm! Einmal im Kreis streichelt jeder die Brust seines rechten/linken(random zugewiesen) Nachbarn, wer sich weigert trinkt 3 Schlucke, X beginnt.
 			- Nacheinander wählt jeder eine Person, die ein Kleidungsstück ausziehen muss. Weigert sie sich, trinkt sie 2 Schlucke. X beginnt.
 			- Wettbewerb des schönsten Hinterns: Die Kerle machen die Show, die Mädels bilden die Jury. Der Gewinner verteilt 5 Schlucke.
 			- Wettbewerb des schönsten Hinterns: Die Mädels machen die Show, die Kerle bilden die Jury. Die Gewinnerin verteilt 5 Schlucke.
+Ergänzungen:
+
+
 
 			
-
-
-	
-			
-Wahrscheinlichkeiten: 1%-30%: NF: 25% NS:25%  NV:10%  	HF:10%  HS:10%  HV:10% 	  SF:4%  SS:3%  SV: 3%
-		     31%-60%: NF: 8% NS:8%  NV:4%  	HF:25%  HS:25%  HV:10% 	  SF:8%  SS:8%  SV: 4%
-		     61%-100%: NF: 6% NS:8%  NV:6%  	HF:10%  HS:10%  HV:10% 	  SF:20%  SS:20%  SV: 10%
-		   
-Legende: NF - Normale Frage... HF.. heiße Frage.. SF: sehr Heiße Frage
