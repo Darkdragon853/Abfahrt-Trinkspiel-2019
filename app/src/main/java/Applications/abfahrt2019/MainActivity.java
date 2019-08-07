@@ -175,11 +175,11 @@ public class MainActivity extends AppCompatActivity {
 
             if(player1checked) {
                 // Lade Bild mit Häkchen
-                spieler1.setImageResource(R.drawable.littleavatar);
+                spieler1.setImageResource(R.drawable.lukas_checked);
             }
             else {
                 // Lade Bild ohne Häkchen
-                spieler1.setImageResource(R.drawable.littleavatar);
+                spieler1.setImageResource(R.drawable.lukas_unchecked);
             }
 
             // Vertausche Check-Zustand
@@ -194,11 +194,11 @@ public class MainActivity extends AppCompatActivity {
 
             if(player2checked) {
                 // Lade Bild mit Häkchen
-                spieler2.setImageResource(R.drawable.littleavatar);
+                spieler2.setImageResource(R.drawable.patrick_checked);
             }
             else {
                 // Lade Bild ohne Häkchen
-                spieler2.setImageResource(R.drawable.patrick);
+                spieler2.setImageResource(R.drawable.patrick_unchecked);
             }
 
             // Vertausche Check-Zustand
@@ -212,11 +212,11 @@ public class MainActivity extends AppCompatActivity {
 
             if(player3checked) {
                 // Lade Bild mit Häkchen
-                spieler3.setImageResource(R.drawable.littleavatar);
+                spieler3.setImageResource(R.drawable.robin_checked);
             }
             else {
                 // Lade Bild ohne Häkchen
-                spieler3.setImageResource(R.drawable.robin);
+                spieler3.setImageResource(R.drawable.robin_unchecked);
             }
 
             // Vertausche Check-Zustand
@@ -230,11 +230,11 @@ public class MainActivity extends AppCompatActivity {
 
             if(player4checked) {
                 // Lade Bild mit Häkchen
-                spieler4.setImageResource(R.drawable.littleavatar);
+                spieler4.setImageResource(R.drawable.alfred_checked);
             }
             else {
                 // Lade Bild ohne Häkchen
-                spieler4.setImageResource(R.drawable.alfred);
+                spieler4.setImageResource(R.drawable.alfred_unchecked);
             }
 
             // Vertausche Check-Zustand
@@ -248,11 +248,11 @@ public class MainActivity extends AppCompatActivity {
 
             if(player5checked) {
                 // Lade Bild mit Häkchen
-                spieler5.setImageResource(R.drawable.littleavatar);
+                spieler5.setImageResource(R.drawable.daddl_checked);
             }
             else {
                 // Lade Bild ohne Häkchen
-                spieler5.setImageResource(R.drawable.littleavatar);
+                spieler5.setImageResource(R.drawable.daddl_unchecked);
             }
 
             // Vertausche Check-Zustand
@@ -266,11 +266,11 @@ public class MainActivity extends AppCompatActivity {
 
             if(player6checked) {
                 // Lade Bild ohne Häkchen
-                spieler6.setImageResource(R.drawable.gradient1);
+                spieler6.setImageResource(R.drawable.leonie_checked);
             }
             else {
                 // Lade Bild mit Häkchen
-                spieler6.setImageResource(R.drawable.leonie);
+                spieler6.setImageResource(R.drawable.leonie_unchecked);
             }
 
             // Vertausche Check-Zustand
@@ -284,11 +284,11 @@ public class MainActivity extends AppCompatActivity {
 
             if(player7checked) {
                 // Lade Bild mit Häkchen
-                spieler7.setImageResource(R.drawable.littleavatar);
+                spieler7.setImageResource(R.drawable.luisa_checked);
             }
             else {
                 // Lade Bild ohne Häkchen
-                spieler7.setImageResource(R.drawable.luisa);
+                spieler7.setImageResource(R.drawable.luisa_unchecked);
             }
 
             // Vertausche Check-Zustand
@@ -302,11 +302,11 @@ public class MainActivity extends AppCompatActivity {
 
             if(player8checked) {
                 // Lade Bild mit Häkchen
-                spieler8.setImageResource(R.drawable.littleavatar);
+                spieler8.setImageResource(R.drawable.felix_checked);
             }
             else {
                 // Lade Bild ohne Häkchen
-                spieler8.setImageResource(R.drawable.felix);
+                spieler8.setImageResource(R.drawable.felix_unchecked);
             }
 
             // Vertausche Check-Zustand
