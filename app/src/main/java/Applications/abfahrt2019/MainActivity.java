@@ -169,6 +169,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         // ImageButtons
+
+
         // MusterBeispiel für spieler1. Durch das Anklicken des Bildes ersetzen wir es mit einer Häkchen-Version usw. -> Lukas
         ImageButton spieler1 = findViewById(R.id.spieler1Button);
         spieler1.setOnClickListener(v -> {
@@ -313,6 +315,16 @@ public class MainActivity extends AppCompatActivity {
             player8checked = !player8checked;
             Log.d("Debug/players", "Player8 check: " + player8checked);
         });
+
+        // Noch Anfangsbilder setzen
+        spieler1.setImageResource(R.drawable.felix);
+        spieler2.setImageResource(R.drawable.felix);
+        spieler3.setImageResource(R.drawable.felix);
+        spieler4.setImageResource(R.drawable.felix);
+        spieler5.setImageResource(R.drawable.felix);
+        spieler6.setImageResource(R.drawable.felix);
+        spieler7.setImageResource(R.drawable.felix);
+        spieler8.setImageResource(R.drawable.felix);
     }
 
     // Versteckt Systemleisten
