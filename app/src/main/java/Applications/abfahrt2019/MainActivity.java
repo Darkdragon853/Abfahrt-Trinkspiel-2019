@@ -60,53 +60,166 @@ public class MainActivity extends AppCompatActivity {
     private boolean finished;
     private boolean started;
     private boolean restart;
-    private boolean player1checked;
-    private boolean player2checked;
-    private boolean player3checked;
-    private boolean player4checked;
-    private boolean player5checked;
-    private boolean player6checked;
-    private boolean player7checked;
-    private boolean player8checked;
+    private boolean player1checked = true;
+    private boolean player2checked = true;
+    private boolean player3checked = true;
+    private boolean player4checked = true;
+    private boolean player5checked = true;
+    private boolean player6checked = true;
+    private boolean player7checked = true;
+    private boolean player8checked = true;
 
 
     // Text-Halter
     private String[] fragenNormalArray =  {
             "Alle, die schon einmal an einem öffentlichen Ort Sex hatten, trinken 3 Schlucke.",
             "Die letzte Person, die ihre Füße vom Boden hebt trinkt 2 Schlucke.",
-            "§ leckt die Nase von & oder trinkt 2 Schlucke!"
+            "§ leckt die Nase von & oder trinkt 2 Schlucke!",
+            "Alle, die schon einmal an einem öffentlichen Ort Sex hatten, trinken 3 Schlucke.",
+            "§ leckt die Nase von & oder trinkt 2 Schlucke!",
+            "Alle geben nacheinander neuen Alkohol ins Glas. § beginnt.",
+            "§, du musst entscheiden: Wer von & und % glaubt deiner Meinung nach am ehesten heute Abend jemanden abzuschleppen? Diese Person trinkt 2 Schlucke.",
+            "§, Trink so viele Schlucke, wie du verlassen wurdest und auf depressiver Basis noch einen.",
+            "§, Verteil 4 Schlucke, wenn du schon einmal mit & Unterricht hattest.",
+            "Die letzte Person, die ihre Füße vom Bodem hebt trinkt 2 Schlucke.",
+            "§, Wenn du beweisen kannst, dass Rothaarige (ja Robin) eine Seele haben, verteile 3 Schlucke. Ansonsten trink sie.",
+            "§, Mach so viele Liegestütze, wie du Schlucke verteilen möchtest! Bei den Jungs entspricht jeder 10te einem Schluck, bei den Mädchen jeder 3te. Es sind maximal 8 Schlucke möglich.",
+            "§, Erfülle die Aufgabe, die dir & gibt. Wenn du dich weigerst, trink 5 Schlucke.",
+            "Alle Hände in die Höhe! Die letze Person trinkt 2 Schlucke.",
+            "§ verteilt so viele Schlücke wie viele schwarze Kleidungsstücke er/sie an hat.",
+            "§ tut uns den Gefallen und trinkt sein/ihr Glas aus!",
+            "§, Wann hattest du das letzte mal Sex? War es noch in den letzen 7 Tagen/2 Wochen trinke 2 bzw. 3 Schlucke. War es doch länger, ist das schon genug Bestrafung.",
+            "§, Trink für jeden Sexpartner den du hattest einen Schluck.",
+            "§, Trink einen Schluck, wenn du noch nie in einem anderen Haus, als deinem, Sex hattest.",
+            "§, Trink einen Schluck, wenn du schon einmal Sex im Zimmer deiner Eltern hattest.",
+            "§, Trink einen Schluck, wenn du dich noch nie geprügelt hast.",
+            "§, Trink einen Schluck, wenn du noch nie in eine Person in deiner Schule verliebt warst.",
+            "§, Trink einen Schluck, wenn du schon einmal beim Sex an eine andere Person gedacht hast.",
+            "§, Trink einen Schluck, wenn du noch nie mit einer Person des anderen Geschlechts in der Dusche warst.",
+            "§, Erzähl uns eine Wahre und eine gelogene Geschichte. Jeder der auf dich reinfällt, trinkt 2 Schlücke!",
+            "§, Erzähl uns von deinem Schlechtesten Date! Wer es toppen kann, darf 3 Schlücke verteilen, sonst verteilst du zwei Stück!",
+            "§, Imitiere ein selbstgewähltes Tier! Kommt es authentisch, verteile 2 Schlucke, sonst trinke sie selbst; deine Mitspieler entscheiden!",
+            "§, Finde heraus, wessen Haare aus der Runde am Besten Duften! Lasse diese Person 2 Schlucke verteilen.",
+            "§, Wer wäre beim Eintreten plötzlicher Blindheit der Blindenhund deines Vertrauens aus dieser Runde? Sowohl X als auch der Blindenhund verteilen jeweils !auf Ehre! 2 Schlücke!",
+            "§, Spiele uns eine Geburt vor! Wenn & überzeugt ist, darfst du 3 Schlücke verteilen!",
+            "§, Trage die Person links von dir einmal durch den Raum!"
     };
     private String[] spieleNormalArray =  {
-            "§ und & spielen Piss-Pott(gegenüberstehend abwechselnd ein Fuß vor dem anderen stellen, bis ihr euch in der Mitte trefft). Der/Die Verlierer/in trinkt 4 Schlucke.",
-            "Lieber Ausschweifungen mit einer Sexnummer haben oder FKK mit Freunden/Freundinnen machen? Stimmt alle gleichzeitig ab, die Verlierer trinken 2 Schlucke."
+            "§ und & spielen Piss-Pott: Gegenüberstehend abwechselnd ein Fuß vor dem anderen stellen, bis ihr euch in der Mitte trefft! Der, dessen Fuß nicht mehr reinpasst, trinkt 4 Schlucke.",
+            "Lieber Ausschweifungen mit einer Sexnummer haben oder FKK mit Freunden/Freundinnen machen? Stimmt alle gleichzeitig ab, die Verlierer trinken 2 Schlucke.",
+            "Jeder nennt nacheinander den Film, den er zuletzt gesehen hat. Wer ihn auch schon gesehen hat, trinkt. § beginnt.",
+            "Jeder nennt nacheinander etwas, das er schon immer mal ausprobieren wollte. Wer es schon mal gemacht hat, trinkt. § beginnt.",
+            "§ muss sich Lippenstift auftragen und jedem einen Kuss auf die Wange geben.",
+            "§ und & geben in WhatsApp den Suchbegriff Blasen/ Sex(y)/ nackt / Orgie / ... ein und lesen die erste Nachricht vor. Wer sich weigert, trinkt 4 Schlücke.",
+            "An alle: Mit wem würdet ihr gerne mal schlafen (nur Freundes und Bekanntenkreis)? Schreibt den Namen auf! Die den gleichen Namen aufschreiben trinken Brüderlich 3 Schlucke.",
+            "An alle: Mit welchem Star würdet ihr gerne einmal schlafen? Die den gleichen Namen aufschreiben trinken 3 Schlucke zusammen.",
+            "§ vs &:\nFür einen Tag das andere Geschlecht sein. Was würdet ihr jeweils machen? % entscheidet welche die beste Idee wäre, der Gewinner darf 4 Schlucke verteilen",
+            "§ vs &:\nWas war dein deprimierendstes Erlebnis im Bett? % entscheidet welches schlimmer war. Der arme Gewinner darf 4 Schlucke verteilen.",
+            "§ vs &:\nErzählt von eurem ersten Mal. % entscheidet welches erotischer klingt, der Verlierer darf zum Trost 4 Schlucke verteilen.",
+            "Themenspiel:\nDinge, die beim Grillen nicht fehlen dürfen.",
+            "Themenspiel:\nMake-up-Marken",
+            "Jeder nennt seine Lieblingsfarbe. Alle, die dieselbe haben, trinken!",
+            "§, lasse dich von & schminken!",
+            "Karaoke!\n§ und & singen zusammen ein Lied ihrer Wahl bis zum Refrain. Ansonsten trinkt 5 Schlücke.",
+            "§ und & stellen sich nah gegenüber und füllen ihren Mund komplett mit Wasser. % wird nun Flachwitze vorlesen, bis einer Lacht, wodurch dieser Verliert. Der Gewinner erhält 3 Schlücke zum Verteilen und wird vom Verlierer getrocknet.",
+            "§, bestimme den Slot-König unter euch und lege / stelle ihm 4 Schlücke zu Füßen, die er dann Verteilen darf!",
+            "ieber Ausschweifungen mit einer Sexnummer haben oder FKK mit Freunden/Freundinnen machen? Stimmt alle gleichzeitig ab, die Verlierer trinken 2 Schlucke.",
+            "Lieber eine Nacht mit dem Promi deiner Wahl verbringen oder eine Woche Urlaub auf Mallorca? Stimmt alle gleichzeitig ab, die Verlierer trinken 2 Schlucke.",
+            "Lieber nur noch 5 Jahre leben, aber steinreich sein oder lange leben, aber kaum einen Cent besitzen? Stimmt alle gleichzeitig ab, die Verlierer trinken 3 Schlucke.",
+            "Letzte Worte vor dem Tod. § fängt an. Wird nichts neues genannt oder etwas wiederholt, trinkt die Person 2 Schlucke.",
+            "Dinge, die man unter deinem/einem Bett finden kann. § fängt an. Wird nichts neues genannt oder etwas wiederholt, trinkt die Person 2 Schlucke.",
+            "Welche Sexspielzeuge kennt ihr? § fängt an. Wird nichts neues genannt oder etwas wiederholt, trinkt die Person 2 Schlucke."
     };
     private String[] virusNormalArray =  {
-            "§ und & sind das neue Dreamteam, wenn § trinkt, trinkt & mit. > § und &, ihr seid doch kein Dreamteam und dürft wieder alleine trinken."
-    };
+            "§ und & sind das neue Dreamteam, wenn § trinkt, trinkt & mit. > § und &, ihr seid doch kein Dreamteam und dürft wieder alleine trinken.",
+            "§ muss nun mit einem französischen Akzent sprechen. > § darf nun wieder wie ein Mensch sprechen. (Scheiß Franzosen XD)",
+            "§ und & müssen Händchen halten. > § und &, ihr dürft euch wieder loslassen.",
+			"§ ist Amor. Du kannst zu jeder Zeit 2 Spieler auswählen, die sich wie ein Paar benehmen müssen. > § ist nicht mehr Armor und alle dürfen sich wieder normal verhalten.",
+            "§ ist nun ein Papagei und plappert Alles nach was & sagt. > §, höre auf alles nachzuplappern, das nervt! ",
+            "§ darf eine neue Regel einführen. > Die Regel von § gilt nun nicht mehr.",
+            "§ ist Questionmaster. Wer ihm/ihr eine Frage beantwortet, muss trinken. > § ist kein Questionmaster mehr.",
+			"§ muss jetzt auf jede Frage verneinen und sich jedes Mal einen Grund dafür ausdenken. 1 Schluck für jeden Fehler. > § braucht nicht mehr alle Fragen zu verneinen.",
+            "§, &, und %, ihr seid die Babos. Jedes Mal, wenn einer von euch sein Glas leert, trinken alle Spieler. > Die Babos sind nun wieder Lappen und es muss nicht mehr getrunken werden, wenn ihr euer Glas geleert habt.",
+            "§ ist jetzt Fingerlos und darf nicht mehr seine/ihre Finger nutzen! > § darf wieder seine/ihre Finger benutzen!",
+            "§ ist ein Zoo. Nach jedem Schluck macht er/sie ein Tiergeräusch! > § darf wieder normal trinken.",
+			"§ sucht für Jeden einen Kosenamen aus.> Alle Spieler erhalten ihre Original-Namen zurück!",
+            "Sämtliche Vornamen rutschen um 2 Plätze nach rechts. > Alle Vornamen rücken wieder an ihre ursprünglichen Plätze!",
+            "Ab sofort macht jeder Spieler seinem Gegenüber den Nächsten Drink! > Ihr macht wieder eure eigenen Drinks, nachdem ihr min. Einen Drink, der nicht von eurer Hand geschaffen wurde, erhalten habt.",
+			"§ muss nun in ihren Satz \"Ja Schatz\" einbauen, wenn sie/er von einem Mädchen angesprochen wird. Bei einem Jungen soll es \"Ja Hase\" sein. Jeder Fail erzeugt einen Schluck. > § darf nun die Alibi-Ehe auflösen und auch wieder \"Nein\" benutzen ^^",
+            "§ darf ab sofort nicht mehr die Hände zum Trinken benutzen! Sei kreativ :P > § darf wieder normal trinken.",
+};
     private String[] fragenWarmArray = {
+            "§ zieht & ein Kleidungsstück aus oder trinkt 4 Schlucke." ,
+            "§, Entscheide wer ein Kleidungsstück ablegt und welches.",
+            "Alle Mitspieler, die keine Brille tragen, ziehen ihre Oberteile aus.",
+            "Alle Mitspieler, die eine Brille tragen, ziehen ihre Oberteile aus.",
             "Alle trinken und ziehen ein Kleidungsstück aus!",
-            "§ zieht & ein Kleidungsstück aus oder trinkt 4 Schlucke."
-    };
+            "Alle Kerle ziehen ein Kleidungsstück aus!",
+            "Alle Mädels ziehen ein Kleidunsstück aus!",
+            "§ zieht & ein Kleidungsstück aus oder trinkt 4 Schlucke.",
+            "§, Küsse & oder trinke 2 Schlucke",
+            "§ wählt 2 Personen und eine Stellung aus, die die beiden auf Trocken vormachen oder 4 Schlucke trinken müssen.",
+            "Wenn sich § und & küssen (mündlich), verteilen beide jeweils 3 Schlucke, ansonsten trinken beide jeweils 3.",
+            "§ gibt allen Spielern einen Kuss oder trinkt das Glas seiner/ihrer Wahl aus.",
+            "§, Nenne die Person mit der du am liebsten Sex hättest und trink einen Schluck mit der Person.",
+            "§, Deute eine sexuelle Stellung mit einem anderen Spieler an oder trink 3 Schlucke.",
+            "§, Zeig deinen Oberkörper oder trink 2 Schlucke.",
+            "§, Zeig deinen Hintern oder trink 3 Schlucke.",
+            "Alle trinken 3 Schlucke. Außer §, du gibst allen einen Kuss.",
+            "§ und & kuscheln miteinander.",
+            "§ erspart uns den Anblick und muss 5 Kleidungsstücke wieder anziehen!",
+            "Alle Kerle machen sich obenrum frei und trinken 2 Schlucke.",
+            "§, Wähle eine Person, die eine Stelle deines Körpers abschlabbern muss. 3 Schlucke, wenn er/sie sich weigert.",
+            "§ muss & ein Arschgeweih verpassen! Weigert sich jemand, 4 Schlucke für den Betroffenen.",
+            "§ muss bei & einen Lapdance machen. Zieht § den Schwanz ein (oder die Möse), dann werden 4 Schlücke getrunken.",
+            "§ lässt seiner Fantasie freien Lauf und zählt 5 Pornonamen auf. Jeder Lacher/Schmunzler sorgt für einen Schluck!",
+            "§ verteilt nun eine innige Umarmung an einen Spieler deiner Wahl. Solltest du Scheitern, trinkst du 4 Schlücke.",
+            "Arsch, Titten, Gesicht, jetzt kommts drauf an: Worauf achtet ihr am Meisten bei einer Frau? Jeder wählt und die Verlierer trinken 3 Schlücke!",
+            "§, Wenn du auf den Strich gehen würdest – was wäre deine Spezialität? Jede Person, von der du denkst, dass sie dich dort aufsuchen würde, trinkt 3 Schlücke!",
+            "Alle Redheads dürfen einem Spieler ihrer Wahl ein Arschgeweih verpassen. ~ Cause Karma always catches up to you."
+};
     private String[] spieleWarmArray =  {
-            "Boxershorts-Contest! Die Jungs zeigen alle ihre Boxershorts. Die Mädels bilden die Jury und wählen die schönste. Der Sieger verteilt 5 Schlücke.",
-            "String-Contest! Die Mädels zeigen alle ihren String. Die Jungs bilden die Jury und wählen den schönsten. Die Siegerin verteilt 5 Schlücke."
-    };
+            "Boxershorts-Contest! Die Jungs zeigen alle ihre Boxershorts. Die Mädels bilden die Jury und wählen die Schönste. Der Sieger verteilt 5 Schlücke.",
+            "String-Contest! Die Mädels zeigen alle ihren String. Die Jungs bilden die Jury und wählen den Schönsten. Die Siegerin verteilt 5 Schlücke.",
+            "§, lass dir die Augen zubinden. Ein/e Spieler/in küsst dich irgendwo. Wenn du die Person errätst, verteilst du 5 Schlucke.",
+            "Eine Runde Kiss-Party! Jeder küsst eine Person der Wahl. Wer sich weigert trinkt 3 Schlucke. § beginnt!",
+            "§, Welche ist deine Lieblingsstellung beim Sex? Zeige diese mit Person & oder trinkt beide 3 Schlucke.",
+			"§ und &: Macht zusammen ein anzügliches Foto und zeigt es den anderen.",
+            "Alle Jungs tanzen eine Runde zu \"I will walk 500 Miles\", klatschen sich danach ab und trinken zusammen einen Shot!\nEhre Jungs!",
+            "Jeder sucht sich die passende Zahl aus, wie oft er in der Woche Sex haben möchte. Wessen Zahl alleine steht, der trinkt einen Schluck; Wer einen / mehrere Partner findet, verteilt 2 Schlucke für den guten Geschmack!",
+            "Spielt die FBI-OPEN-UP Szene nach! Dazu begeben sich 2-3 Leute in einen Raum und schließen die Tür, der Rest weiß was zu tun ist."
+};
     private String[] virusWarmArray =  {
-            "Loch-Spiel! Wann immer ihr wollt, formt einen Kreis mit Daumen und Zeigefinger zwischen Hüfte und Schulter. Jeder der reinguckt, zieht ein Kleidungsstück aus oder trink 4 Schlucke. > Das Loch-Spiel ist Vorbei!"
+            "Loch-Spiel! Wann immer ihr wollt, formt einen Kreis mit Daumen und Zeigefinger zwischen Hüfte und Schulter. Jeder der reinguckt, zieht ein Kleidungsstück aus oder trinkt 4 Schlucke. > Das Loch-Spiel ist Vorbei!",
+            "§ braucht Liebe. Er/Sie muss jedes mal vorm Trinken jemanden Küssen, egal wo! > § braucht keine Küsse mehr!",
+            "Rülps-Spiel! Einer rülpst, alle sagen Cedric. Der Letzte ist der Verlierer und muss ein Kleidungsstück ausziehen oder trinkt 3 Schlucke. > Das Rülps-Spiel ist vorbei!",
+            "Ihr könnt jetzt mit Flaschendrehen eure Schlucke neu spielen! Dreht die Flasche und küsst die Person, auf die die Flasche zeigt (und trinkt nicht). Weigert sich die Person, wird die Anzahl um einen Schluck erhöht. > Flaschendrehen ist vorbei. ihr müsst wieder eure nromalen Schlucke trinken.",
+            "Wer noch keinen Sex hatte, spielt ab sofort Kellner , bedient und mischt für die anderen Mitspieler! > Die Kellner sind jetzt wieder von ihrer Aufgabe entlassen."
     };
     private String[] fragenHeissArray = {
-            "§, wähle eine Person, die die Hand an deine Unterwäsche legen soll. 4 Schlucke, wenn er/sie sich weigert.",
-            "§ gibt & einen Kuss auf den nackten Hintern oder trinkt 4 Schlucke."
+            "§, Wähle eine Person, die die Hand an deine Unterwäsche legen soll. 4 Schlucke, wenn er/sie sich weigert.",
+            "§ gibt & einen Kuss auf den nackten Hintern oder trinkt 4 Schlucke.",
+            "§, Hol dir eine Banane und mach uns den perfekten Blowjob vor! Die Mitspieler stimmen über die Qualität ab und lassen dich 3 Schlücke trinken / verteilen. Beißt du die Banane währenddessen ab, 7 Strafschlücke!",
+            "§, Lass dir von & den Intimbereich streicheln. Verkacht ihr, trinkt beide 4 Schlücke.",
+            "§, Lass dich von dem Spieler deiner Wahl auf der Brust küssen. 4 Schlucke, wenn er/sie sich weigert.",
+            "§, Trink dein Glas aus und küss die Person, die dich am Meisten anturnt.",
+            "§, Du erhälst nun 20 Sekunden Zeit, ungestört einem Spieler deiner Wahl etwas ins Ohr zu Flüstern. Turnt es ihn/sie an, trinkt dein Ziel 4 Schlucke auf ehrlicher Basis, ansonsten übernimmst du sie!",
+            "§, Setze dich einer Person deiner Wahl auf den Schoß solange du willst – oder setze sie auf deinen Schoß und spiele einen Orgasmus vor. Fürs bessere Aushalten erhält die gewählte Person einen Schluck.",
+			"§, Schnapp dir einen Spieler deiner Wahl und preise deine Lieblingssexstellung an, indem du sie kommentierst und darstellst!",
+            "Teamwork: § zieht nun ein Kleidungsstück aus. & hat jetzt die Wahl: Wird das Gleiche Ausgezogen, ziehen auch alle anderen das aus! Ansonsten ziehen § und & noch das jeweils Andere aus."
     };
     private String[] spieleHeissArray =  {
-            "Nacheinander wählt jeder eine Person, die ein Kleidungsstück ausziehen muss. Weigert sie sich, trinkt sie 2 Schlucke. § beginnt.",
-            "Wettbewerb des schönsten Hinterns: Die Kerle machen die Show, die Mädels bilden die Jury. Der Gewinner verteilt 5 Schlucke."
+            "Nacheinander wählt jeder eine Person, die ein Kleidungsstück ausziehen muss. Weigert sie sich, trinkt sie 4 Schlucke. § beginnt.",
+            "Wettbewerb des schönsten Hinterns: Die Kerle machen die Show, die Mädels bilden die Jury. Der Gewinner verteilt 5 Schlucke.",
+            "Pimmel/Muschi-Alarm! Einmal im Kreis berührt jeder die Genitalien seines rechten/linken (random zugewiesen) Nachbarn, wer sich weigert trinkt 3 Schlucke, § beginnt.",
+            "Pimmel/Muschi-Alarm! Einmal im Kreis streichelt jeder die Brust seines rechten/linken (random zugewiesen) Nachbarn, wer sich weigert trinkt 3 Schlucke, § beginnt.",
+			"Wettbewerb des schönsten Hinterns: Die Mädels machen die Show, die Kerle bilden die Jury. Die Gewinnerin verteilt 5 Schlucke."
     };
     private String[] virusHeissArray =  {
 
     };
     private String[] manyInteractsArray = {
-            "§, % und & treten gegen `, # und - an. Der Rest bildet die Jury. Jeder erfindet eine Sexposition und gibt ihr einen Namen. Das kreativste Team gewinnt. Die Verlierer trinken 3 Schlücke. (Vlt ne Version mit 2vs2 bei weniger Spielern. 3vs3 erst ab 8 Spielern)"
+            "§, % und & treten gegen `, # und - an. Der Rest bildet die Jury. Jeder erfindet eine Sexposition und gibt ihr einen Namen. Das kreativste Team gewinnt. Die Verlierer trinken 3 Schlücke."
     };
 
 
@@ -122,8 +235,11 @@ public class MainActivity extends AppCompatActivity {
         loadPlayerBase();
 
         // Ersatz bis Spielerwahl hinhaut
-        testFill();
+        //testFill();
 
+        for(String s : spieler) {
+            Log.d("debug/Spieler", "Spieler drin: " + s);
+        }
         // Passe alle Fragen auf die momentanen Spieler an
         Interact();
 
@@ -185,7 +301,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             // Vertausche Check-Zustand
-            player1checked = !player1checked;
+            this.player1checked = !player1checked;
             Log.d("Debug/players", "Player1 check: " + player1checked);
         });
 
@@ -526,7 +642,7 @@ public class MainActivity extends AppCompatActivity {
             for(Virus virus : momentaneViren) {
                 if(virus.getTimer() <= 0) {
                     virusFirst = true;
-                    // Log.d("debug/Virus", virus.toString());
+                     Log.d("debug/Virus", virus.toString());
                     handleSecondVirusPart(virus.getSlice());
                     destroyVirus = virus;
                 }
@@ -801,10 +917,15 @@ public class MainActivity extends AppCompatActivity {
         Typeface typeface = getResources().getFont(R.font.virus);
         textView.setTypeface(typeface);
         textView.setText(slice.getBeschreibung());
+
+        TextView textView2 = findViewById(R.id.textViewMode);
+        textView2.setText(R.string.VirusModus);
+        textView2.setTypeface(typeface);
     }
 
     private void loadPlayerBase() {
 
+        Log.d("Debug/Players", "Player1Check: " + player1checked +"Player2Check: " + player2checked +"Player3Check: " + player3checked +"Player4Check: " + player4checked +"Player5Check: " + player5checked +"Player6Check: " + player6checked +"Player7Check: " + player7checked +"Player8Check: " + player8checked);
         // Füge StammSpieler anhand des momentanen Bildes hinzu.
         if(player1checked) {
             spieler.add("Lukas");
@@ -819,16 +940,16 @@ public class MainActivity extends AppCompatActivity {
             spieler.add("Alfred");
         }
         if(player5checked) {
-            spieler.add("Felix");
-        }
-        if(player6checked) {
             spieler.add("Daddl");
         }
-        if(player7checked) {
+        if(player6checked) {
             spieler.add("Leonie");
         }
-        if(player8checked) {
+        if(player7checked) {
             spieler.add("Luisa");
+        }
+        if(player8checked) {
+            spieler.add("Felix");
         }
 
         // Lade zusätzliche Spieler aus dem Edit-Text, trenne per Komma
@@ -897,13 +1018,6 @@ public class MainActivity extends AppCompatActivity {
     // Füllt erstmal Namen rein, solange Spielerauswahl noch nicht vollständig ist
     private void testFill() {
         spieler.add("Lukas");
-        spieler.add("Patrick");
-        spieler.add("Luisa");
-        spieler.add("Robin");
-        spieler.add("Daddl");
-        spieler.add("Leonie");
-        spieler.add("Felix");
-        spieler.add("Alfred");
     }
 
     // Sucht eine zufällige Slice aus dem übergebenen Set aus
@@ -1043,7 +1157,7 @@ public class MainActivity extends AppCompatActivity {
 
         // SpielParameter festlegen
         sliceCount = 1;
-        anzahlSlices = 16; // TotalSlices
+        anzahlSlices = 40; // TotalSlices
         virusDauerIntervall = 7;
         virusDauerOffset = 3;
 
@@ -1061,18 +1175,11 @@ public class MainActivity extends AppCompatActivity {
         manyInteracts = new HashSet<Slice>();
         momentaneViren = new ArrayList<Virus>(5);
 
-        // Conditionals Initialisieren, wir gehen davon aus, dass die StammTruppe mitspielt
+        // Conditionals
         finished = false;
         started = false;
         restart = false;
-        player1checked = true;
-        player2checked = true;
-        player3checked = true;
-        player4checked = true;
-        player5checked = true;
-        player6checked = true;
-        player7checked = true;
-        player8checked = true;
+
 
         // Extra-Tools
         randomGenerator = new Random();
