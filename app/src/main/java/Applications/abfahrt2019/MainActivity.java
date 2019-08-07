@@ -284,12 +284,21 @@ public class MainActivity extends AppCompatActivity {
 
 
         // ImageButtons
+        // Noch Anfangsbilder setzen
+
+
+
+
+
 
 
         // MusterBeispiel für spieler1. Durch das Anklicken des Bildes ersetzen wir es mit einer Häkchen-Version usw. -> Lukas
         ImageButton spieler1 = findViewById(R.id.spieler1Button);
+        spieler1.setImageResource(R.drawable.lukas_checked);
         spieler1.setOnClickListener(v -> {
 
+            // Vertausche Check-Zustand
+            player1checked = !player1checked;
             if(player1checked) {
                 // Lade Bild mit Häkchen
                 spieler1.setImageResource(R.drawable.lukas_checked);
@@ -299,16 +308,17 @@ public class MainActivity extends AppCompatActivity {
                 spieler1.setImageResource(R.drawable.lukas_unchecked);
             }
 
-            // Vertausche Check-Zustand
-            this.player1checked = !player1checked;
             Log.d("Debug/players", "Player1 check: " + player1checked);
         });
 
         // Spieler2 -> Patrick
         ImageButton spieler2 = findViewById(R.id.spieler2Button);
+        spieler2.setImageResource(R.drawable.patrick_checked);
         spieler2.setOnClickListener(v -> {
 
 
+            // Vertausche Check-Zustand
+            player2checked = !player2checked;
             if(player2checked) {
                 // Lade Bild mit Häkchen
                 spieler2.setImageResource(R.drawable.patrick_checked);
@@ -318,15 +328,16 @@ public class MainActivity extends AppCompatActivity {
                 spieler2.setImageResource(R.drawable.patrick_unchecked);
             }
 
-            // Vertausche Check-Zustand
-            player2checked = !player2checked;
             Log.d("Debug/players", "Player2 check: " + player2checked);
         });
 
         // Spieler3 -> Robin
         ImageButton spieler3 = findViewById(R.id.spieler3Button);
+        spieler3.setImageResource(R.drawable.robin_checked);
         spieler3.setOnClickListener(v -> {
 
+            // Vertausche Check-Zustand
+            player3checked = !player3checked;
             if(player3checked) {
                 // Lade Bild mit Häkchen
                 spieler3.setImageResource(R.drawable.robin_checked);
@@ -336,15 +347,16 @@ public class MainActivity extends AppCompatActivity {
                 spieler3.setImageResource(R.drawable.robin_unchecked);
             }
 
-            // Vertausche Check-Zustand
-            player3checked = !player3checked;
             Log.d("Debug/players", "Player3 check: " + player3checked);
         });
 
         // Spieler4 -> Alfred
         ImageButton spieler4 = findViewById(R.id.spieler4Button);
+        spieler4.setImageResource(R.drawable.alfred_checked);
         spieler4.setOnClickListener(v -> {
 
+            // Vertausche Check-Zustand
+            player4checked = !player4checked;
             if(player4checked) {
                 // Lade Bild mit Häkchen
                 spieler4.setImageResource(R.drawable.alfred_checked);
@@ -354,15 +366,18 @@ public class MainActivity extends AppCompatActivity {
                 spieler4.setImageResource(R.drawable.alfred_unchecked);
             }
 
-            // Vertausche Check-Zustand
-            player4checked = !player4checked;
+
             Log.d("Debug/players", "Player4 check: " + player4checked);
         });
 
         // Spieler5 -> Daddl
         ImageButton spieler5 = findViewById(R.id.spieler5Button);
+        spieler5.setImageResource(R.drawable.daddl_checked);
         spieler5.setOnClickListener(v -> {
 
+
+            // Vertausche Check-Zustand
+            player5checked = !player5checked;
             if(player5checked) {
                 // Lade Bild mit Häkchen
                 spieler5.setImageResource(R.drawable.daddl_checked);
@@ -372,15 +387,16 @@ public class MainActivity extends AppCompatActivity {
                 spieler5.setImageResource(R.drawable.daddl_unchecked);
             }
 
-            // Vertausche Check-Zustand
-            player5checked = !player5checked;
             Log.d("Debug/players", "Player5 check: " + player5checked);
         });
 
         // Spieler6 -> Leonie
         ImageButton spieler6 = findViewById(R.id.spieler6Button);
+        spieler6.setImageResource(R.drawable.leonie_checked);
         spieler6.setOnClickListener(v -> {
 
+            // Vertausche Check-Zustand
+            player6checked = !player6checked;
             if(player6checked) {
                 // Lade Bild ohne Häkchen
                 spieler6.setImageResource(R.drawable.leonie_checked);
@@ -390,15 +406,17 @@ public class MainActivity extends AppCompatActivity {
                 spieler6.setImageResource(R.drawable.leonie_unchecked);
             }
 
-            // Vertausche Check-Zustand
-            player6checked = !player6checked;
+
             Log.d("Debug/players", "Player6 check: " + player6checked);
         });
 
         // Spieler7 -> Luisa
         ImageButton spieler7 = findViewById(R.id.spieler7Button);
+        spieler7.setImageResource(R.drawable.luisa_checked);
         spieler7.setOnClickListener(v -> {
 
+            // Vertausche Check-Zustand
+            player7checked = !player7checked;
             if(player7checked) {
                 // Lade Bild mit Häkchen
                 spieler7.setImageResource(R.drawable.luisa_checked);
@@ -408,15 +426,17 @@ public class MainActivity extends AppCompatActivity {
                 spieler7.setImageResource(R.drawable.luisa_unchecked);
             }
 
-            // Vertausche Check-Zustand
-            player7checked = !player7checked;
+
             Log.d("Debug/players", "Player7 check: " + player7checked);
         });
 
         // Spieler8 -> Felix
         ImageButton spieler8 = findViewById(R.id.spieler8Button);
+        spieler8.setImageResource(R.drawable.felix_checked);
         spieler8.setOnClickListener(v -> {
 
+            // Vertausche Check-Zustand
+            player8checked = !player8checked;
             if(player8checked) {
                 // Lade Bild mit Häkchen
                 spieler8.setImageResource(R.drawable.felix_checked);
@@ -426,20 +446,8 @@ public class MainActivity extends AppCompatActivity {
                 spieler8.setImageResource(R.drawable.felix_unchecked);
             }
 
-            // Vertausche Check-Zustand
-            player8checked = !player8checked;
             Log.d("Debug/players", "Player8 check: " + player8checked);
         });
-
-        // Noch Anfangsbilder setzen
-        spieler1.setImageResource(R.drawable.felix);
-        spieler2.setImageResource(R.drawable.felix);
-        spieler3.setImageResource(R.drawable.felix);
-        spieler4.setImageResource(R.drawable.felix);
-        spieler5.setImageResource(R.drawable.felix);
-        spieler6.setImageResource(R.drawable.felix);
-        spieler7.setImageResource(R.drawable.felix);
-        spieler8.setImageResource(R.drawable.felix);
     }
 
     // Versteckt Systemleisten
