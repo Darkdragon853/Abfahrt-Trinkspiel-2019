@@ -607,24 +607,30 @@ public class MainActivity extends AppCompatActivity {
         // Je nach Typ verwenden wir eine andere Schriftart
         if(slice.getTyp().equals(Slice.Type.Frage)) {
             // Frage
-            Typeface typeface = getResources().getFont(R.font.frage);
+            Typeface typeface = Typeface.createFromAsset(this.getAssets(), "fonts/frage.ttf");
+
             textView.setTypeface(typeface);
-            textViewMode.setText(R.string.FragenModus);
             textViewMode.setTypeface(typeface);
+
+            textViewMode.setText(R.string.FragenModus);
         }
         else if(slice.getTyp().equals(Slice.Type.Spiel)) {
             // Spiel
-            Typeface typeface = getResources().getFont(R.font.spiel);
+            Typeface typeface = Typeface.createFromAsset(this.getAssets(), "fonts/spiel.ttf");
+
             textView.setTypeface(typeface);
-            textViewMode.setText(R.string.SpielModus);
             textViewMode.setTypeface(typeface);
+
+            textViewMode.setText(R.string.SpielModus);
         }
         else {
             // virus
-            Typeface typeface = getResources().getFont(R.font.virus);
+            Typeface typeface = Typeface.createFromAsset(this.getAssets(), "fonts/virus.ttf");
+
             textView.setTypeface(typeface);
-            textViewMode.setText(R.string.VirusModus);
             textViewMode.setTypeface(typeface);
+
+            textViewMode.setText(R.string.VirusModus);
         }
 
         // TextView auf momentane Slice setzen
