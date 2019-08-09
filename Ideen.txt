@@ -1,8 +1,8 @@
 ﻿Alles Wurde übernommen, Ergänzungen bitte unten extra aufführen!
 	
-Wahrscheinlichkeiten: 1%-30%: NF: 25% NS:25%  NV:10%  	HF:10%  HS:10%  HV:10% 	  SF:4%  SS:3%  SV: 3%
-		     31%-60%: NF: 8% NS:8%  NV:4%  	HF:25%  HS:25%  HV:10% 	  SF:8%  SS:8%  SV: 4%
-		     61%-100%: NF: 6% NS:8%  NV:6%  	HF:10%  HS:10%  HV:10% 	  SF:20%  SS:20%  SV: 10%
+Wahrscheinlichkeiten: 1%-30%: NF: 35% NS:25%  NV:10%  	HF:10%  HS:10%  HV:10% 	  SF:0%  SS:0%  SV: 0%
+		     31%-60%: NF: 10% NS:10%  NV:5%  	HF:20%  HS:20%  HV:10% 	  SF:10%  SS:10%  SV: 5%
+		     61%-100%: NF: 2% NS:2%  NV:2%  	HF:14%  HS:10%  HV:10% 	  SF:30%  SS:20%  SV: 10%
 		   
 Legende: NF - Normale Frage... HF.. heiße Frage.. SF: sehr Heiße Frage
 
