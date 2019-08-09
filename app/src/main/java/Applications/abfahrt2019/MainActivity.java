@@ -244,7 +244,8 @@ public class MainActivity extends AppCompatActivity {
             "§ und & Schnappen sich etwas Essbares und stellen die Susi-und-Strolch Szene nach! Brecht ihr ab, 3 Schlucke für jeden.",
             "§, Lasse dir die Augen verbinden. Deine Mitspieler lassen dich etwas vom Körper von & essen und du musst es erraten! Schaffst du es, 5 Schlucke zum Verteilen, sonst trinke 3!",
             "§, Lasse dir die Augen verbinden und dich im Kreis drehen! Den Ersten Spieler, den du berührst, musst du an eben diese Stelle küssen! Versagst du, 3 Schlucke!",
-            "§, Verteile so viele Knutschflecke wie du möchtest, mindestens aber 2 Stück!"
+            "§, Verteile so viele Knutschflecke wie du möchtest, mindestens aber 2 Stück!",
+            "§ zieht jetzt über jede Hand ein Kondom und behält diese bis zum Spielende dran oder trinkt 5 Schlucke! Wenn es reißt, 10 Strafschlucke!"
     };
     private String[] virusHeissArray =  {
             "§ füttert % nun mit Snacks! Für jeden einzelnen muss sich % mit \"Danke Daddy!\" (bei Mädchen \"Merci Mommy\" bedanken! -> § hat jetzt genug von den Snacks!"
