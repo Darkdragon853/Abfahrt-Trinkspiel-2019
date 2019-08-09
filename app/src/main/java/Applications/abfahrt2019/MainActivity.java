@@ -102,7 +102,8 @@ public class MainActivity extends AppCompatActivity {
             "§, Wer wäre beim Eintreten plötzlicher Blindheit der Blindenhund deines Vertrauens aus dieser Runde? Sowohl X als auch der Blindenhund verteilen jeweils !auf Ehre! 2 Schlücke!",
             "§, Spiele uns eine Geburt vor! Wenn & überzeugt ist, darfst du 3 Schlücke verteilen!",
             "§, Trage die Person links von dir einmal durch den Raum!",
-            "§, Tu so als würdest du dich 1min lang mit einem Gegenstand streiten! Sind die anderen überzeugt -> 3 Schlucke zum Verteilen, sonst trink 2!"
+            "§, Tu so als würdest du dich 1min lang mit einem Gegenstand streiten! Sind die anderen überzeugt -> 3 Schlucke zum Verteilen, sonst trink 2!",
+            "Robin, sing uns ein Lied! Die Gruppe entscheidet, wie viel Soul drin war und lässt dich 3 Schlucke trinken / verteilen!"
     };
     private String[] spieleNormalArray =  {
             "§ und & spielen Piss-Pott: Gegenüberstehend abwechselnd ein Fuß vor dem anderen stellen, bis ihr euch in der Mitte trefft! Der, dessen Fuß nicht mehr reinpasst, trinkt 4 Schlucke.",
@@ -187,7 +188,8 @@ public class MainActivity extends AppCompatActivity {
             "§, Hast du schon mal Doktorspiele gespielt? Wenn ja, verteile 3 Schlucke, sonst trinke 2!",
             "§, Erzähl uns die Letze Lüge, die du der Person rechts von dir angedreht hast! Weigerst du dich, 5 Schlucke!",
             "§, Gib einem Mitspieler deiner Wahl einen Klaps auf den Po!",
-            "§, Liefere & einen richtig Dummen Anmachspruch!"
+            "§, Liefere & einen richtig Dummen Anmachspruch!",
+            "Robin, Wenn du schon einmal mit einer Person im Raum Sex hattest, trink 5 Schlucke!"
 
 };
     private String[] spieleWarmArray =  {
