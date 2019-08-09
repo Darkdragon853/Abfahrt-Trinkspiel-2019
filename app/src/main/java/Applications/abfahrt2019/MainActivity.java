@@ -50,8 +50,8 @@ public class MainActivity extends AppCompatActivity {
     private TextView textView;
 
     // Parameter zur Spielbalance
-    private int sliceCount;
-    private int anzahlSlices;
+    private double sliceCount;
+    private double anzahlSlices;
     private int virusDauerIntervall;
     private int virusDauerOffset;
 
@@ -81,11 +81,11 @@ public class MainActivity extends AppCompatActivity {
             "§, Trink so viele Schlucke, wie du verlassen wurdest und auf depressiver Basis noch einen.",
             "§, Verteil 4 Schlucke, wenn du schon einmal mit & Unterricht hattest.",
             "Die letzte Person, die ihre Füße vom Bodem hebt trinkt 2 Schlucke.",
-            "§, Wenn du beweisen kannst, dass Rothaarige (ja Robin) eine Seele haben, verteile 3 Schlucke. Ansonsten trink sie.",
+            "§, Wenn du beweisen kannst, dass Rothaarige (ja Robin) eine Seele haben, verteile 3 Schlucke. Ansonsten trink sie selbst.",
             "§, Mach so viele Liegestütze, wie du Schlucke verteilen möchtest! Bei den Jungs entspricht jeder 10te einem Schluck, bei den Mädchen jeder 3te. Es sind maximal 8 Schlucke möglich.",
             "§, Erfülle die Aufgabe, die dir & gibt. Wenn du dich weigerst, trink 5 Schlucke.",
             "Alle Hände in die Höhe! Die letze Person trinkt 2 Schlucke.",
-            "§ verteilt so viele Schlücke wie viele schwarze Kleidungsstücke er/sie an hat.",
+            "§ verteilt so viele Schlucke wie viele schwarze Kleidungsstücke er/sie an hat.",
             "§ tut uns den Gefallen und trinkt sein/ihr Glas aus!",
             "§, Wann hattest du das letzte mal Sex? War es noch in den letzen 7 Tagen/2 Wochen trinke 2 bzw. 3 Schlucke. War es doch länger, ist das schon genug Bestrafung.",
             "§, Trink für jeden Sexpartner den du hattest einen Schluck.",
@@ -95,36 +95,36 @@ public class MainActivity extends AppCompatActivity {
             "§, Trink einen Schluck, wenn du noch nie in eine Person in deiner Schule verliebt warst.",
             "§, Trink einen Schluck, wenn du schon einmal beim Sex an eine andere Person gedacht hast.",
             "§, Trink einen Schluck, wenn du noch nie mit einer Person des anderen Geschlechts in der Dusche warst.",
-            "§, Erzähl uns eine Wahre und eine gelogene Geschichte. Jeder der auf dich reinfällt, trinkt 2 Schlücke!",
-            "§, Erzähl uns von deinem Schlechtesten Date! Wer es toppen kann, darf 3 Schlücke verteilen, sonst verteilst du zwei Stück!",
-            "§, Imitiere ein selbstgewähltes Tier! Kommt es authentisch, verteile 2 Schlucke, sonst trinke sie selbst; deine Mitspieler entscheiden!",
-            "§, Finde heraus, wessen Haare aus der Runde am Besten Duften! Lasse diese Person 2 Schlucke verteilen.",
-            "§, Wer wäre beim Eintreten plötzlicher Blindheit der Blindenhund deines Vertrauens aus dieser Runde? Sowohl X als auch der Blindenhund verteilen jeweils !auf Ehre! 2 Schlücke!",
-            "§, Spiele uns eine Geburt vor! Wenn & überzeugt ist, darfst du 3 Schlücke verteilen!",
+            "§, Erzähl uns eine Wahre und eine gelogene Geschichte. Jeder der auf dich reinfällt, trinkt 2 Schlucke!",
+            "§, Erzähl uns von deinem Schlechtesten Date! Wer es toppen kann, darf 3 Schlucke verteilen, sonst verteilst du zwei Stück!",
+            "§, Imitiere ein selbstgewähltes Tier! Kommt es authentisch rüber, verteile 2 Schlucke, ansonsten trink sie selbst; deine Mitspieler entscheiden!",
+            "§, Finde heraus, wessen Haare aus der Runde am Besten Duften! Lass diese Person 2 Schlucke verteilen.",
+            "§, Wer wäre beim Eintreten plötzlicher Blindheit der Blindenhund deines Vertrauens aus dieser Runde? Sowohl § als auch der Blindenhund verteilen jeweils !auf Ehre! 2 Schlucke!",
+            "§, Spiele uns eine Geburt vor! Wenn & überzeugt ist, darfst du 3 Schlucke verteilen!",
             "§, Trage die Person links von dir einmal durch den Raum!",
-            "§, Tu so als würdest du dich 1min lang mit einem Gegenstand streiten! Sind die anderen überzeugt -> 3 Schlucke zum Verteilen, sonst trink 2!",
+            "§, Tu so als würdest du dich 1 min lang mit einem Gegenstand streiten! Sind die anderen überzeugt verteile 3 Schlucke, ansonsten trink 2!",
             "Robin, sing uns ein Lied! Die Gruppe entscheidet, wie viel Soul drin war und lässt dich 3 Schlucke trinken / verteilen!"
+
     };
     private String[] spieleNormalArray =  {
-            "§ und & spielen Piss-Pott: Gegenüberstehend abwechselnd ein Fuß vor dem anderen stellen, bis ihr euch in der Mitte trefft! Der, dessen Fuß nicht mehr reinpasst, trinkt 4 Schlucke.",
+            "§ und & spielen Piss-Pott: Gegenüberstehend abwechselnd ein Fuß vor dem anderen stellen, bis ihr euch in der Mitte trefft! Die Person, dessen Fuß nicht mehr reinpasst, trinkt 4 Schlucke.",
             "Lieber Ausschweifungen mit einer Sexnummer haben oder FKK mit Freunden/Freundinnen machen? Stimmt alle gleichzeitig ab, die Verlierer trinken 2 Schlucke.",
             "Jeder nennt nacheinander den Film, den er zuletzt gesehen hat. Wer ihn auch schon gesehen hat, trinkt. § beginnt.",
             "Jeder nennt nacheinander etwas, das er schon immer mal ausprobieren wollte. Wer es schon mal gemacht hat, trinkt. § beginnt.",
             "§ muss sich Lippenstift auftragen und jedem einen Kuss auf die Wange geben.",
-            "§ und & geben in WhatsApp den Suchbegriff Blasen/ Sex(y)/ nackt / Orgie / ... ein und lesen die erste Nachricht vor. Wer sich weigert, trinkt 4 Schlücke.",
-            "An alle: Mit wem würdet ihr gerne mal schlafen (nur Freundes und Bekanntenkreis)? Schreibt den Namen auf! Die den gleichen Namen aufschreiben trinken Brüderlich 3 Schlucke.",
+            "§ und & geben in WhatsApp den Suchbegriff Blasen/ Sex(y)/ nackt / Orgie / ... ein und lesen die erste Nachricht vor. Wer sich weigert, trinkt 4 Schlucke.",
+            "An alle: Mit wem würdet ihr gerne mal schlafen (nur Freundes und Bekanntenkreis)? Schreibt den Namen auf! Die den gleichen Namen aufschreiben trinken brüderlich 3 Schlucke.",
             "An alle: Mit welchem Star würdet ihr gerne einmal schlafen? Die den gleichen Namen aufschreiben trinken 3 Schlucke zusammen.",
-            "§ vs &:\nFür einen Tag das andere Geschlecht sein. Was würdet ihr jeweils machen? % entscheidet welche die beste Idee wäre, der Gewinner darf 4 Schlucke verteilen",
+            "§ vs &:\nFür einen Tag das andere Geschlecht sein. Was würdet ihr jeweils machen? % entscheidet welche Idee fir beste wäre. Der Gewinner darf 4 Schlucke verteilen",
             "§ vs &:\nWas war dein deprimierendstes Erlebnis im Bett? % entscheidet welches schlimmer war. Der arme Gewinner darf 4 Schlucke verteilen.",
             "§ vs &:\nErzählt von eurem ersten Mal. % entscheidet welches erotischer klingt, der Verlierer darf zum Trost 4 Schlucke verteilen.",
             "Themenspiel:\nDinge, die beim Grillen nicht fehlen dürfen.",
             "Themenspiel:\nMake-up-Marken",
             "Jeder nennt seine Lieblingsfarbe. Alle, die dieselbe haben, trinken!",
             "§, lasse dich von & schminken!",
-            "Karaoke!\n§ und & singen zusammen ein Lied ihrer Wahl bis zum Refrain. Ansonsten trinkt 5 Schlücke.",
-            "§ und & stellen sich nah gegenüber und füllen ihren Mund komplett mit Wasser. % wird nun Flachwitze vorlesen, bis einer Lacht, wodurch dieser Verliert. Der Gewinner erhält 3 Schlücke zum Verteilen und wird vom Verlierer getrocknet.",
-            "§, bestimme den Slot-König unter euch und lege / stelle ihm 4 Schlücke zu Füßen, die er dann Verteilen darf!",
-            "ieber Ausschweifungen mit einer Sexnummer haben oder FKK mit Freunden/Freundinnen machen? Stimmt alle gleichzeitig ab, die Verlierer trinken 2 Schlucke.",
+            "Karaoke!\n§ und & singen zusammen ein Lied ihrer Wahl bis zum Refrain. Wenn nicht, trinkt 5 Schlucke.",
+            "§ und & stellen sich nah gegenüber und füllen ihren Mund komplett mit Wasser. % wird nun Flachwitze vorlesen, bis einer Lacht, wodurch dieser Verliert. Der Gewinner erhält 3 Schlucke zum Verteilen und wird vom Verlierer getrocknet.",
+            "§, bestimme den Slot-König unter euch und lege / stelle ihm 4 Schlucke zu Füßen, die er dann Verteilen darf!",
             "Lieber eine Nacht mit dem Promi deiner Wahl verbringen oder eine Woche Urlaub auf Mallorca? Stimmt alle gleichzeitig ab, die Verlierer trinken 2 Schlucke.",
             "Lieber nur noch 5 Jahre leben, aber steinreich sein oder lange leben, aber kaum einen Cent besitzen? Stimmt alle gleichzeitig ab, die Verlierer trinken 3 Schlucke.",
             "Letzte Worte vor dem Tod. § fängt an. Wird nichts neues genannt oder etwas wiederholt, trinkt die Person 2 Schlucke.",
@@ -170,15 +170,15 @@ public class MainActivity extends AppCompatActivity {
             "§, Zeig deinen Hintern oder trink 3 Schlucke.",
             "Alle trinken 3 Schlucke. Außer §, du gibst allen einen Kuss.",
             "§ und & kuscheln miteinander.",
-            "§ erspart uns den Anblick und muss 5 Kleidungsstücke wieder anziehen!",
+            "§ erspart uns den Anblick und muss sich wieder anziehen!",
             "Alle Kerle machen sich obenrum frei und trinken 2 Schlucke.",
             "§, Wähle eine Person, die eine Stelle deines Körpers abschlabbern muss. 3 Schlucke, wenn er/sie sich weigert.",
             "§ muss & ein Arschgeweih verpassen! Weigert sich jemand, 4 Schlucke für den Betroffenen.",
-            "§ muss bei & einen Lapdance machen. Zieht § den Schwanz ein (oder die Möse), dann werden 4 Schlücke getrunken.",
+            "§ muss bei & einen Lapdance machen. Zieht § den Schwanz ein (oder die Möse), dann werden 4 Schlucke getrunken.",
             "§ lässt seiner Fantasie freien Lauf und zählt 5 Pornonamen auf. Jeder Lacher/Schmunzler sorgt für einen Schluck!",
-            "§ verteilt nun eine innige Umarmung an einen Spieler deiner Wahl. Solltest du Scheitern, trinkst du 4 Schlücke.",
-            "Arsch, Titten, Gesicht, jetzt kommts drauf an: Worauf achtet ihr am Meisten bei einer Frau? Jeder wählt und die Verlierer trinken 3 Schlücke!",
-            "§, Wenn du auf den Strich gehen würdest – was wäre deine Spezialität? Jede Person, von der du denkst, dass sie dich dort aufsuchen würde, trinkt 3 Schlücke!",
+            "§ verteilt nun eine innige Umarmung an einen Spieler deiner Wahl. Solltest du Scheitern, trinkst du 4 Schlucke.",
+            "Arsch, Titten, Gesicht, jetzt kommts drauf an: Worauf achtet ihr am Meisten bei einer Frau? Jeder wählt und die Verlierer trinken 3 Schlucke!",
+            "§, Wenn du auf den Strich gehen würdest – was wäre deine Spezialität? Jede Person, von der du denkst, dass sie dich dort aufsuchen würde, trinkt 3 Schlucke!",
             "Alle Redheads dürfen einem Spieler ihrer Wahl ein Arschgeweih verpassen. ~ Cause Karma always catches up to you.",
             "§, Lasse dich von & und % Würzen!",
             "§, Preise dein Geschlechtsteil wie auf einem ShoppingKanal an!",
@@ -186,15 +186,15 @@ public class MainActivity extends AppCompatActivity {
             "§, Spiele das Letzte Lied auf deinem Handy, dass du gehört hast und gehe dazu Ab!",
             "§, Erzähle uns vom Schlimmsten Korb, den du je bekommen hast!",
             "§, Hast du schon mal Doktorspiele gespielt? Wenn ja, verteile 3 Schlucke, sonst trinke 2!",
-            "§, Erzähl uns die Letze Lüge, die du der Person rechts von dir angedreht hast! Weigerst du dich, 5 Schlucke!",
+            "§, Erzähl uns die letze Lüge, die du der Person rechts von dir angedreht hast! Weigerst du dich, 5 Schlucke!",
             "§, Gib einem Mitspieler deiner Wahl einen Klaps auf den Po!",
             "§, Liefere & einen richtig Dummen Anmachspruch!",
             "Robin, Wenn du schon einmal mit einer Person im Raum Sex hattest, trink 5 Schlucke!"
 
 };
     private String[] spieleWarmArray =  {
-            "Boxershorts-Contest! Die Jungs zeigen alle ihre Boxershorts. Die Mädels bilden die Jury und wählen die Schönste. Der Sieger verteilt 5 Schlücke.",
-            "String-Contest! Die Mädels zeigen alle ihren String. Die Jungs bilden die Jury und wählen den Schönsten. Die Siegerin verteilt 5 Schlücke.",
+            "Boxershorts-Contest! Die Jungs zeigen alle ihre Boxershorts. Die Mädels bilden die Jury und wählen die Schönste. Der Sieger verteilt 5 Schlucke.",
+            "String-Contest! Die Mädels zeigen alle ihren String. Die Jungs bilden die Jury und wählen den Schönsten. Die Siegerin verteilt 5 Schlucke.",
             "§, lass dir die Augen zubinden. Ein/e Spieler/in küsst dich irgendwo. Wenn du die Person errätst, verteilst du 5 Schlucke.",
             "Eine Runde Kiss-Party! Jeder küsst eine Person der Wahl. Wer sich weigert trinkt 3 Schlucke. § beginnt!",
             "§, Welche ist deine Lieblingsstellung beim Sex? Zeige diese mit & oder trinkt beide 3 Schlucke.",
@@ -203,7 +203,7 @@ public class MainActivity extends AppCompatActivity {
             "Jeder sucht sich die passende Zahl aus, wie oft er in der Woche Sex haben möchte. Wessen Zahl alleine steht, der trinkt einen Schluck; Wer einen / mehrere Partner findet, verteilt 2 Schlucke für den guten Geschmack!",
             "Spielt die FBI-OPEN-UP Szene nach! Dazu begeben sich 2-3 Leute in einen Raum und schließen die Tür, der Rest weiß was zu tun ist.",
             "§, Denke dir eine Sexstellung mit Allen Mitspielern aus und stellt sie dar!",
-            "FitnessStyle: § muss 20 Liegestütze/Kniebeuge machen! Für jeden nicht-geschafften trinkst du einen Schluck!",
+            "Fitness Style: § muss 20 Liegestütze/Kniebeuge machen! Für jeden nicht-geschafften trinkst du einen Schluck!",
             "Alle nennen Körperteile, die sie Anturnen! Der Verlierer erhält 3 Schlucke!",
             "Alle nennen Animes! Der Verlierer trinkt 3 Schlucke!",
             "Alle zeigen ihr Können bei einem Catwalk! Die Mädels leiten das Ganze an!"
@@ -217,20 +217,20 @@ public class MainActivity extends AppCompatActivity {
             "§, Bestimme eine Aktion, die & jedes mal, wenn % eine bestimme Handlung ausführt, machen muss! > &, Du musst nicht mehr auf die Handlungen von % reagieren.",
             "§, Baue nun in jeden deiner Sätze \"Im Bett\" ein! > §, Du darfst ab sofort auch wieder Sachen außerhalb des Betts tun ^^",
             "Ab sofort sprecht ihr Alle nur noch Englisch! > Ihr dürft wieder in die Deutsche Sprache übergehen.",
-            "§, preise dich & mit deinen Diensten als Slave an, die du aber auch Leisten können musst! Ist & unzufrieden, trinke 3 Schlucke! > § ist nun kein Sklave mehr."
+            "§, Preise dich & mit deinen Diensten als Slave an, die du aber auch Leisten können musst! Ist & unzufrieden, trinke 3 Schlucke! > § ist nun kein Sklave mehr."
     };
     private String[] fragenHeissArray = {
             "§, Wähle eine Person, die die Hand an deine Unterwäsche legen soll. 4 Schlucke, wenn er/sie sich weigert.",
             "§ gibt & einen Kuss auf den nackten Hintern oder trinkt 4 Schlucke.",
-            "§, Hol dir eine Banane und mach uns den perfekten Blowjob vor! Die Mitspieler stimmen über die Qualität ab und lassen dich 3 Schlücke trinken / verteilen. Beißt du die Banane währenddessen ab, 7 Strafschlücke!",
-            "§, Lass dir von & den Intimbereich streicheln. Verkacht ihr, trinkt beide 4 Schlücke.",
+            "§, Hol dir eine Banane und mach uns den perfekten Blowjob vor! Die Mitspieler stimmen über die Qualität ab und lassen dich 3 Schlucke trinken / verteilen. Beißt du die Banane währenddessen ab folgen 7 StrafSchlucke!",
+            "§, Lass dir von & den Intimbereich streicheln. Wenn nicht, trinkt ihr beide jeweils 4 Schlucke.",
             "§, Lass dich von dem Spieler deiner Wahl auf der Brust küssen. 4 Schlucke, wenn er/sie sich weigert.",
             "§, Trink dein Glas aus und küss die Person, die dich am Meisten anturnt.",
             "§, Du erhälst nun 20 Sekunden Zeit, ungestört einem Spieler deiner Wahl etwas ins Ohr zu Flüstern. Turnt es ihn/sie an, trinkt dein Ziel 4 Schlucke auf ehrlicher Basis, ansonsten übernimmst du sie!",
             "§, Setze dich einer Person deiner Wahl auf den Schoß solange du willst – oder setze sie auf deinen Schoß und spiele einen Orgasmus vor. Fürs bessere Aushalten erhält die gewählte Person einen Schluck.",
 			"§, Schnapp dir einen Spieler deiner Wahl und preise deine Lieblingssexstellung an, indem du sie kommentierst und darstellst!",
             "Teamwork: § zieht nun ein Kleidungsstück aus. & hat jetzt die Wahl: Wird das Gleiche Ausgezogen, ziehen auch alle anderen das aus! Ansonsten ziehen § und & noch das jeweils Andere aus.",
-            "§, Welche der hier anwesenden Personen würdest du dir für einen Dreier aussuchen? Ihr alle trinkt 2 Schlücke!",
+            "§, Welche der hier anwesenden Personen würdest du dir für einen Dreier aussuchen? Der Dreier trinkt 3 Schlucke!",
             "§, Bringe einem Mitspieler deiner Wahl die Rote Hand Gottes auf den Arsch oder trink 3 Schlucke!",
             "§, Zieh deine Badesachen an und lasse dir von einem Mitspieler des anderen Geschlechts den Rücken eincremen!",
             "§, Ziehe einem Mitspieler deiner Wahl möglichst Erotisch das T-Shirt aus!"
@@ -243,14 +243,14 @@ public class MainActivity extends AppCompatActivity {
 			"Wettbewerb des schönsten Hinterns: Die Mädels machen die Show, die Kerle bilden die Jury. Die Gewinnerin verteilt 5 Schlucke.",
             "§ und & Schnappen sich etwas Essbares und stellen die Susi-und-Strolch Szene nach! Brecht ihr ab, 3 Schlucke für jeden.",
             "§, Lasse dir die Augen verbinden. Deine Mitspieler lassen dich etwas vom Körper von & essen und du musst es erraten! Schaffst du es, 5 Schlucke zum Verteilen, sonst trinke 3!",
-            "§, Lasse dir die Augen verbinden und dich im Kreis drehen! Den Ersten Spieler, den du berührst, musst du an eben diese Stelle küssen! Versagst du, 3 Schlücke!",
-            "§, Verteile so viele Knutschfleche wie du möchtest, mindestens aber 2 Stück!"
+            "§, Lasse dir die Augen verbinden und dich im Kreis drehen! Den Ersten Spieler, den du berührst, musst du an eben diese Stelle küssen! Versagst du, 3 Schlucke!",
+            "§, Verteile so viele Knutschflecke wie du möchtest, mindestens aber 2 Stück!"
     };
     private String[] virusHeissArray =  {
             "§ füttert % nun mit Snacks! Für jeden einzelnen muss sich % mit \"Danke Daddy!\" (bei Mädchen \"Merci Mommy\" bedanken! -> § hat jetzt genug von den Snacks!"
     };
     private String[] manyInteractsArray = {
-            "§, % und & treten gegen `, # und - an. Der Rest bildet die Jury. Jeder erfindet eine Sexposition und gibt ihr einen Namen. Das kreativste Team gewinnt. Die Verlierer trinken 3 Schlücke."
+            "§, % und & treten gegen `, # und - an. Der Rest bildet die Jury. Jeder erfindet eine Sexposition und gibt ihr einen Namen. Das kreativste Team gewinnt. Die Verlierer trinken 3 Schlucke."
     };
 
 
@@ -709,66 +709,65 @@ public class MainActivity extends AppCompatActivity {
         if(!finished && !virusFirst) {
             ++sliceCount;
             // Momentaner SpielFortschritt
-            float factor = sliceCount / anzahlSlices;
-
+            double factor = sliceCount / anzahlSlices;
             // Versuche currentSlice zufällig zu wählen. Wähle erneut, falls diesmal getroffene Menge schon leer ist.
             Slice currentSlice = null;
             while(currentSlice == null) {
                 int temp = randomGenerator.nextInt(99) + 1; // Werte zwischen 1 und 100
-
+                // Log.d("Debug/Slice", "RandomZahl: "+ temp + " Faktor: " + factor + " SliceCount: " + sliceCount + " anzahlMaxSlices: " + anzahlSlices);
                 // 0%-30% des Games
                 if (factor <= 0.3) {
 
-                    if (temp <= 25) {
+                    if (temp <= 35) {
 
                         if (fragenNormal.isEmpty()) {
                             continue;
                         } else {
                             currentSlice = pickRandomSlice(fragenNormal);
                         }
-                    } else if (temp <= 35) {
+                    } else if (temp <= 45) {
 
                         if (fragenWarm.isEmpty()) {
                             continue;
                         } else {
                             currentSlice = pickRandomSlice(fragenWarm);
                         }
-                    } else if (temp <= 39) {
+                    } /*else if (temp <= 45) {
 
                         if (fragenHeiss.isEmpty()) {
                             continue;
                         } else {
                             currentSlice = pickRandomSlice(fragenHeiss);
                         }
-                    } else if (temp <= 64) {
+                    } */else if (temp <= 70) {
 
                         if (spieleNormal.isEmpty()) {
                             continue;
                         } else {
                             currentSlice = pickRandomSlice(spieleNormal);
                         }
-                    } else if (temp <= 74) {
+                    } else if (temp <= 80) {
 
                         if (spieleWarm.isEmpty()) {
                             continue;
                         } else {
                             currentSlice = pickRandomSlice(spieleWarm);
                         }
-                    } else if (temp <= 77) {
+                    } /*else if (temp <= 77) {
 
                         if (spieleHeiss.isEmpty()) {
                             continue;
                         } else {
                             currentSlice = pickRandomSlice(spieleHeiss);
                         }
-                    } else if (temp <= 87) {
+                    } */else if (temp <= 90) {
 
                         if (virusNormal.isEmpty()) {
                             continue;
                         } else {
                             currentSlice = pickRandomSlice(virusNormal);
                         }
-                    } else if (temp <= 97) {
+                    } else if (temp <= 100) {
 
                         if (virusWarm.isEmpty()) {
                             continue;
@@ -790,56 +789,56 @@ public class MainActivity extends AppCompatActivity {
                 //
                 else if (factor <= 0.6) {
 
-                    if (temp <= 8) {
+                    if (temp <= 10) {
 
                         if (fragenNormal.isEmpty()) {
                             continue;
                         } else {
                             currentSlice = pickRandomSlice(fragenNormal);
                         }
-                    } else if (temp <= 33) {
+                    } else if (temp <= 30) {
 
                         if (fragenWarm.isEmpty()) {
                             continue;
                         } else {
                             currentSlice = pickRandomSlice(fragenWarm);
                         }
-                    } else if (temp <= 41) {
+                    } else if (temp <= 40) {
 
                         if (fragenHeiss.isEmpty()) {
                             continue;
                         } else {
                             currentSlice = pickRandomSlice(fragenHeiss);
                         }
-                    } else if (temp <= 49) {
+                    } else if (temp <= 50) {
 
                         if (spieleNormal.isEmpty()) {
                             continue;
                         } else {
                             currentSlice = pickRandomSlice(spieleNormal);
                         }
-                    } else if (temp <= 74) {
+                    } else if (temp <= 70) {
 
                         if (spieleWarm.isEmpty()) {
                             continue;
                         } else {
                             currentSlice = pickRandomSlice(spieleWarm);
                         }
-                    } else if (temp <= 82) {
+                    } else if (temp <= 80) {
 
                         if (spieleHeiss.isEmpty()) {
                             continue;
                         } else {
                             currentSlice = pickRandomSlice(spieleHeiss);
                         }
-                    } else if (temp <= 86) {
+                    } else if (temp <= 85) {
 
                         if (virusNormal.isEmpty()) {
                             continue;
                         } else {
                             currentSlice = pickRandomSlice(virusNormal);
                         }
-                    } else if (temp <= 96) {
+                    } else if (temp <= 95) {
 
                         if (virusWarm.isEmpty()) {
                             continue;
@@ -860,7 +859,7 @@ public class MainActivity extends AppCompatActivity {
                 // 61% - 100% des Games
                 //
                 else {
-                    if (temp <= 6) {
+                    if (temp <= 2) {
 
                         if (fragenNormal.isEmpty()) {
                             continue;
@@ -874,28 +873,28 @@ public class MainActivity extends AppCompatActivity {
                         } else {
                             currentSlice = pickRandomSlice(fragenWarm);
                         }
-                    } else if (temp <= 36) {
+                    } else if (temp <= 46) {
 
                         if (fragenHeiss.isEmpty()) {
                             continue;
                         } else {
                             currentSlice = pickRandomSlice(fragenHeiss);
                         }
-                    } else if (temp <= 44) {
+                    } else if (temp <= 48) {
 
                         if (spieleNormal.isEmpty()) {
                             continue;
                         } else {
                             currentSlice = pickRandomSlice(spieleNormal);
                         }
-                    } else if (temp <= 54) {
+                    } else if (temp <= 58) {
 
                         if (spieleWarm.isEmpty()) {
                             continue;
                         } else {
                             currentSlice = pickRandomSlice(spieleWarm);
                         }
-                    } else if (temp <= 74) {
+                    } else if (temp <= 78) {
 
                         if (spieleHeiss.isEmpty()) {
                             continue;
